@@ -907,9 +907,9 @@ async function loadWeExamples() {
         '<p>' + (item.tags || '') + ' · ' + (item.published ? 'Published' : 'Draft') + '</p>' +
       '</div>' +
       '<div class="list-item-actions">' +
-        '<button class="btn-sm orange" onclick="openWeEditor('' + item.id + '')">Edit</button>' +
-        '<button class="btn-sm" onclick="toggleWePublished('' + item.id + '',' + item.published + ')">' + (item.published ? 'Unpublish' : 'Publish') + '</button>' +
-        '<button class="btn-danger" onclick="deleteWe('' + item.id + '')">Delete</button>' +
+        '<button class="btn-sm orange" onclick="openWeEditor(\'' + item.id + '\')">' + 'Edit</button>' +
+        '<button class="btn-sm" onclick="toggleWePublished(\'' + item.id + '\',' + item.published + ')">' + (item.published ? 'Unpublish' : 'Publish') + '</button>' +
+        '<button class="btn-danger" onclick="deleteWe(\'' + item.id + '\')">' + 'Delete</button>' +
       '</div>' +
     '</div>';
   }).join('');
@@ -927,8 +927,7 @@ async function openWeEditor(id) {
   document.getElementById('we-edit-desc').value = item.description || '';
   document.getElementById('we-edit-logo').value = item.logo_url || '';
   document.getElementById('we-edit-tags').value = item.tags || '';
-  document.getElementById('we-edit-support').value = item.support_items ? item.support_items.split('|').join('
-') : '';
+  document.getElementById('we-edit-support').value = item.support_items ? item.support_items.split('|').join('\n') : '';
   document.getElementById('we-edit-social-url').value = item.social_url || '';
   document.getElementById('we-edit-social-label').value = item.social_label || 'View social page';
   document.getElementById('we-edit-testimonial').value = item.testimonial || '';
@@ -961,8 +960,7 @@ document.getElementById('btn-save-we-item')?.addEventListener('click', async fun
   const initials = document.getElementById('we-edit-initials').value.trim().toUpperCase();
   if (!name) { alert('Business name is required.'); return; }
   const supportRaw = document.getElementById('we-edit-support').value.trim();
-  const support_items = supportRaw.split('
-').map(function(s) { return s.trim(); }).filter(Boolean).join('|');
+  const support_items = supportRaw.split('\n').map(function(s) { return s.trim(); }).filter(Boolean).join('|');
   const payload = {
     name,
     initials: initials || name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,4),
