@@ -407,59 +407,56 @@
       </div>
 
       <div class="admin-card">
-        <div class="admin-card-title">Work Examples — logos, tags and teasers</div>
-        <p class="field-hint" style="margin-bottom:16px">Add a logo URL for each client (paste any public image URL). Tags are comma-separated. Teasers are the short text on each card.</p>
+        <div class="admin-card-title">Work Examples — client manager</div>
+        <p class="field-hint" style="margin-bottom:16px">Add, edit and remove client cards. Changes go live on the Work Examples page immediately.</p>
+        <div id="we-list" class="item-list"></div>
+        <button class="btn-save" id="btn-new-we">+ Add new client</button>
+      </div>
 
-        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Holiday Haven</div>
-          <label class="field-label">Logo URL</label>
-          <input type="text" id="we-logo-hh" placeholder="https://... paste a direct image URL"/>
-          <label class="field-label">Tags (comma separated)</label>
-          <input type="text" id="we-tags-hh" value="Social media, Strategy, Google Business"/>
-          <label class="field-label">Card teaser</label>
-          <input type="text" id="we-hh" value="12 council-operated holiday parks on the NSW South Coast. Full social media management across Instagram, Facebook and Google."/>
+      <!-- Work Example Editor -->
+      <div class="editor-panel" id="we-editor">
+        <div class="editor-header">
+          <h3 id="we-editor-title">New client</h3>
+          <button class="btn-secondary" style="margin:0" onclick="closeWeEditor()">Cancel</button>
         </div>
-
-        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">ACEC</div>
-          <label class="field-label">Logo URL</label>
-          <input type="text" id="we-logo-acec" placeholder="https://... paste a direct image URL"/>
-          <label class="field-label">Tags (comma separated)</label>
-          <input type="text" id="we-tags-acec" value="Social media, Content creation, Training resources"/>
-          <label class="field-label">Card teaser</label>
-          <input type="text" id="we-acec" value="Vocational training and education on the NSW South Coast. Social media, Canva templates and training resources."/>
+        <input type="hidden" id="we-edit-id"/>
+        <div class="form-row">
+          <div>
+            <label class="field-label">Business name</label>
+            <input type="text" id="we-edit-name" placeholder="e.g. Holiday Haven Parks"/>
+          </div>
+          <div>
+            <label class="field-label">Initials (shown if no logo)</label>
+            <input type="text" id="we-edit-initials" placeholder="e.g. HH" style="text-transform:uppercase" maxlength="4"/>
+          </div>
         </div>
-
-        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Mother's Day Classic</div>
-          <label class="field-label">Logo URL</label>
-          <input type="text" id="we-logo-mdc" placeholder="https://... paste a direct image URL"/>
-          <label class="field-label">Tags (comma separated)</label>
-          <input type="text" id="we-tags-mdc" value="Event promotion, Community, Social content"/>
-          <label class="field-label">Card teaser</label>
-          <input type="text" id="we-mdc" value="Annual community fun run supporting women's cancer research. Social promotion and event content."/>
+        <label class="field-label">Description</label>
+        <textarea id="we-edit-desc" style="min-height:80px" placeholder="Who they are and what they do."></textarea>
+        <label class="field-label">Logo URL (optional)</label>
+        <input type="text" id="we-edit-logo" placeholder="https://... paste a public image URL"/>
+        <div class="field-hint">Upload your logo to Supabase Storage → copy the public URL → paste here.</div>
+        <label class="field-label">Tags (comma separated)</label>
+        <input type="text" id="we-edit-tags" placeholder="e.g. Social media, Strategy, Content"/>
+        <label class="field-label">Support items (one per line — each becomes a bullet point)</label>
+        <textarea id="we-edit-support" style="min-height:100px" placeholder="Social media management across Instagram and Facebook&#10;Monthly content calendars with captions and visual direction&#10;Canva templates for consistent branding"></textarea>
+        <div class="form-row">
+          <div>
+            <label class="field-label">Social/website URL (optional)</label>
+            <input type="text" id="we-edit-social-url" placeholder="https://..."/>
+          </div>
+          <div>
+            <label class="field-label">Link button label</label>
+            <input type="text" id="we-edit-social-label" placeholder="e.g. View Instagram" value="View social page"/>
+          </div>
         </div>
-
-        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">South Coast Demolition</div>
-          <label class="field-label">Logo URL</label>
-          <input type="text" id="we-logo-scd" placeholder="https://... paste a direct image URL"/>
-          <label class="field-label">Tags (comma separated)</label>
-          <input type="text" id="we-tags-scd" value="Operations, Admin systems, Job management"/>
-          <label class="field-label">Card teaser</label>
-          <input type="text" id="we-scd" value="Trades and excavation business. Operations, job management and admin systems support."/>
+        <label class="field-label">Testimonial (optional)</label>
+        <textarea id="we-edit-testimonial" style="min-height:70px" placeholder="What the client said..."></textarea>
+        <label class="field-label">Testimonial credit</label>
+        <input type="text" id="we-edit-testimonial-cite" placeholder="e.g. Sarah, Holiday Haven"/>
+        <div>
+          <button class="btn-save" id="btn-save-we-item">Save client</button>
+          <span class="save-msg" id="we-item-save-msg">✓ Saved</span>
         </div>
-
-        <div style="background:var(--grey);border-radius:10px;padding:18px">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Client feedback testimonials</div>
-          <label class="field-label">Testimonial 1</label>
-          <textarea id="we-testimonial-1" style="min-height:70px">"Tara made everything feel simple and achievable. We finally had a clear plan instead of a long list of things we kept putting off."</textarea>
-          <label class="field-label">Testimonial 2</label>
-          <textarea id="we-testimonial-2" style="min-height:70px">"The support was practical, easy to understand and actually suited how our business works. Nothing felt overcomplicated."</textarea>
-        </div>
-
-        <button class="btn-save" id="btn-save-we">Save all work example content</button>
-        <span class="save-msg" id="we-save-msg">✓ Saved</span>
       </div>
 
       <div class="admin-card">
@@ -574,7 +571,7 @@ function enterAdmin() {
   document.getElementById('admin-screen').style.display = 'block';
   updateAllStatuses();
   loadPosts();
-  if (sb) { loadClients(); loadApprovals(); loadHomepageContent(); loadPagesContent(); }
+  if (sb) { loadClients(); loadApprovals(); loadHomepageContent(); loadPagesContent(); loadWeExamples(); }
   // Pre-fill saved keys
   const url = localStorage.getItem('sb_url'); const key = localStorage.getItem('sb_anon');
   if (url) document.getElementById('sb-url').value = url;
@@ -889,6 +886,120 @@ async function archiveClient(id, name) {
     await sb.from('profiles').update({ archived: true }).eq('id', id);
     loadClients();
   }
+}
+
+// ── WORK EXAMPLES MANAGER ────────────────────────────────
+let editingWeId = null;
+
+async function loadWeExamples() {
+  if (!sb) return;
+  const list = document.getElementById('we-list');
+  if (!list) return;
+  const { data } = await sb.from('work_examples').select('*').order('sort_order', { ascending: true });
+  if (!data || !data.length) {
+    list.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:12px">No clients yet. Add one below.</div>';
+    return;
+  }
+  list.innerHTML = data.map(function(item) {
+    return '<div class="list-item">' +
+      '<div class="list-item-info">' +
+        '<h4>' + item.name + '</h4>' +
+        '<p>' + (item.tags || '') + ' · ' + (item.published ? 'Published' : 'Draft') + '</p>' +
+      '</div>' +
+      '<div class="list-item-actions">' +
+        '<button class="btn-sm orange" onclick="openWeEditor('' + item.id + '')">Edit</button>' +
+        '<button class="btn-sm" onclick="toggleWePublished('' + item.id + '',' + item.published + ')">' + (item.published ? 'Unpublish' : 'Publish') + '</button>' +
+        '<button class="btn-danger" onclick="deleteWe('' + item.id + '')">Delete</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+async function openWeEditor(id) {
+  if (!sb) return;
+  const { data: item } = await sb.from('work_examples').select('*').eq('id', id).single();
+  if (!item) return;
+  editingWeId = id;
+  document.getElementById('we-edit-id').value = id;
+  document.getElementById('we-editor-title').textContent = 'Edit client';
+  document.getElementById('we-edit-name').value = item.name || '';
+  document.getElementById('we-edit-initials').value = item.initials || '';
+  document.getElementById('we-edit-desc').value = item.description || '';
+  document.getElementById('we-edit-logo').value = item.logo_url || '';
+  document.getElementById('we-edit-tags').value = item.tags || '';
+  document.getElementById('we-edit-support').value = item.support_items ? item.support_items.split('|').join('
+') : '';
+  document.getElementById('we-edit-social-url').value = item.social_url || '';
+  document.getElementById('we-edit-social-label').value = item.social_label || 'View social page';
+  document.getElementById('we-edit-testimonial').value = item.testimonial || '';
+  document.getElementById('we-edit-testimonial-cite').value = item.testimonial_cite || '';
+  document.getElementById('we-editor').classList.add('is-open');
+  document.getElementById('we-editor').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeWeEditor() {
+  document.getElementById('we-editor').classList.remove('is-open');
+  editingWeId = null;
+}
+
+document.getElementById('btn-new-we')?.addEventListener('click', function() {
+  editingWeId = null;
+  document.getElementById('we-edit-id').value = '';
+  document.getElementById('we-editor-title').textContent = 'New client';
+  ['we-edit-name','we-edit-initials','we-edit-desc','we-edit-logo','we-edit-tags','we-edit-support','we-edit-social-url','we-edit-testimonial','we-edit-testimonial-cite'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('we-edit-social-label').value = 'View social page';
+  document.getElementById('we-editor').classList.add('is-open');
+  document.getElementById('we-editor').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+
+document.getElementById('btn-save-we-item')?.addEventListener('click', async function() {
+  if (!sb) { alert('Connect Supabase first.'); return; }
+  const name = document.getElementById('we-edit-name').value.trim();
+  const initials = document.getElementById('we-edit-initials').value.trim().toUpperCase();
+  if (!name) { alert('Business name is required.'); return; }
+  const supportRaw = document.getElementById('we-edit-support').value.trim();
+  const support_items = supportRaw.split('
+').map(function(s) { return s.trim(); }).filter(Boolean).join('|');
+  const payload = {
+    name,
+    initials: initials || name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,4),
+    description: document.getElementById('we-edit-desc').value.trim(),
+    logo_url: document.getElementById('we-edit-logo').value.trim() || null,
+    tags: document.getElementById('we-edit-tags').value.trim(),
+    support_items,
+    social_url: document.getElementById('we-edit-social-url').value.trim() || null,
+    social_label: document.getElementById('we-edit-social-label').value.trim() || 'View social page',
+    testimonial: document.getElementById('we-edit-testimonial').value.trim() || null,
+    testimonial_cite: document.getElementById('we-edit-testimonial-cite').value.trim() || null,
+    published: true
+  };
+
+  if (editingWeId) {
+    await sb.from('work_examples').update(payload).eq('id', editingWeId);
+  } else {
+    const { data: existing } = await sb.from('work_examples').select('sort_order').order('sort_order', { ascending: false }).limit(1);
+    payload.sort_order = existing && existing.length ? (existing[0].sort_order + 1) : 1;
+    await sb.from('work_examples').insert(payload);
+  }
+
+  flashSave('we-item-save-msg');
+  closeWeEditor();
+  loadWeExamples();
+});
+
+async function toggleWePublished(id, current) {
+  if (!sb) return;
+  await sb.from('work_examples').update({ published: !current }).eq('id', id);
+  loadWeExamples();
+}
+
+async function deleteWe(id) {
+  if (!confirm('Delete this client card? This cannot be undone.')) return;
+  await sb.from('work_examples').delete().eq('id', id);
+  loadWeExamples();
 }
 
 // ── UTILITY ───────────────────────────────────────────────
