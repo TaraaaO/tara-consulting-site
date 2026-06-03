@@ -407,17 +407,58 @@
       </div>
 
       <div class="admin-card">
-        <div class="admin-card-title">Work Examples — client card teasers</div>
-        <p class="field-hint" style="margin-bottom:16px">Edit the short teaser text visible on each client card before it's opened.</p>
-        <label class="field-label">Holiday Haven teaser</label>
-        <input type="text" id="we-hh" value="12 council-operated holiday parks on the NSW South Coast. Full social media management across Instagram, Facebook and Google."/>
-        <label class="field-label">ACEC teaser</label>
-        <input type="text" id="we-acec" value="Vocational training and education on the NSW South Coast. Social media, Canva templates and training resources."/>
-        <label class="field-label">Mother's Day Classic teaser</label>
-        <input type="text" id="we-mdc" value="Annual community fun run supporting women's cancer research. Social promotion and event content."/>
-        <label class="field-label">South Coast Demolition teaser</label>
-        <input type="text" id="we-scd" value="Trades and excavation business. Operations, job management and admin systems support."/>
-        <button class="btn-save" id="btn-save-we">Save work example teasers</button>
+        <div class="admin-card-title">Work Examples — logos, tags and teasers</div>
+        <p class="field-hint" style="margin-bottom:16px">Add a logo URL for each client (paste any public image URL). Tags are comma-separated. Teasers are the short text on each card.</p>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Holiday Haven</div>
+          <label class="field-label">Logo URL</label>
+          <input type="text" id="we-logo-hh" placeholder="https://... paste a direct image URL"/>
+          <label class="field-label">Tags (comma separated)</label>
+          <input type="text" id="we-tags-hh" value="Social media, Strategy, Google Business"/>
+          <label class="field-label">Card teaser</label>
+          <input type="text" id="we-hh" value="12 council-operated holiday parks on the NSW South Coast. Full social media management across Instagram, Facebook and Google."/>
+        </div>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">ACEC</div>
+          <label class="field-label">Logo URL</label>
+          <input type="text" id="we-logo-acec" placeholder="https://... paste a direct image URL"/>
+          <label class="field-label">Tags (comma separated)</label>
+          <input type="text" id="we-tags-acec" value="Social media, Content creation, Training resources"/>
+          <label class="field-label">Card teaser</label>
+          <input type="text" id="we-acec" value="Vocational training and education on the NSW South Coast. Social media, Canva templates and training resources."/>
+        </div>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Mother's Day Classic</div>
+          <label class="field-label">Logo URL</label>
+          <input type="text" id="we-logo-mdc" placeholder="https://... paste a direct image URL"/>
+          <label class="field-label">Tags (comma separated)</label>
+          <input type="text" id="we-tags-mdc" value="Event promotion, Community, Social content"/>
+          <label class="field-label">Card teaser</label>
+          <input type="text" id="we-mdc" value="Annual community fun run supporting women's cancer research. Social promotion and event content."/>
+        </div>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">South Coast Demolition</div>
+          <label class="field-label">Logo URL</label>
+          <input type="text" id="we-logo-scd" placeholder="https://... paste a direct image URL"/>
+          <label class="field-label">Tags (comma separated)</label>
+          <input type="text" id="we-tags-scd" value="Operations, Admin systems, Job management"/>
+          <label class="field-label">Card teaser</label>
+          <input type="text" id="we-scd" value="Trades and excavation business. Operations, job management and admin systems support."/>
+        </div>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Client feedback testimonials</div>
+          <label class="field-label">Testimonial 1</label>
+          <textarea id="we-testimonial-1" style="min-height:70px">"Tara made everything feel simple and achievable. We finally had a clear plan instead of a long list of things we kept putting off."</textarea>
+          <label class="field-label">Testimonial 2</label>
+          <textarea id="we-testimonial-2" style="min-height:70px">"The support was practical, easy to understand and actually suited how our business works. Nothing felt overcomplicated."</textarea>
+        </div>
+
+        <button class="btn-save" id="btn-save-we">Save all work example content</button>
         <span class="save-msg" id="we-save-msg">✓ Saved</span>
       </div>
 
