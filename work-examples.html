@@ -60,15 +60,15 @@
       <div class="container">
         <div class="breadcrumb"><a href="index.html">Home</a> / Work Examples</div>
         <h1>Businesses <em>supported.</em></h1>
-        <p>A look at the businesses and community projects I've worked with — what was supported, what that looked like in practice, and links to examples where approved.</p>
+        <p id="we-page-intro">A selection of the businesses and community projects I've had the pleasure of working with across social media, marketing, AI and operations.</p>
       </div>
     </section>
 
     <section class="block pale">
       <div class="container">
         <p class="section-eyebrow">Work examples</p>
-        <h2 class="section-title">Click any card to see the full picture.</h2>
-        <p class="section-intro">Each card opens a profile showing what was supported and links to live examples. The card and profile both get an orange border so you can see they're connected.</p>
+        <h2 class="section-title" id="we-section-title">Businesses and projects supported.</h2>
+        <p class="section-intro" id="we-section-intro">Click any card to find out more about the business and the work we did together.</p>
         <div id="profiles-area"></div>
         <div id="cards-grid" class="clients-grid"><div class="loading-state">Loading...</div></div>
       </div>
@@ -250,7 +250,24 @@
       }
     }
 
+    // Load editable page text from Supabase
+    async function loadPageContent() {
+      try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/site_content?select=key,value&key=in.(we-page-intro,we-section-title,we-section-intro)', {
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY }
+        });
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          data.forEach(function(row) {
+            var el = document.getElementById(row.key);
+            if (el) el.textContent = row.value;
+          });
+        }
+      } catch(e) {}
+    }
+
     loadExamples();
+    loadPageContent();
   </script>
 </body>
 </html>

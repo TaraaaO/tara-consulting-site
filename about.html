@@ -121,7 +121,7 @@
     <section class="page-hero">
       <div class="container">
         <div class="breadcrumb"><a href="index.html">Home</a> / About</div>
-        <h1>Practical support for <em>real businesses.</em></h1>
+        <h1 id="about-headline">Practical support for <em>real businesses.</em></h1>
         <p>I work with small business owners who are good at what they do but are stretched thin when it comes to social media, AI, marketing and admin. I'm here to make that side of things easier.</p>
       </div>
     </section>
@@ -140,15 +140,15 @@
           <div class="about-body">
             <div>
               <p class="section-eyebrow">Meet Tara</p>
-              <p>I've worked across operations, training, compliance, marketing and business systems in real Aussie industries — from trades to tourism to early childhood education.</p>
-              <p>I started Tara Consulting Co because I kept seeing the same thing: hard-working business owners who are great at what they do, but stretched thin trying to keep up with social media, AI, marketing and admin all at once.</p>
-              <p>Most of what I help with doesn't require a big agency or a long complicated strategy. It just requires someone to sit down with you, figure out what actually matters, and help you build something simple and repeatable that you can keep using.</p>
-              <p class="signature">No jargon. No overcomplicating it. Just practical support that helps you move.</p>
+              <p id="about-p1">I've worked across operations, training, compliance, marketing and business systems in real Aussie industries — from trades to tourism to early childhood education.</p>
+              <p id="about-p2">I started Tara Consulting Co because I kept seeing the same thing: hard-working business owners who are great at what they do, but stretched thin trying to keep up with social media, AI, marketing and admin all at once.</p>
+              <p id="about-p3">Most of what I help with doesn't require a big agency or a long complicated strategy. It just requires someone to sit down with you, figure out what actually matters, and help you build something simple and repeatable that you can keep using.</p>
+              <p class="signature" id="about-sig">No jargon. No overcomplicating it. Just practical support that helps you move.</p>
             </div>
 
             <div>
-              <div class="about-subhead">What I believe</div>
-              <ul class="values-list">
+              <div class="about-subhead" id="about-believe-title">What I believe</div>
+              <ul class="values-list" id="about-believe-list">
                 <li><strong>Clear communication solves most problems.</strong> Most marketing issues are actually communication issues in disguise.</li>
                 <li><strong>Simple and practical beats complicated every time.</strong> If you won't use it, it doesn't matter how good it looks.</li>
                 <li><strong>Real-world experience matters as much as theory.</strong> I've worked in the industries I help, not just read about them.</li>
@@ -158,9 +158,9 @@
             </div>
 
             <div>
-              <div class="about-subhead">What I work across</div>
-              <p style="margin-bottom: 16px;">My background spans training and assessment, operations management, social media, content creation and business systems. I work across a small number of industries where I have genuine hands-on experience:</p>
-              <ul class="values-list">
+              <div class="about-subhead" id="about-work-title">What I work across</div>
+              <p style="margin-bottom: 16px;" id="about-work-intro">My background spans training and assessment, operations management, social media, content creation and business systems. I work across a small number of industries where I have genuine hands-on experience:</p>
+              <ul class="values-list" id="about-work-list">
                 <li>Early childhood education and care — training, compliance, student support and centre operations</li>
                 <li>Tourism and hospitality — social media, content strategy and marketing for visitor-facing businesses</li>
                 <li>Trades and construction — operations, job management, admin systems and processes</li>
@@ -169,8 +169,8 @@
             </div>
 
             <div>
-              <div class="about-subhead">Tools I use</div>
-              <div class="tools-grid">
+              <div class="about-subhead" id="about-tools-title">Tools I use</div>
+              <div class="tools-grid" id="about-tools-grid">
                 <div class="tool-pill">Claude AI</div>
                 <div class="tool-pill">ChatGPT</div>
                 <div class="tool-pill">Canva</div>
@@ -217,5 +217,58 @@
   </main>
 
   <script src="shared.js"></script>
+  <script>
+    (async function() {
+      try {
+        const SUPABASE_URL = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
+        const keys = 'about-headline,about-p1,about-p2,about-p3,about-sig,about-believe-title,about-believe-items,about-work-title,about-work-intro,about-work-items,about-tools-title,about-tools-items';
+        const res = await fetch(SUPABASE_URL + '/rest/v1/site_content?select=key,value&key=in.(' + keys + ')', {
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY }
+        });
+        const data = await res.json();
+        if (!Array.isArray(data)) return;
+        data.forEach(function(row) {
+          // Simple text fields
+          var simple = ['about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-work-title','about-work-intro','about-tools-title'];
+          if (simple.indexOf(row.key) > -1) {
+            var el = document.getElementById(row.key);
+            if (el) el.textContent = row.value;
+          }
+          // Believe list — each line becomes a list item (format: "Bold part. Rest of text")
+          if (row.key === 'about-believe-items') {
+            var list = document.getElementById('about-believe-list');
+            if (list && row.value) {
+              list.innerHTML = row.value.split('
+').filter(Boolean).map(function(line) {
+                var parts = line.match(/^([^.]+\.) ?(.*)$/);
+                if (parts) return '<li><strong>' + parts[1] + '</strong> ' + parts[2] + '</li>';
+                return '<li>' + line + '</li>';
+              }).join('');
+            }
+          }
+          // Work across list — each line becomes a list item
+          if (row.key === 'about-work-items') {
+            var list2 = document.getElementById('about-work-list');
+            if (list2 && row.value) {
+              list2.innerHTML = row.value.split('
+').filter(Boolean).map(function(line) {
+                return '<li>' + line + '</li>';
+              }).join('');
+            }
+          }
+          // Tools — comma separated becomes pills
+          if (row.key === 'about-tools-items') {
+            var grid = document.getElementById('about-tools-grid');
+            if (grid && row.value) {
+              grid.innerHTML = row.value.split(',').filter(Boolean).map(function(t) {
+                return '<div class="tool-pill">' + t.trim() + '</div>';
+              }).join('');
+            }
+          }
+        });
+      } catch(e) {}
+    })();
+  </script>
 </body>
 </html>

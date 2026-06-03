@@ -187,8 +187,8 @@
     <section class="page-hero">
       <div class="container">
         <div class="breadcrumb"><a href="index.html">Home</a> / Start Here</div>
-        <h1>Not sure <em>where to begin?</em></h1>
-        <p>Pick the starting point that sounds most like where you're at right now. Each one gives you practical next steps you can actually use — no jargon, no theory.</p>
+        <h1 id="sh-page-title">Not sure <em>where to begin?</em></h1>
+        <p id="sh-page-intro">Pick the starting point that sounds most like where you're at right now. Each one gives you practical next steps you can actually use — no jargon, no theory.</p>
       </div>
     </section>
 
@@ -196,8 +196,8 @@
     <section class="block pale">
       <div class="container">
         <p class="section-eyebrow">Starting points</p>
-        <h2 class="section-title">Click a card to open the guide.</h2>
-        <p class="section-intro">The card and the guide below it will both get an orange border so you can see they're connected. Click a different card to switch.</p>
+        <h2 class="section-title" id="sh-section-title">Click a card to open the guide.</h2>
+        <p class="section-intro" id="sh-section-intro">The card and the guide below it will both get an orange border so you can see they're connected. Click a different card to switch.</p>
 
         <div class="start-grid">
 
@@ -373,6 +373,24 @@
     // Small delay so page renders before scrolling
     setTimeout(openFromHash, 150);
     window.addEventListener('hashchange', openFromHash);
+
+    // Load editable page text from Supabase
+    (async function() {
+      try {
+        const SUPABASE_URL = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
+        const res = await fetch(SUPABASE_URL + '/rest/v1/site_content?select=key,value&key=in.(sh-page-title,sh-page-intro,sh-section-title,sh-section-intro)', {
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY }
+        });
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          data.forEach(function(row) {
+            var el = document.getElementById(row.key);
+            if (el) el.textContent = row.value;
+          });
+        }
+      } catch(e) {}
+    })();
   </script>
 </body>
 </html>

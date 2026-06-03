@@ -372,6 +372,21 @@
       </div>
 
       <div class="admin-card">
+        <div class="admin-card-title">Start Here — page text</div>
+        <p class="field-hint" style="margin-bottom:16px">Edit the intro text at the top of the Start Here page.</p>
+        <label class="field-label">Page title</label>
+        <input type="text" id="sh-page-title" value="Not sure where to begin?"/>
+        <label class="field-label">Page intro paragraph</label>
+        <textarea id="sh-page-intro" style="min-height:70px">Pick the starting point that sounds most like where you're at right now. Each one gives you practical next steps you can actually use — no jargon, no theory.</textarea>
+        <label class="field-label">Section title</label>
+        <input type="text" id="sh-section-title" value="Click a card to open the guide."/>
+        <label class="field-label">Section intro</label>
+        <input type="text" id="sh-section-intro" value="The card and the guide below it will both get an orange border so you can see they're connected. Click a different card to switch."/>
+        <button class="btn-save" id="btn-save-sh-text">Save Start Here page text</button>
+        <span class="save-msg" id="sh-text-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
         <div class="admin-card-title">Start Here — four panel headings and tips</div>
         <p class="field-hint" style="margin-bottom:16px">Each card has a heading and intro paragraph. Edit them here. Tips inside the panels are also editable.</p>
         <div class="form-row">
@@ -404,6 +419,19 @@
         </div>
         <button class="btn-save" id="btn-save-starthero">Save Start Here cards</button>
         <span class="save-msg" id="sh-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Work Examples — page text</div>
+        <p class="field-hint" style="margin-bottom:16px">Edit the intro text at the top of the Work Examples page.</p>
+        <label class="field-label">Page intro paragraph</label>
+        <textarea id="we-page-intro" style="min-height:70px">A selection of the businesses and community projects I've had the pleasure of working with across social media, marketing, AI and operations.</textarea>
+        <label class="field-label">Section title</label>
+        <input type="text" id="we-section-title" value="Businesses and projects supported."/>
+        <label class="field-label">Section intro</label>
+        <input type="text" id="we-section-intro" value="Click any card to find out more about the business and the work we did together."/>
+        <button class="btn-save" id="btn-save-we-text">Save Work Examples page text</button>
+        <span class="save-msg" id="we-text-save-msg">✓ Saved</span>
       </div>
 
       <div class="admin-card">
@@ -471,6 +499,42 @@
         <textarea id="about-p3" style="min-height:80px">Most of what I help with doesn't require a big agency or a long complicated strategy. It just requires someone to sit down with you, figure out what actually matters, and help you build something simple and repeatable that you can keep using.</textarea>
         <label class="field-label">Signature line (italic quote)</label>
         <input type="text" id="about-sig" value="No jargon. No overcomplicating it. Just practical support that helps you move."/>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-top:20px;margin-bottom:4px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">What I believe</div>
+          <label class="field-label">Section title</label>
+          <input type="text" id="about-believe-title" value="What I believe"/>
+          <label class="field-label">Belief items (one per line — start each with Bold part. then the rest)</label>
+          <textarea id="about-believe-items" style="min-height:130px;font-size:13px">Clear communication solves most problems. Most marketing issues are actually communication issues in disguise.
+Simple and practical beats complicated every time. If you won't use it, it doesn't matter how good it looks.
+Real-world experience matters as much as theory. I've worked in the industries I help, not just read about them.
+Consistency is more valuable than perfection. Showing up imperfectly beats the perfect post you never make.
+AI is a tool, not a shortcut. Used properly it saves real time. Used lazily it produces generic rubbish.</textarea>
+          <div class="field-hint">Each line becomes a bullet. The text before the first full stop becomes bold.</div>
+        </div>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-top:14px;margin-bottom:4px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">What I work across</div>
+          <label class="field-label">Section title</label>
+          <input type="text" id="about-work-title" value="What I work across"/>
+          <label class="field-label">Intro paragraph</label>
+          <textarea id="about-work-intro" style="min-height:70px">My background spans training and assessment, operations management, social media, content creation and business systems. I work across a small number of industries where I have genuine hands-on experience:</textarea>
+          <label class="field-label">Industry items (one per line)</label>
+          <textarea id="about-work-items" style="min-height:100px;font-size:13px">Early childhood education and care — training, compliance, student support and centre operations
+Tourism and hospitality — social media, content strategy and marketing for visitor-facing businesses
+Trades and construction — operations, job management, admin systems and processes
+Small business generally — wherever social media, AI, marketing or operations support is needed</textarea>
+        </div>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-top:14px;margin-bottom:4px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Tools I use</div>
+          <label class="field-label">Section title</label>
+          <input type="text" id="about-tools-title" value="Tools I use"/>
+          <label class="field-label">Tools (comma separated)</label>
+          <input type="text" id="about-tools-items" value="Claude AI, ChatGPT, Canva, Vista Social, ContentStudio, Google Analytics, Meta Business Suite, Google Business, Xero"/>
+          <div class="field-hint">Each tool becomes a pill tag. Separate with commas.</div>
+        </div>
+
         <button class="btn-save" id="btn-save-about">Save About page</button>
         <span class="save-msg" id="about-save-msg">✓ Saved</span>
       </div>
@@ -829,7 +893,7 @@ async function loadHomepageContent() {
 }
 
 async function loadPagesContent() {
-  const fields = ['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','we-hh','we-acec','we-mdc','we-scd','we-logo-hh','we-logo-acec','we-logo-mdc','we-logo-scd','we-tags-hh','we-tags-acec','we-tags-mdc','we-tags-scd','we-testimonial-1','we-testimonial-2','about-headline','about-p1','about-p2','about-p3','about-sig'];
+  const fields = ['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','we-page-intro','we-section-title','we-section-intro','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -840,9 +904,11 @@ async function loadPagesContent() {
   { btn:'btn-save-hero',     msg:'hero-save-msg',   fields:['hp-headline','hp-lead','hp-card-headline','hp-card-body'] },
   { btn:'btn-save-ithy',     msg:'ithy-save-msg',   fields:['hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4'] },
   { btn:'btn-save-cta',      msg:'cta-save-msg',    fields:['hp-cta-headline','hp-cta-body','hp-cta-btn'] },
+  { btn:'btn-save-we-text',  msg:'we-text-save-msg', fields:['we-page-intro','we-section-title','we-section-intro'] },
+  { btn:'btn-save-sh-text',  msg:'sh-text-save-msg', fields:['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro'] },
   { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc'] },
   { btn:'btn-save-we',       msg:'we-save-msg',     fields:['we-hh','we-acec','we-mdc','we-scd','we-logo-hh','we-logo-acec','we-logo-mdc','we-logo-scd','we-tags-hh','we-tags-acec','we-tags-mdc','we-tags-scd','we-testimonial-1','we-testimonial-2'] },
-  { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-headline','about-p1','about-p2','about-p3','about-sig'] },
+  { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'] },
 ].forEach(({ btn, msg, fields }) => {
   document.getElementById(btn)?.addEventListener('click', async () => {
     for (const f of fields) await saveSiteContent(f, document.getElementById(f).value);

@@ -1,12 +1,12 @@
 // shared.js — injects nav and footer, handles mobile menu, marks active page
- 
+
 (function() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
- 
+
   function activeIf(names) {
     return names.includes(page) ? ' class="active-page"' : '';
   }
- 
+
   const headerHTML = `
   <header>
     <div class="container header-inner">
@@ -32,16 +32,16 @@
       <a class="mob-cta" href="index.html#contact">Book a Free Call</a>
     </nav>
   </header>`;
- 
+
   const footerHTML = `
   <footer>
     <div>© ${new Date().getFullYear()} Tara Consulting Co · Social media, AI and marketing made practical.</div>
     <div class="meta">Made in Australia · <a href="mailto:hello@taraconsultingco.com">hello@taraconsultingco.com</a></div>
   </footer>`;
- 
+
   document.body.insertAdjacentHTML('afterbegin', headerHTML);
   document.body.insertAdjacentHTML('beforeend', footerHTML);
- 
+
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   if (toggle && menu) {
