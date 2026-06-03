@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Here | Tara Consulting Co</title>
+  <meta name="description" content="Four practical starting points for small businesses getting into social media, AI, and marketing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+
+    /* ── STARTING POINT CARDS ────────────────────────────── */
+    .start-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+
+    .start-card {
+      background: var(--white);
+      border: 2px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      text-align: left;
+      font-family: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .start-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(247,127,0,0.4);
+    }
+    /* Active — orange border on card */
+    .start-card.is-active {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(247,127,0,0.14), var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .start-card .icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--cream);
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      color: var(--orange);
+      transition: background 0.2s;
+    }
+    .start-card.is-active .icon { background: var(--orange-soft); }
+
+    .start-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+    .start-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; flex: 1; }
+
+    .start-card .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--orange);
+      transition: color 0.15s;
+    }
+    .start-card.is-active .card-cta { color: var(--navy); }
+    .start-card .card-cta .caret {
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+    .start-card.is-active .card-cta .caret { transform: rotate(180deg); }
+
+    /* ── CONTENT PANELS ──────────────────────────────────── */
+    .focus-panels { margin-top: 4px; }
+
+    .content-panel {
+      display: none;
+      background: var(--white);
+      /* Orange border on panel when active */
+      border: 2px solid var(--line);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: 32px 36px;
+      gap: 22px;
+      margin-bottom: 8px;
+      transition: border-color 0.2s;
+      scroll-margin-top: 100px;
+    }
+    .content-panel.is-active {
+      display: grid;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(247,127,0,0.12), var(--shadow-md);
+      animation: panelReveal 0.3s ease;
+    }
+    @keyframes panelReveal {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Orange accent bar at top of panel */
+    .content-panel.is-active::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: var(--orange);
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+
+    .content-panel h4 {
+      color: var(--navy);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+    .content-panel > p { color: var(--muted); font-size: 1rem; line-height: 1.65; }
+
+    .tip-list {
+      display: grid;
+      gap: 12px;
+      list-style: none;
+    }
+    .tip-list li {
+      background: var(--grey);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--muted);
+      padding: 15px 18px;
+      line-height: 1.6;
+    }
+    .tip-list strong {
+      color: var(--navy);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.97rem;
+    }
+
+    .panel-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+
+    /* ── PROMPT BOX (for AI section) ─────────────────────── */
+    .prompt-box {
+      background: var(--navy);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      color: rgba(255,255,255,0.88);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      position: relative;
+    }
+    .prompt-box::before {
+      content: 'Example prompt';
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    .prompt-box em { color: rgba(255,255,255,0.55); font-style: normal; }
+
+    @media (max-width: 720px) {
+      .start-grid { grid-template-columns: 1fr; }
+      .content-panel { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Start Here</div>
+        <h1>Not sure <em>where to begin?</em></h1>
+        <p>Pick the starting point that sounds most like where you're at right now. Each one gives you practical next steps you can actually use — no jargon, no theory.</p>
+      </div>
+    </section>
+
+    <!-- FOUR STARTING POINTS -->
+    <section class="block pale">
+      <div class="container">
+        <p class="section-eyebrow">Starting points</p>
+        <h2 class="section-title">Click a card to open the guide.</h2>
+        <p class="section-intro">The card and the guide below it will both get an orange border so you can see they're connected. Click a different card to switch.</p>
+
+        <div class="start-grid">
+
+          <button class="start-card" data-panel="get-started" id="card-get-started">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Get Started</h3>
+            <p>Turn the messy "we should really do something" stage into a clear, practical plan you can actually follow.</p>
+            <span class="card-cta">Read starter tips <span class="caret">↓</span></span>
+          </button>
+
+          <button class="start-card" data-panel="show-up" id="card-show-up">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h12"/></svg>
+            </div>
+            <h3>Show Up Better</h3>
+            <p>Create social media, copy and marketing that sounds like your business instead of a generic template.</p>
+            <span class="card-cta">See what this can include <span class="caret">↓</span></span>
+          </button>
+
+          <button class="start-card" data-panel="ai-basics" id="card-ai-basics">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="7 14 11 10 14 13 21 6"/></svg>
+            </div>
+            <h3>Use AI Practically</h3>
+            <p>Learn simple ways to use AI to save time and money, without the jargon or overcomplicated tech talk.</p>
+            <span class="card-cta">Start with the basics <span class="caret">↓</span></span>
+          </button>
+
+          <button class="start-card" data-panel="brand-kit" id="card-brand-kit">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a8 8 0 0 0 8-8c0-4.4-3.6-8-8-8S4 9.6 4 14a8 8 0 0 0 8 8Z"/><path d="M8 14h.01"/><path d="M12 10h.01"/><path d="M16 14h.01"/></svg>
+            </div>
+            <h3>Build a Basic Brand Kit</h3>
+            <p>Pull your colours, fonts, logo use and simple brand rules into one easy guide so your content feels more consistent.</p>
+            <span class="card-cta">See what goes in it <span class="caret">↓</span></span>
+          </button>
+
+        </div>
+
+        <!-- PANELS — rendered in DOM order, JS moves them below active card -->
+        <div class="focus-panels">
+
+          <article class="content-panel" id="panel-get-started" data-panel="get-started" scroll-margin-top="100">
+            <div>
+              <h4>Before you post, get clear on the basics.</h4>
+              <p>Most businesses don't need more random content ideas. They need a simple starting point: who they're talking to, what they want to be known for, and what their customers actually need to hear.</p>
+            </div>
+            <ul class="tip-list">
+              <li><strong>Start with your customer.</strong> Write down who you help, what they're usually stuck on, and what they ask you all the time. If you can't answer this in two sentences, that's your starting point.</li>
+              <li><strong>Pick three content themes.</strong> Try trust, education and proof — what you believe, what you know, and what shows you can do the work. Most accounts only need these three to get going.</li>
+              <li><strong>Choose one platform first.</strong> Trying to be everywhere at once is how you end up posting nothing. Pick the platform where your actual customers are and do that one well.</li>
+              <li><strong>Make it easier to repeat.</strong> A simple content calendar beats a big plan you never open again. Even a basic spreadsheet with dates and ideas is enough.</li>
+            </ul>
+            <div class="panel-actions">
+              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Getting%20started%20with%20social%20media">Email me about this <span class="arrow">→</span></a>
+              <a class="btn secondary" href="work-examples.html">See how I've helped others</a>
+            </div>
+          </article>
+
+          <article class="content-panel" id="panel-show-up" data-panel="show-up">
+            <div>
+              <h4>Showing up better can look different for every business.</h4>
+              <p>This can include social content, reels, captions, marketing copy, guides, campaign concepts or before-and-after messaging. The goal is simple: help your business sound more like you and make it easier for customers to understand what you do.</p>
+            </div>
+            <ul class="tip-list">
+              <li><strong>Start with your voice.</strong> Write down three words that describe how your business should sound. Then look at your last five posts and ask whether they match. Usually they don't — and that gap is the fix.</li>
+              <li><strong>Lead with the customer, not the business.</strong> Instead of "We offer X service", try "If you're dealing with [problem], here's what that usually looks like and what helps." The conversation changes completely.</li>
+              <li><strong>Stop trying to sound professional.</strong> Professional usually means generic. The businesses people remember sound like a person, not a corporate template.</li>
+              <li><strong>Use what customers actually say.</strong> Your best reviews and enquiry emails are full of the exact language your next customer is Googling. Use those words in your captions and copy.</li>
+            </ul>
+            <div class="panel-actions">
+              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Content%20and%20marketing%20support">Email me about this <span class="arrow">→</span></a>
+              <a class="btn secondary" href="work-examples.html">View work examples</a>
+            </div>
+          </article>
+
+          <article class="content-panel" id="panel-ai-basics" data-panel="ai-basics">
+            <div>
+              <h4>A beginner-friendly way to think about AI.</h4>
+              <p>ChatGPT, Claude and Gemini can help you draft, organise, summarise and plan. They don't replace your judgement, but they can save real time when you give them clear instructions and check the output properly.</p>
+            </div>
+            <ul class="tip-list">
+              <li><strong>Do give context.</strong> Tell the AI who your business helps, what tone you want, and what the final piece is for. The more specific you are, the more useful the output.</li>
+              <li><strong>Don't paste private information.</strong> Avoid uploading client details, passwords, financials or sensitive staff information into any AI tool.</li>
+              <li><strong>Do check privacy settings.</strong> In tools like ChatGPT, look for data controls or privacy settings and turn off training and sharing where it's available.</li>
+              <li><strong>Don't publish without reviewing.</strong> AI can be useful, but it can also sound generic or get things wrong. Read every output before it goes anywhere public.</li>
+            </ul>
+            <div class="prompt-box">
+              "I run a [type of business] on the NSW South Coast. My customers are usually [description]. Write me three Instagram captions for [topic] in a warm, practical tone. No jargon, no corporate language. Each one should start with a different hook."
+              <br><br>
+              <em>Then read the output, adjust the bits that don't sound like you, and use it as a starting draft — not a finished post.</em>
+            </div>
+            <div class="panel-actions">
+              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=AI%20setup%20and%20training">Email me about this <span class="arrow">→</span></a>
+            </div>
+          </article>
+
+          <article class="content-panel" id="panel-brand-kit" data-panel="brand-kit">
+            <div>
+              <h4>A simple brand kit helps everything feel more consistent.</h4>
+              <p>This is for businesses that already have the bones of a brand, but need it pulled together into something practical they can actually use when creating posts, flyers, emails or client documents.</p>
+            </div>
+            <ul class="tip-list">
+              <li><strong>Logo and usage notes.</strong> Which logo to use, where it should sit, and what not to do with it. Sounds basic — but most businesses using their brand day-to-day don't have this written down anywhere.</li>
+              <li><strong>Colours and fonts.</strong> A simple palette and font guide so your content stops feeling mismatched. You only need two or three colours and two fonts to look consistent.</li>
+              <li><strong>Voice and message basics.</strong> A few clear notes on how the business should sound, what it should be known for, and what words or phrases to avoid. Useful for anyone helping you create content.</li>
+              <li><strong>Starter templates.</strong> Basic social, document or Canva-style layout direction so you are not starting from scratch every time you need to make something.</li>
+            </ul>
+            <div class="panel-actions">
+              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Basic%20brand%20kit">Email me about this <span class="arrow">→</span></a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="block cta" id="contact">
+      <div class="container cta-inner">
+        <h2>Ready to make modern marketing feel less overwhelming?</h2>
+        <p>Book a free consultation and we'll talk through where you're at, what's feeling messy, and what support would make the next step easier.</p>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Strategy%20Call%20Enquiry">Book My Free Call <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="shared.js"></script>
+  <script>
+    // ── PANEL TOGGLE WITH ORANGE BORDER PAIRING ───────────
+    function openPanel(panelKey) {
+      // Remove active from all cards and panels
+      document.querySelectorAll('.start-card').forEach(c => c.classList.remove('is-active'));
+      document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('is-active'));
+
+      const card  = document.getElementById('card-' + panelKey);
+      const panel = document.getElementById('panel-' + panelKey);
+      if (!card || !panel) return;
+
+      // Both get orange border simultaneously
+      card.classList.add('is-active');
+      panel.classList.add('is-active');
+
+      // Scroll so the panel is visible just below the card
+      const headerH = document.querySelector('header')?.offsetHeight || 80;
+      const top = panel.getBoundingClientRect().top + window.scrollY - headerH - 20;
+      setTimeout(() => window.scrollTo({ top, behavior: 'smooth' }), 30);
+    }
+
+    document.querySelectorAll('.start-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.dataset.panel;
+        // If already open, close it
+        if (card.classList.contains('is-active')) {
+          card.classList.remove('is-active');
+          document.getElementById('panel-' + key)?.classList.remove('is-active');
+        } else {
+          openPanel(key);
+        }
+      });
+    });
+
+    // ── OPEN FROM URL HASH (e.g. start-here.html#ai-basics) ──
+    function openFromHash() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById('card-' + hash)) {
+        openPanel(hash);
+      }
+    }
+    // Small delay so page renders before scrolling
+    setTimeout(openFromHash, 150);
+    window.addEventListener('hashchange', openFromHash);
+  </script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tara Consulting Co | Social Media, AI &amp; Marketing for Small Business</title>
+  <meta name="description" content="Helping small business owners get started with social media, practical AI and modern marketing without the overwhelm." />
+  <meta name="theme-color" content="#14213D" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .hero {
+      background:
+        radial-gradient(900px 500px at 90% -10%, rgba(247,127,0,0.08), transparent 60%),
+        linear-gradient(180deg, var(--cream) 0%, #FFFDF9 100%);
+      padding-top: clamp(60px, 9vw, 110px);
+      padding-bottom: clamp(60px, 9vw, 110px);
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(36px, 5vw, 70px);
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+    }
+    .eyebrow .pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 0 rgba(247,127,0,0.6);
+      animation: pulse 2.2s infinite;
+    }
+    @keyframes pulse {
+      70% { box-shadow: 0 0 0 10px rgba(247,127,0,0); }
+      100% { box-shadow: 0 0 0 0 rgba(247,127,0,0); }
+    }
+    .hero h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2.4rem, 4.6vw, 4rem);
+      line-height: 1.04;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+    }
+    .hero h1 em { font-style: italic; color: var(--orange); }
+    .hero p.lead {
+      font-size: clamp(1.05rem, 1.4vw, 1.18rem);
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 30px;
+    }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-card {
+      background: var(--navy);
+      color: var(--white);
+      padding: clamp(28px, 3vw, 38px);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(400px 200px at 100% 0%, rgba(247,127,0,0.18), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      line-height: 1.25;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .hero-card p { color: rgba(255,255,255,0.82); position: relative; }
+    .hero-card ul {
+      list-style: none;
+      margin-top: 20px;
+      display: grid;
+      gap: 10px;
+      position: relative;
+    }
+    .hero-card li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.96rem;
+    }
+    .hero-card li::before {
+      content: '';
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #FFA94D, #F77F00);
+    }
+
+    /* ── IS THIS YOU ───────────────────────────────────────── */
+    .is-this-you {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: clamp(36px, 5vw, 56px);
+      position: relative;
+      overflow: hidden;
+    }
+    .is-this-you::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(600px 300px at 80% -10%, rgba(247,127,0,0.15), transparent 65%);
+      pointer-events: none;
+    }
+    .is-this-you .section-eyebrow { color: var(--orange); position: relative; }
+    .is-this-you .section-title { color: var(--white); position: relative; max-width: 600px; }
+    .ithy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+      position: relative;
+    }
+    .ithy-item {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-align: left;
+      font-family: inherit;
+      color: rgba(255,255,255,0.88);
+      font-size: 0.97rem;
+      line-height: 1.5;
+      text-decoration: none;
+    }
+    .ithy-item:hover { background: rgba(247,127,0,0.15); border-color: rgba(247,127,0,0.4); }
+    .ithy-item::before {
+      content: '';
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(247,127,0,0.3);
+      border: 2px solid var(--orange);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .ithy-cta {
+      margin-top: 32px;
+      position: relative;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .ithy-note { color: rgba(255,255,255,0.52); font-size: 0.88rem; }
+
+    /* ── WHY IT HELPS ──────────────────────────────────────── */
+    /* uses .grid-3 and .card from shared */
+
+    /* ── LEAD MAGNET ───────────────────────────────────────── */
+    .lead-magnet {
+      background:
+        radial-gradient(600px 280px at 85% 10%, rgba(247,127,0,0.16), transparent 70%),
+        var(--navy);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      display: grid;
+      gap: 28px;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+      padding: clamp(28px, 5vw, 48px);
+    }
+    .lead-magnet h2, .lead-magnet p { color: inherit; }
+    .lead-magnet p { color: rgba(255,255,255,0.78); }
+    .lead-form {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+    }
+    .lead-form label { color: var(--white); font-weight: 800; display: block; }
+    .lead-form input {
+      border: 0;
+      border-radius: 999px;
+      color: var(--navy);
+      min-height: 48px;
+      padding: 12px 16px;
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.97rem;
+    }
+    .lead-form small { color: rgba(255,255,255,0.62); line-height: 1.5; }
+
+    @media (max-width: 860px) {
+      .hero-grid, .lead-magnet { grid-template-columns: 1fr; }
+      .ithy-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .ithy-cta { flex-direction: column; }
+    }
+
+    /* ── BLOG PREVIEW STRIP ────────────────────────────────── */
+    .blog-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+    .blog-preview-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .blog-preview-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(247,127,0,0.35);
+    }
+    .blog-preview-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      display: inline-block;
+      width: fit-content;
+    }
+    .blog-preview-card h4 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 8px;
+      flex: 1;
+    }
+    .blog-preview-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .blog-preview-read {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--orange);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: auto;
+    }
+    .blog-strip-footer {
+      text-align: center;
+    }
+    @media (max-width: 860px) {
+      .blog-strip-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow reveal"><span class="pulse"></span> Social media, AI &amp; marketing for small business</span>
+          <h1 class="reveal delay-1">Modern marketing made <em>less overwhelming</em>.</h1>
+          <p class="lead reveal delay-2">We help small business owners who are great at what they do, but haven't quite found their feet with social media, AI or modern marketing yet. Clear steps, practical support and no overcomplicating it.</p>
+          <div class="hero-ctas reveal delay-3">
+            <a class="btn" href="#contact">Book a Free Strategy Call <span class="arrow">→</span></a>
+            <a class="btn secondary" href="start-here.html">Where to start</a>
+          </div>
+        </div>
+        <aside class="hero-card reveal delay-2">
+          <h3>For businesses ready to stop putting it off.</h3>
+          <p>We help you get set up with social media that sounds like you, simple systems behind the scenes, and practical AI that saves time without making things harder than they need to be.</p>
+          <ul>
+            <li>Social media direction and content support</li>
+            <li>Practical AI setup and training</li>
+            <li>Clearer marketing copy and campaigns</li>
+            <li>Simple systems you can keep using</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- IS THIS YOU -->
+    <section class="block">
+      <div class="container">
+        <div class="is-this-you">
+          <p class="section-eyebrow">Not sure where to start?</p>
+          <h2 class="section-title">Pick what sounds most like you.</h2>
+          <div class="ithy-grid">
+            <a class="ithy-item" href="start-here.html#get-started">I need to get started with social media but I keep putting it off.</a>
+            <a class="ithy-item" href="start-here.html#show-up">My content feels inconsistent — it doesn't really sound like my business.</a>
+            <a class="ithy-item" href="start-here.html#ai-basics">I want to use AI but I don't know where to begin without getting it wrong.</a>
+            <a class="ithy-item" href="start-here.html#brand-kit">My brand feels patchy. I need things to look and feel more consistent.</a>
+          </div>
+          <div class="ithy-cta">
+            <a class="btn" href="#contact">Book a free consultation <span class="arrow">→</span></a>
+            <span class="ithy-note">No pitch. Just a conversation about where you're at.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT HELPS -->
+    <section class="block pale">
+      <div class="container">
+        <p class="section-eyebrow">Why it helps</p>
+        <h2 class="section-title">What feels easier when you have the right support.</h2>
+        <div class="grid-3">
+          <div class="card"><h3>Clearer Direction</h3><p>Know what to say, where to say it and what matters most for your next stage.</p></div>
+          <div class="card"><h3>Less Overwhelm</h3><p>Break social media, AI and marketing into simple actions instead of another giant job on your list.</p></div>
+          <div class="card"><h3>Better Content</h3><p>Create posts, reels, captions and copy that sound like your business and make sense to your customers.</p></div>
+          <div class="card"><h3>Practical Systems</h3><p>Use templates, prompts and repeatable steps so you're not starting from scratch every time.</p></div>
+          <div class="card"><h3>More Confidence</h3><p>Understand how to use the tools without needing to become a tech expert.</p></div>
+          <div class="card"><h3>Room to Grow</h3><p>Get the foundations in place so marketing and admin feel easier to keep up with.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FREE RESOURCE -->
+    <section class="block">
+      <div class="container">
+        <div class="lead-magnet">
+          <div>
+            <p class="section-eyebrow">Free resource</p>
+            <h2 class="section-title">Start with a simple AI and social media checklist.</h2>
+            <p>Pop your email in and I'll send through a practical starter resource you can use to get clearer on your content, your message and where AI might actually save you time.</p>
+          </div>
+          <form class="lead-form" id="lead-form">
+            <label for="lead-email">Email address</label>
+            <input type="email" id="lead-email" placeholder="you@example.com" required>
+            <button class="btn" type="submit">Send me the free resource <span class="arrow">→</span></button>
+            <small>You'll also be added to the monthly Tara Consulting Co update. No spam, no overwhelm, just useful tips and resources.</small>
+          </form>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- BLOG PREVIEW -->
+    <section class="block">
+      <div class="container">
+        <p class="section-eyebrow">From the blog</p>
+        <h2 class="section-title">What's actually working in marketing right now.</h2>
+        <p class="section-intro" style="margin-bottom: 28px;">Practical reads — no jargon, no theory, just what's changing and what to do about it.</p>
+        <div class="blog-strip-grid" id="blog-preview-grid">
+          <!-- Populated by JS from posts-data.js -->
+        </div>
+        <div class="blog-strip-footer">
+          <a class="btn secondary" href="blog.html">Read all posts <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="block cta" id="contact">
+      <div class="container cta-inner">
+        <h2>Ready to make modern marketing feel less overwhelming?</h2>
+        <p>Book a free consultation and we'll talk through where you're at, what's feeling messy, and what support would make the next step easier.</p>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Strategy%20Call%20Enquiry">Book My Free Call <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="posts-data.js"></script>
+  <script>
+    document.getElementById('lead-form')?.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Prototype only — this will connect to your email list.');
+      e.currentTarget.reset();
+    });
+  </script>
+  <script>
+    // Render 3 latest posts as preview cards on homepage
+    (function() {
+      const tagClassMap = {
+        seo: 'tag-seo', social: 'tag-social', ads: 'tag-ads',
+        strategy: 'tag-strategy', ai: 'tag-ai', content: 'tag-content'
+      };
+      const source = (typeof window.POSTS !== 'undefined' && window.POSTS.length)
+        ? window.POSTS : FALLBACK_POSTS;
+      const preview = source.slice(0, 3);
+      const grid = document.getElementById('blog-preview-grid');
+      if (!grid) return;
+      grid.innerHTML = preview.map(p => `
+        <a class="blog-preview-card" href="blog.html">
+          <span class="blog-preview-tag ${tagClassMap[p.tag] || ''}">${p.tagLabel}</span>
+          <h4>${p.title}</h4>
+          <p>${p.excerpt}</p>
+          <span class="blog-preview-read">Read post →</span>
+        </a>`).join('');
+    })();
+  </script>
+</body>
+</html>

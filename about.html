@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Tara Consulting Co</title>
+  <meta name="description" content="Tara Odgers — practical marketing, AI and operations support for small businesses on the NSW South Coast." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: clamp(36px, 4.5vw, 64px);
+      align-items: start;
+    }
+    .about-photo {
+      background:
+        radial-gradient(500px 320px at 80% 20%, rgba(247,127,0,0.18), transparent 70%),
+        var(--navy);
+      color: rgba(255,255,255,0.9);
+      min-height: 400px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      border: 1px dashed rgba(255,255,255,0.18);
+      position: sticky;
+      top: 108px;
+    }
+    .about-photo strong {
+      color: var(--white);
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+    }
+
+    .about-body { display: grid; gap: 32px; }
+
+    .about-body p { color: var(--text); font-size: 1.02rem; line-height: 1.75; }
+
+    .signature {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--navy);
+      font-size: 1.18rem;
+      padding-left: 18px;
+      border-left: 3px solid var(--orange);
+      line-height: 1.55;
+    }
+
+    .values-list {
+      display: grid;
+      gap: 14px;
+      list-style: none;
+    }
+    .values-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.97rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .values-list li::before {
+      content: '·';
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 1.4rem;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+    .values-list strong { color: var(--navy); }
+
+    .about-subhead {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      color: var(--navy);
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .tool-pill {
+      background: var(--grey);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { min-height: 280px; position: static; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / About</div>
+        <h1>Practical support for <em>real businesses.</em></h1>
+        <p>I work with small business owners who are good at what they do but are stretched thin when it comes to social media, AI, marketing and admin. I'm here to make that side of things easier.</p>
+      </div>
+    </section>
+
+    <!-- ABOUT CONTENT -->
+    <section class="block">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-photo">
+            <div>
+              <strong>Photo of Tara goes here</strong>
+              A relaxed shot — at a desk, with a coffee, or on-site with a client. Real beats polished every time.
+            </div>
+          </div>
+
+          <div class="about-body">
+            <div>
+              <p class="section-eyebrow">Meet Tara</p>
+              <p>I've worked across operations, training, compliance, marketing and business systems in real Aussie industries — from trades to tourism to early childhood education.</p>
+              <p>I started Tara Consulting Co because I kept seeing the same thing: hard-working business owners who are great at what they do, but stretched thin trying to keep up with social media, AI, marketing and admin all at once.</p>
+              <p>Most of what I help with doesn't require a big agency or a long complicated strategy. It just requires someone to sit down with you, figure out what actually matters, and help you build something simple and repeatable that you can keep using.</p>
+              <p class="signature">No jargon. No overcomplicating it. Just practical support that helps you move.</p>
+            </div>
+
+            <div>
+              <div class="about-subhead">What I believe</div>
+              <ul class="values-list">
+                <li><strong>Clear communication solves most problems.</strong> Most marketing issues are actually communication issues in disguise.</li>
+                <li><strong>Simple and practical beats complicated every time.</strong> If you won't use it, it doesn't matter how good it looks.</li>
+                <li><strong>Real-world experience matters as much as theory.</strong> I've worked in the industries I help, not just read about them.</li>
+                <li><strong>Consistency is more valuable than perfection.</strong> Showing up imperfectly beats the perfect post you never make.</li>
+                <li><strong>AI is a tool, not a shortcut.</strong> Used properly it saves real time. Used lazily it produces generic rubbish.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="about-subhead">What I work across</div>
+              <p style="margin-bottom: 16px;">My background spans training and assessment, operations management, social media, content creation and business systems. I work across a small number of industries where I have genuine hands-on experience:</p>
+              <ul class="values-list">
+                <li>Early childhood education and care — training, compliance, student support and centre operations</li>
+                <li>Tourism and hospitality — social media, content strategy and marketing for visitor-facing businesses</li>
+                <li>Trades and construction — operations, job management, admin systems and processes</li>
+                <li>Small business generally — wherever social media, AI, marketing or operations support is needed</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="about-subhead">Tools I use</div>
+              <div class="tools-grid">
+                <div class="tool-pill">Claude AI</div>
+                <div class="tool-pill">ChatGPT</div>
+                <div class="tool-pill">Canva</div>
+                <div class="tool-pill">Vista Social</div>
+                <div class="tool-pill">ContentStudio</div>
+                <div class="tool-pill">Google Analytics</div>
+                <div class="tool-pill">Meta Business Suite</div>
+                <div class="tool-pill">Google Business</div>
+                <div class="tool-pill">Xero</div>
+              </div>
+            </div>
+
+            <div>
+              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Strategy%20Call%20Enquiry">Book a free call <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTAL STRIP -->
+    <section class="block pale">
+      <div class="container">
+        <div class="portal-strip">
+          <div class="portal-strip-text">
+            <p class="section-eyebrow">Existing clients</p>
+            <h2>Your resources, templates and approvals are waiting.</h2>
+            <p>If you're a current Tara Consulting Co client, your private portal is where you'll find your templates, training materials and any content waiting for your review.</p>
+          </div>
+          <a class="btn" href="https://members.taracoconsulting.com">Go to client portal <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="block cta" id="contact">
+      <div class="container cta-inner">
+        <h2>Ready to make modern marketing feel less overwhelming?</h2>
+        <p>Book a free consultation and we'll talk through where you're at, what's feeling messy, and what support would make the next step easier.</p>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Strategy%20Call%20Enquiry">Book My Free Call <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Tara Consulting Co</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:#14213D; --navy-deep:#0E172A; --orange:#F77F00; --orange-soft:#FFE2C2;
+      --cream:#FFF8EF; --white:#FFFFFF; --grey:#F4F2EE; --line:#E9E5DE;
+      --text:#1F2933; --muted:#5A6473; --green:#1a9e60; --red:#c0392b;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Manrope',sans-serif;background:var(--grey);color:var(--text);min-height:100vh}
+
+    /* LOGIN */
+    #login-screen{min-height:100vh;background:var(--navy);display:flex;align-items:center;justify-content:center;padding:24px}
+    .login-box{background:var(--cream);border-radius:16px;padding:40px;width:100%;max-width:380px}
+    .login-box .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+    .login-box h1{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:500;color:var(--navy);margin-bottom:28px}
+    .login-box label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:7px}
+    .login-box input{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:8px;font-family:'Manrope',sans-serif;font-size:14px;background:var(--white);color:var(--text);margin-bottom:18px;outline:none}
+    .login-box input:focus{border-color:var(--orange)}
+    .btn-login{width:100%;background:var(--orange);color:var(--white);border:none;padding:13px;border-radius:8px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+    .btn-login:hover{background:#d96d10}
+    #login-error{background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);color:var(--red);border-radius:7px;padding:10px 14px;font-size:13px;margin-bottom:16px;display:none}
+
+    /* SHELL */
+    #admin-screen{display:none}
+    .admin-header{background:var(--navy);border-bottom:2px solid var(--orange);padding:0 32px;display:flex;align-items:center;position:sticky;top:0;z-index:100;overflow-x:auto}
+    .admin-logo{font-family:'Fraunces',serif;font-size:1.1rem;color:#FCE8D4;padding:16px 0;margin-right:24px;flex-shrink:0}
+    .admin-logo span{color:var(--orange)}
+    .admin-tabs{display:flex;flex:1}
+    .admin-tab{background:none;border:none;border-bottom:2px solid transparent;padding:16px 14px 14px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;color:#7a8fb0;cursor:pointer;margin-bottom:-2px;white-space:nowrap;transition:color .15s,border-color .15s}
+    .admin-tab:hover{color:#FCE8D4}
+    .admin-tab.active{color:#FCE8D4;border-bottom-color:var(--orange)}
+    .admin-signout{background:none;border:none;color:#5a6a8a;font-family:'Manrope',sans-serif;font-size:12px;cursor:pointer;margin-left:auto;padding:16px 0;flex-shrink:0}
+    .admin-signout:hover{color:#FCE8D4}
+    .admin-notice{background:rgba(245,130,31,.08);border-bottom:1px solid rgba(245,130,31,.2);padding:9px 32px;font-size:12px;color:#c0620a;font-weight:500}
+    .admin-content{padding:32px;max-width:1000px;margin:0 auto}
+    .tab-section{display:none}
+    .tab-section.active{display:block}
+
+    /* FORMS */
+    .section-head{margin-bottom:24px}
+    .section-head h2{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;color:var(--navy);margin-bottom:4px}
+    .section-head p{font-size:13px;color:var(--muted)}
+    .field-label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:7px;margin-top:18px}
+    .field-label:first-child{margin-top:0}
+    input[type="text"],input[type="email"],select,textarea{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:8px;font-family:'Manrope',sans-serif;font-size:14px;background:var(--white);color:var(--text);outline:none;transition:border-color .15s}
+    input:focus,select:focus,textarea:focus{border-color:var(--orange)}
+    textarea{min-height:120px;resize:vertical;line-height:1.6}
+    .field-hint{font-size:11px;color:var(--muted);margin-top:5px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+
+    /* BUTTONS */
+    .btn-save{background:var(--orange);color:var(--white);border:none;padding:11px 24px;border-radius:8px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:20px;transition:background .15s}
+    .btn-save:hover{background:#d96d10}
+    .btn-save:disabled{background:#ccc;cursor:not-allowed}
+    .btn-secondary{background:var(--white);color:var(--navy);border:1.5px solid var(--line);padding:10px 20px;border-radius:8px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;cursor:pointer;margin-top:20px;margin-left:10px}
+    .btn-secondary:hover{background:var(--grey)}
+    .btn-sm{background:none;color:var(--navy);border:1px solid var(--line);padding:6px 14px;border-radius:6px;font-family:'Manrope',sans-serif;font-size:12px;font-weight:600;cursor:pointer}
+    .btn-sm:hover{background:var(--grey)}
+    .btn-sm.green{background:var(--green);color:var(--white);border-color:var(--green)}
+    .btn-sm.orange{background:var(--orange);color:var(--white);border-color:var(--orange)}
+    .btn-danger{background:none;color:var(--red);border:1px solid rgba(192,57,43,.3);padding:6px 14px;border-radius:6px;font-family:'Manrope',sans-serif;font-size:12px;font-weight:600;cursor:pointer}
+    .btn-danger:hover{background:rgba(192,57,43,.06)}
+    .save-msg{display:inline-block;margin-left:14px;font-size:13px;font-weight:600;color:var(--green);opacity:0;transition:opacity .3s}
+    .save-msg.show{opacity:1}
+
+    /* CARDS / PANELS */
+    .admin-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:24px 28px;margin-bottom:18px}
+    .admin-card-title{font-size:13px;font-weight:700;color:var(--navy);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+    .editor-panel{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:28px;display:none;margin-bottom:24px}
+    .editor-panel.is-open{display:block}
+    .editor-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+    .editor-header h3{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:500;color:var(--navy)}
+
+    /* LIST ITEMS */
+    .item-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+    .list-item{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:16px 20px;display:flex;align-items:flex-start;gap:14px}
+    .list-item-info{flex:1}
+    .list-item-info h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+    .list-item-info p{font-size:12px;color:var(--muted)}
+    .list-item-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;flex-wrap:wrap}
+    .list-item.draft{background:#fffbf5;border-color:#ffe0b0}
+
+    /* PILLS */
+    .pill{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+    .pill-live{background:rgba(26,158,96,.1);color:#0f7a4a}
+    .pill-draft{background:rgba(245,130,31,.12);color:#c0620a}
+    .pill-pending{background:rgba(245,130,31,.12);color:#c0620a}
+    .pill-approved{background:rgba(26,158,96,.12);color:#0f7a4a}
+    .pill-changes{background:rgba(192,57,43,.1);color:var(--red)}
+    .pill-starter{background:rgba(23,33,61,.07);color:var(--navy)}
+    .pill-growth{background:rgba(245,130,31,.1);color:#c0620a}
+    .pill-full{background:rgba(26,158,96,.1);color:#0f7a4a}
+    .tag-pill{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+    .tag-seo{background:#e1f5ee;color:#0a5a3e}
+    .tag-social{background:#e3f0fb;color:#1254a0}
+    .tag-ads{background:#faeeda;color:#7a4800}
+    .tag-strategy{background:#eeedfe;color:#4a3aaa}
+    .tag-ai{background:#fbeaf0;color:#8a2050}
+    .tag-content{background:#eaf3de;color:#2f6010}
+
+    /* DB STATUS */
+    .db-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;margin-bottom:20px}
+    .db-status.connected{background:rgba(26,158,96,.1);color:#0f7a4a}
+    .db-status.disconnected{background:rgba(192,57,43,.1);color:var(--red)}
+    .db-status::before{content:'';width:8px;height:8px;border-radius:50%}
+    .db-status.connected::before{background:var(--green)}
+    .db-status.disconnected::before{background:var(--red)}
+
+    /* SETTINGS */
+    .settings-grid{display:grid;gap:18px}
+    .settings-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:24px 28px}
+    .settings-card h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:16px}
+
+    /* CLIENT TABLE */
+    .client-table-wrap{background:var(--white);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:24px;overflow-x:auto}
+    table{width:100%;border-collapse:collapse;font-size:13px;min-width:600px}
+    thead tr{background:var(--navy)}
+    thead th{padding:10px 16px;text-align:left;color:#FCE8D4;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    tbody tr{border-bottom:.5px solid #f0e8dc}
+    tbody tr:last-child{border-bottom:none}
+    td{padding:12px 16px;color:var(--text);vertical-align:middle}
+    .td-email{font-size:11px;color:var(--muted)}
+    .td-actions{display:flex;gap:6px;flex-wrap:wrap}
+
+    @media(max-width:700px){
+      .form-row,.form-row-3{grid-template-columns:1fr}
+      .admin-content{padding:20px 16px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="eyebrow">Tara Consulting Co</div>
+    <h1>Admin panel</h1>
+    <div id="login-error"></div>
+    <label for="admin-email">Email address</label>
+    <input type="email" id="admin-email" placeholder="taraodgers88@gmail.com" autocomplete="email"/>
+    <label for="admin-password">Password</label>
+    <input type="password" id="admin-password" placeholder="••••••••"/>
+    <button class="btn-login" id="btn-login">Sign in</button>
+    <div style="margin-top:14px;text-align:center">
+      <a href="index.html" style="font-size:12px;color:var(--muted);text-decoration:none">← Back to site</a>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-screen">
+  <div class="admin-header">
+    <div class="admin-logo">Tara Consulting <span>Co</span> · Admin</div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-section="blog">Blog posts</button>
+      <button class="admin-tab" data-section="clients">Clients</button>
+      <button class="admin-tab" data-section="approvals">Approvals</button>
+      <button class="admin-tab" data-section="homepage">Homepage</button>
+      <button class="admin-tab" data-section="pages">Other pages</button>
+      <button class="admin-tab" data-section="settings">Settings</button>
+    </div>
+    <button class="admin-signout" id="btn-signout">Sign out</button>
+  </div>
+  <div class="admin-notice">Admin view — changes save to Supabase and go live immediately.</div>
+
+  <div class="admin-content">
+
+    <!-- ── BLOG POSTS ──────────────────────────────── -->
+    <div class="tab-section active" id="section-blog">
+      <div class="section-head">
+        <h2>Blog posts</h2>
+        <p>Add, edit, publish or draft posts. Drafts are saved but not visible on the live blog.</p>
+      </div>
+      <div id="db-status-blog" class="db-status disconnected">Supabase not connected</div>
+
+      <div class="editor-panel" id="post-editor">
+        <div class="editor-header">
+          <h3 id="editor-title">New post</h3>
+          <button class="btn-secondary" style="margin:0" onclick="closeEditor()">Cancel</button>
+        </div>
+        <input type="hidden" id="edit-post-id"/>
+        <div class="form-row">
+          <div>
+            <label class="field-label">Category</label>
+            <select id="edit-tag">
+              <option value="seo">SEO</option>
+              <option value="social">Social media</option>
+              <option value="ads">Paid ads</option>
+              <option value="strategy">Strategy</option>
+              <option value="ai">AI &amp; efficiency</option>
+              <option value="content">Content</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label">Read time</label>
+            <input type="text" id="edit-readtime" placeholder="e.g. 3 min read"/>
+          </div>
+        </div>
+        <label class="field-label">Status</label>
+        <select id="edit-published">
+          <option value="true">Published — visible on live blog</option>
+          <option value="false">Draft — saved but not visible</option>
+        </select>
+        <label class="field-label">Post title</label>
+        <input type="text" id="edit-title" placeholder="Write a clear, specific headline"/>
+        <label class="field-label">Excerpt (shown on card)</label>
+        <input type="text" id="edit-excerpt" placeholder="One line that makes someone want to read more"/>
+        <label class="field-label">Full post body (HTML supported)</label>
+        <textarea id="edit-body" style="min-height:280px;font-family:monospace;font-size:13px" placeholder="Write your post here. Wrap paragraphs in <p> tags."></textarea>
+        <div class="field-hint">Use &lt;strong&gt; for bold. Orange tip box: &lt;div class="cta-line"&gt;Your tip.&lt;/div&gt;</div>
+        <div>
+          <button class="btn-save" id="btn-save-post">Save post</button>
+          <span class="save-msg" id="post-save-msg">✓ Saved</span>
+        </div>
+      </div>
+
+      <div class="item-list" id="post-list"></div>
+      <button class="btn-save" id="btn-new-post">+ Add new post</button>
+    </div>
+
+    <!-- ── CLIENTS ─────────────────────────────────── -->
+    <div class="tab-section" id="section-clients">
+      <div class="section-head">
+        <h2>Client access</h2>
+        <p>View clients, their tier, last login, and manage access. Invite new clients to the portal.</p>
+      </div>
+      <div id="db-status-clients" class="db-status disconnected">Supabase not connected</div>
+
+      <div class="client-table-wrap">
+        <table>
+          <thead><tr>
+            <th>Client</th><th>Tier</th><th>Package</th><th>Status</th><th>Last login</th><th>Approvals</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="clients-tbody">
+            <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:28px">Connect Supabase to load clients.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Invite a new client</div>
+        <div class="form-row">
+          <div>
+            <label class="field-label">Full name</label>
+            <input type="text" id="invite-name" placeholder="e.g. Sarah Mitchell"/>
+          </div>
+          <div>
+            <label class="field-label">Email address</label>
+            <input type="email" id="invite-email" placeholder="sarah@example.com"/>
+          </div>
+        </div>
+        <label class="field-label">Access tier</label>
+        <select id="invite-tier">
+          <option value="starter">Starter</option>
+          <option value="growth_partner" selected>Growth Partner</option>
+          <option value="full_service">Full Service</option>
+        </select>
+        <label class="field-label">Services / package (internal note)</label>
+        <input type="text" id="invite-package" placeholder="e.g. Social media management + monthly reporting"/>
+        <label class="field-label">Start date</label>
+        <input type="text" id="invite-startdate" placeholder="e.g. June 2026"/>
+        <label class="field-label">Internal notes (only you see this)</label>
+        <textarea id="invite-notes" style="min-height:70px" placeholder="Anything useful to remember about this client — budget, context, referral source…"></textarea>
+        <div class="field-hint">The client will receive an email invitation to set their password and access the portal.</div>
+        <button class="btn-save" id="btn-invite">Send invite</button>
+        <span class="save-msg" id="invite-msg">✓ Invite sent</span>
+      </div>
+    </div>
+
+    <!-- ── APPROVALS ───────────────────────────────── -->
+    <div class="tab-section" id="section-approvals">
+      <div class="section-head">
+        <h2>Approvals</h2>
+        <p>Create content items for clients to review. They see it in their portal and can approve or request changes. You get an email either way.</p>
+      </div>
+      <div id="db-status-approvals" class="db-status disconnected">Supabase not connected</div>
+
+      <div class="admin-card" style="margin-bottom:28px">
+        <div class="admin-card-title">Create a new approval item</div>
+        <div class="form-row">
+          <div>
+            <label class="field-label">Title</label>
+            <input type="text" id="appr-title" placeholder="e.g. June content direction"/>
+          </div>
+          <div>
+            <label class="field-label">Assign to client</label>
+            <select id="appr-client">
+              <option value="">— select a client —</option>
+            </select>
+          </div>
+        </div>
+        <label class="field-label">Description for client</label>
+        <textarea id="appr-desc" style="min-height:80px" placeholder="What are they approving? Give them context so they know what to look for."></textarea>
+        <label class="field-label">Content preview (what they're reviewing)</label>
+        <textarea id="appr-preview" style="min-height:120px" placeholder="Paste the draft content, strategy summary, or copy they need to read before approving…"></textarea>
+        <button class="btn-save" id="btn-add-appr">Create approval item</button>
+        <span class="save-msg" id="appr-save-msg">✓ Created and client notified</span>
+      </div>
+
+      <div class="section-head" style="margin-top:8px">
+        <h2 style="font-size:1.1rem">All approval items</h2>
+      </div>
+      <div class="item-list" id="approvals-list">
+        <div style="text-align:center;color:var(--muted);font-size:13px;padding:28px">Connect Supabase to load approvals.</div>
+      </div>
+    </div>
+
+    <!-- ── HOMEPAGE ────────────────────────────────── -->
+    <div class="tab-section" id="section-homepage">
+      <div class="section-head">
+        <h2>Homepage content</h2>
+        <p>Edit the key text blocks on your homepage.</p>
+      </div>
+      <div id="db-status-hp" class="db-status disconnected">Supabase not connected</div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Hero section</div>
+        <label class="field-label">Main headline</label>
+        <input type="text" id="hp-headline" value="Modern marketing made less overwhelming."/>
+        <label class="field-label">Lead paragraph</label>
+        <textarea id="hp-lead" style="min-height:80px">We help small business owners who are great at what they do, but haven't quite found their feet with social media, AI or modern marketing yet. Clear steps, practical support and no overcomplicating it.</textarea>
+        <label class="field-label">Hero card headline</label>
+        <input type="text" id="hp-card-headline" value="For businesses ready to stop putting it off."/>
+        <label class="field-label">Hero card body text</label>
+        <textarea id="hp-card-body" style="min-height:80px">We help you get set up with social media that sounds like you, simple systems behind the scenes, and practical AI that saves time without making things harder than they need to be.</textarea>
+        <button class="btn-save" id="btn-save-hero">Save hero section</button>
+        <span class="save-msg" id="hero-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Is this you? section</div>
+        <p class="field-hint" style="margin-bottom:14px">The four clickable statements on the homepage that link through to Start Here.</p>
+        <label class="field-label">Statement 1</label>
+        <input type="text" id="hp-ithy-1" value="I need to get started with social media but I keep putting it off."/>
+        <label class="field-label">Statement 2</label>
+        <input type="text" id="hp-ithy-2" value="My content feels inconsistent — it doesn't really sound like my business."/>
+        <label class="field-label">Statement 3</label>
+        <input type="text" id="hp-ithy-3" value="I want to use AI but I don't know where to begin without getting it wrong."/>
+        <label class="field-label">Statement 4</label>
+        <input type="text" id="hp-ithy-4" value="My brand feels patchy. I need things to look and feel more consistent."/>
+        <button class="btn-save" id="btn-save-ithy">Save statements</button>
+        <span class="save-msg" id="ithy-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Contact / CTA section</div>
+        <label class="field-label">Headline</label>
+        <input type="text" id="hp-cta-headline" value="Ready to make modern marketing feel less overwhelming?"/>
+        <label class="field-label">Body text</label>
+        <textarea id="hp-cta-body" style="min-height:70px">Book a free consultation and we'll talk through where you're at, what's feeling messy, and what support would make the next step easier.</textarea>
+        <label class="field-label">Button text</label>
+        <input type="text" id="hp-cta-btn" value="Book My Free Call"/>
+        <button class="btn-save" id="btn-save-cta">Save CTA section</button>
+        <span class="save-msg" id="cta-save-msg">✓ Saved</span>
+      </div>
+    </div>
+
+    <!-- ── OTHER PAGES ─────────────────────────────── -->
+    <div class="tab-section" id="section-pages">
+      <div class="section-head">
+        <h2>Other pages</h2>
+        <p>Edit content on Start Here, Work Examples, and About.</p>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Start Here — four panel headings and tips</div>
+        <p class="field-hint" style="margin-bottom:16px">Each card has a heading and intro paragraph. Edit them here. Tips inside the panels are also editable.</p>
+        <div class="form-row">
+          <div>
+            <label class="field-label">Get Started — card title</label>
+            <input type="text" id="sh-gs-title" value="Get Started"/>
+            <label class="field-label">Card description</label>
+            <textarea id="sh-gs-desc" style="min-height:70px">Turn the messy "we should really do something" stage into a clear, practical plan you can actually follow.</textarea>
+          </div>
+          <div>
+            <label class="field-label">Show Up Better — card title</label>
+            <input type="text" id="sh-su-title" value="Show Up Better"/>
+            <label class="field-label">Card description</label>
+            <textarea id="sh-su-desc" style="min-height:70px">Create social media, copy and marketing that sounds like your business instead of a generic template.</textarea>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top:16px">
+          <div>
+            <label class="field-label">Use AI Practically — card title</label>
+            <input type="text" id="sh-ai-title" value="Use AI Practically"/>
+            <label class="field-label">Card description</label>
+            <textarea id="sh-ai-desc" style="min-height:70px">Learn simple ways to use AI to save time and money, without the jargon or overcomplicated tech talk.</textarea>
+          </div>
+          <div>
+            <label class="field-label">Build a Brand Kit — card title</label>
+            <input type="text" id="sh-bk-title" value="Build a Basic Brand Kit"/>
+            <label class="field-label">Card description</label>
+            <textarea id="sh-bk-desc" style="min-height:70px">Pull your colours, fonts, logo use and simple brand rules into one easy guide so your content feels more consistent.</textarea>
+          </div>
+        </div>
+        <button class="btn-save" id="btn-save-starthero">Save Start Here cards</button>
+        <span class="save-msg" id="sh-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Work Examples — client card teasers</div>
+        <p class="field-hint" style="margin-bottom:16px">Edit the short teaser text visible on each client card before it's opened.</p>
+        <label class="field-label">Holiday Haven teaser</label>
+        <input type="text" id="we-hh" value="12 council-operated holiday parks on the NSW South Coast. Full social media management across Instagram, Facebook and Google."/>
+        <label class="field-label">ACEC teaser</label>
+        <input type="text" id="we-acec" value="Vocational training and education on the NSW South Coast. Social media, Canva templates and training resources."/>
+        <label class="field-label">Mother's Day Classic teaser</label>
+        <input type="text" id="we-mdc" value="Annual community fun run supporting women's cancer research. Social promotion and event content."/>
+        <label class="field-label">South Coast Demolition teaser</label>
+        <input type="text" id="we-scd" value="Trades and excavation business. Operations, job management and admin systems support."/>
+        <button class="btn-save" id="btn-save-we">Save work example teasers</button>
+        <span class="save-msg" id="we-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">About page</div>
+        <label class="field-label">Page headline</label>
+        <input type="text" id="about-headline" value="Practical support for real businesses."/>
+        <label class="field-label">Paragraph 1</label>
+        <textarea id="about-p1" style="min-height:80px">I've worked across operations, training, compliance, marketing and business systems in real Aussie industries — from trades to tourism to early childhood education.</textarea>
+        <label class="field-label">Paragraph 2</label>
+        <textarea id="about-p2" style="min-height:80px">I started Tara Consulting Co because I kept seeing the same thing: hard-working business owners who are great at what they do, but stretched thin trying to keep up with social media, AI, marketing and admin all at once.</textarea>
+        <label class="field-label">Paragraph 3</label>
+        <textarea id="about-p3" style="min-height:80px">Most of what I help with doesn't require a big agency or a long complicated strategy. It just requires someone to sit down with you, figure out what actually matters, and help you build something simple and repeatable that you can keep using.</textarea>
+        <label class="field-label">Signature line (italic quote)</label>
+        <input type="text" id="about-sig" value="No jargon. No overcomplicating it. Just practical support that helps you move."/>
+        <button class="btn-save" id="btn-save-about">Save About page</button>
+        <span class="save-msg" id="about-save-msg">✓ Saved</span>
+      </div>
+    </div>
+
+    <!-- ── SETTINGS ────────────────────────────────── -->
+    <div class="tab-section" id="section-settings">
+      <div class="section-head">
+        <h2>Settings</h2>
+        <p>Supabase connection, notification email, and site links.</p>
+      </div>
+      <div class="settings-grid">
+        <div class="settings-card">
+          <h3>Supabase connection</h3>
+          <label class="field-label">Project URL</label>
+          <input type="text" id="sb-url" placeholder="https://xxxx.supabase.co"/>
+          <label class="field-label">Anon key</label>
+          <input type="text" id="sb-anon" placeholder="eyJ..."/>
+          <div class="field-hint">Settings → API in your Supabase project. Anon key only — never paste the service role key here.</div>
+          <button class="btn-save" id="btn-save-supabase">Save and connect</button>
+          <span class="save-msg" id="sb-save-msg">✓ Saved — reloading…</span>
+        </div>
+        <div class="settings-card">
+          <h3>Notification email</h3>
+          <label class="field-label">Your email address</label>
+          <input type="email" id="notify-email" value="taraodgers88@gmail.com"/>
+          <div class="field-hint">Where approval responses and client suggestions get sent. Update in Netlify environment variables too (NOTIFY_EMAIL).</div>
+          <button class="btn-save" id="btn-save-email">Save email</button>
+          <span class="save-msg" id="email-save-msg">✓ Saved</span>
+        </div>
+        <div class="settings-card">
+          <h3>Admin password</h3>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">To change your password go to Supabase → Authentication → Users → find your email → send password recovery.</p>
+          <a href="https://supabase.com/dashboard" target="_blank" rel="noopener" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:700">Open Supabase dashboard →</a>
+        </div>
+        <div class="settings-card">
+          <h3>Site links</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+            <a href="index.html" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">Homepage →</a>
+            <a href="blog.html" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">Blog →</a>
+            <a href="start-here.html" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">Start Here →</a>
+            <a href="work-examples.html" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">Work Examples →</a>
+            <a href="about.html" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">About →</a>
+            <a href="https://members.taracoconsulting.com" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">Client Portal →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="posts-data.js"></script>
+<script>
+const ADMIN_EMAIL = 'taraodgers88@gmail.com';
+let sb = null;
+let editingPostId = null;
+
+// ── SUPABASE ──────────────────────────────────────────────
+function initSupabase() {
+  const url = localStorage.getItem('sb_url');
+  const key = localStorage.getItem('sb_anon');
+  if (url && key && window.supabase) {
+    try { sb = supabase.createClient(url, key); return true; } catch(e) { return false; }
+  }
+  return false;
+}
+initSupabase();
+
+// ── LOGIN ─────────────────────────────────────────────────
+document.getElementById('btn-login').addEventListener('click', async () => {
+  const email = document.getElementById('admin-email').value.trim();
+  const pw    = document.getElementById('admin-password').value;
+  const err   = document.getElementById('login-error');
+  err.style.display = 'none';
+  if (!email || !pw) { err.textContent = 'Please enter your email and password.'; err.style.display = 'block'; return; }
+  if (sb) {
+    const { error } = await sb.auth.signInWithPassword({ email, password: pw });
+    if (error) { err.textContent = 'Incorrect email or password.'; err.style.display = 'block'; return; }
+  } else {
+    const stored = localStorage.getItem('admin_pw');
+    if (!stored) { localStorage.setItem('admin_pw', pw); }
+    else if (pw !== stored) { err.textContent = 'Incorrect password.'; err.style.display = 'block'; return; }
+    if (email !== ADMIN_EMAIL) { err.textContent = 'Admin access only.'; err.style.display = 'block'; return; }
+  }
+  enterAdmin();
+});
+document.getElementById('admin-password').addEventListener('keydown', e => { if (e.key==='Enter') document.getElementById('btn-login').click(); });
+document.getElementById('btn-signout').addEventListener('click', async () => {
+  if (sb) await sb.auth.signOut();
+  document.getElementById('admin-screen').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+});
+
+function enterAdmin() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-screen').style.display = 'block';
+  updateAllStatuses();
+  loadPosts();
+  if (sb) { loadClients(); loadApprovals(); loadHomepageContent(); loadPagesContent(); }
+  // Pre-fill saved keys
+  const url = localStorage.getItem('sb_url'); const key = localStorage.getItem('sb_anon');
+  if (url) document.getElementById('sb-url').value = url;
+  if (key) document.getElementById('sb-anon').value = key;
+}
+
+// ── TABS ──────────────────────────────────────────────────
+document.querySelectorAll('.admin-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('section-' + tab.dataset.section).classList.add('active');
+  });
+});
+
+// ── STATUS ────────────────────────────────────────────────
+function updateAllStatuses() {
+  ['blog','clients','approvals','hp'].forEach(id => {
+    const el = document.getElementById('db-status-' + id);
+    if (!el) return;
+    el.textContent = sb ? 'Supabase connected — changes save live' : 'Supabase not connected — connect in Settings';
+    el.className = 'db-status ' + (sb ? 'connected' : 'disconnected');
+  });
+}
+
+// ── BLOG POSTS ────────────────────────────────────────────
+let localPosts = JSON.parse(JSON.stringify(FALLBACK_POSTS));
+
+async function loadPosts() {
+  if (sb) {
+    const { data } = await sb.from('site_posts').select('*').order('sort_order', { ascending: true });
+    if (data && data.length) localPosts = data;
+  }
+  renderPostList();
+}
+
+function renderPostList() {
+  const list = document.getElementById('post-list');
+  if (!localPosts.length) { list.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:16px">No posts yet.</div>'; return; }
+  list.innerHTML = localPosts.map(p => `
+    <div class="list-item ${p.published===false||p.published==='false' ? 'draft' : ''}">
+      <div class="list-item-info">
+        <h4>${p.title}</h4>
+        <p>
+          <span class="tag-pill tag-${p.tag}">${p.tagLabel}</span> &nbsp;
+          ${p.readTime} &nbsp;
+          <span class="pill ${p.published===false||p.published==='false' ? 'pill-draft' : 'pill-live'}">${p.published===false||p.published==='false' ? 'Draft' : 'Live'}</span>
+        </p>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn-sm" onclick="togglePublished('${p.id}',${p.published===false||p.published==='false'})">${p.published===false||p.published==='false' ? 'Publish' : 'Unpublish'}</button>
+        <button class="btn-sm" onclick="openEditor('${p.id}')">Edit</button>
+        <button class="btn-danger" onclick="deletePost('${p.id}')">Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+document.getElementById('btn-new-post').addEventListener('click', () => {
+  editingPostId = null;
+  document.getElementById('edit-post-id').value = '';
+  document.getElementById('editor-title').textContent = 'New post';
+  ['edit-readtime','edit-title','edit-excerpt','edit-body'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('edit-tag').value = 'seo';
+  document.getElementById('edit-published').value = 'true';
+  document.getElementById('post-editor').classList.add('is-open');
+  document.getElementById('post-editor').scrollIntoView({ behavior:'smooth', block:'nearest' });
+});
+
+function openEditor(postId) {
+  const p = localPosts.find(x => x.id === postId);
+  if (!p) return;
+  editingPostId = postId;
+  document.getElementById('edit-post-id').value = postId;
+  document.getElementById('editor-title').textContent = 'Edit post';
+  document.getElementById('edit-tag').value      = p.tag;
+  document.getElementById('edit-readtime').value = p.readTime;
+  document.getElementById('edit-title').value    = p.title;
+  document.getElementById('edit-excerpt').value  = p.excerpt;
+  document.getElementById('edit-body').value     = p.body;
+  document.getElementById('edit-published').value = String(p.published !== false && p.published !== 'false');
+  document.getElementById('post-editor').classList.add('is-open');
+  document.getElementById('post-editor').scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function closeEditor() {
+  document.getElementById('post-editor').classList.remove('is-open');
+  editingPostId = null;
+}
+
+const tagLabels = { seo:'SEO', social:'Social media', ads:'Paid ads', strategy:'Strategy', ai:'AI & efficiency', content:'Content' };
+
+document.getElementById('btn-save-post').addEventListener('click', async () => {
+  const tag       = document.getElementById('edit-tag').value;
+  const readTime  = document.getElementById('edit-readtime').value.trim() || '3 min read';
+  const title     = document.getElementById('edit-title').value.trim();
+  const excerpt   = document.getElementById('edit-excerpt').value.trim();
+  const body      = document.getElementById('edit-body').value.trim();
+  const published = document.getElementById('edit-published').value === 'true';
+  if (!title || !body) { alert('Title and body are required.'); return; }
+  const post = { tag, tagLabel: tagLabels[tag]||tag, readTime, title, excerpt, body, published, sort_order: localPosts.length+1 };
+  if (editingPostId) {
+    post.id = editingPostId;
+    const idx = localPosts.findIndex(p => p.id === editingPostId);
+    if (idx > -1) localPosts[idx] = post;
+    if (sb) await sb.from('site_posts').update(post).eq('id', editingPostId);
+  } else {
+    post.id = 'post-' + Date.now();
+    localPosts.push(post);
+    if (sb) await sb.from('site_posts').insert(post);
+  }
+  renderPostList(); closeEditor(); flashSave('post-save-msg');
+});
+
+async function togglePublished(postId, makePublished) {
+  const idx = localPosts.findIndex(p => p.id === postId);
+  if (idx > -1) localPosts[idx].published = makePublished;
+  if (sb) await sb.from('site_posts').update({ published: makePublished }).eq('id', postId);
+  renderPostList();
+}
+
+async function deletePost(postId) {
+  if (!confirm('Delete this post? Cannot be undone.')) return;
+  localPosts = localPosts.filter(p => p.id !== postId);
+  if (sb) await sb.from('site_posts').delete().eq('id', postId);
+  renderPostList();
+}
+
+// ── CLIENTS ───────────────────────────────────────────────
+async function loadClients() {
+  if (!sb) return;
+  const { data } = await sb.from('profiles').select('*').neq('archived', true).order('created_at', { ascending: false });
+  const tbody = document.getElementById('clients-tbody');
+  if (!data || !data.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:28px">No clients yet. Invite one below.</td></tr>';
+    // Clear client dropdown in approvals too
+    document.getElementById('appr-client').innerHTML = '<option value="">— no clients yet —</option>';
+    return;
+  }
+  const tierClass = { starter:'pill-starter', growth_partner:'pill-growth', full_service:'pill-full' };
+  const tierLabel = { starter:'Starter', growth_partner:'Growth Partner', full_service:'Full Service' };
+  // Get pending approval counts per client
+  let pendingMap = {};
+  if (sb) {
+    const { data: apprs } = await sb.from('approvals').select('client_id, status').eq('status','pending');
+    (apprs||[]).forEach(a => { pendingMap[a.client_id] = (pendingMap[a.client_id]||0) + 1; });
+  }
+  tbody.innerHTML = data.map(c => `
+    <tr>
+      <td>
+        <strong>${c.full_name||'—'}</strong>
+        <div class="td-email">${c.email}</div>
+        ${c.start_date ? `<div class="td-email">Since ${c.start_date}</div>` : ''}
+        ${c.notes ? `<div class="td-email" style="color:#b85800;font-style:italic">${c.notes}</div>` : ''}
+      </td>
+      <td><span class="pill ${tierClass[c.tier]||'pill-starter'}">${tierLabel[c.tier]||c.tier}</span></td>
+      <td style="font-size:12px;color:var(--muted)">${c.package||'—'}</td>
+      <td><span class="pill ${c.login_count>0?'pill-approved':'pill-draft'}">${c.login_count>0?'Active':'Invited'}</span></td>
+      <td>${c.last_login ? new Date(c.last_login).toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'}) : 'Not yet'}</td>
+      <td>${pendingMap[c.id] ? `<span class="pill pill-pending">${pendingMap[c.id]} pending</span>` : '<span style="color:var(--muted);font-size:12px">None</span>'}</td>
+      <td class="td-actions">
+        <select class="btn-sm" onchange="changeTier('${c.id}',this.value)" title="Change tier">
+          <option value="">Change tier</option>
+          <option value="starter">Starter</option>
+          <option value="growth_partner">Growth Partner</option>
+          <option value="full_service">Full Service</option>
+        </select>
+        <button class="btn-sm" onclick="editClientNotes('${c.id}','${(c.notes||'').replace(/'/g,'\'')}','${(c.package||'').replace(/'/g,'\'')}','${(c.start_date||'').replace(/'/g,"\'")}')">Edit notes</button>
+        <button class="btn-danger" onclick="archiveClient('${c.id}','${c.full_name||c.email}')">Archive</button>
+      </td>
+    </tr>`).join('');
+  // Populate client dropdown in approvals
+  const sel = document.getElementById('appr-client');
+  sel.innerHTML = '<option value="">— select a client —</option>' +
+    data.map(c => `<option value="${c.id}">${c.full_name||c.email}</option>`).join('');
+}
+
+async function changeTier(profileId, tier) {
+  if (!tier || !sb) return;
+  await sb.from('profiles').update({ tier }).eq('id', profileId);
+  loadClients();
+}
+
+document.getElementById('btn-invite').addEventListener('click', async () => {
+  const name  = document.getElementById('invite-name').value.trim();
+  const email = document.getElementById('invite-email').value.trim();
+  const tier  = document.getElementById('invite-tier').value;
+  if (!email) { alert('Email is required.'); return; }
+  // Portal invite goes through Netlify function — for now show instructions
+  if (!sb) { alert('Connect Supabase first.'); return; }
+  alert(`To invite ${name||email}:\n\n1. Go to your Supabase dashboard\n2. Authentication → Users → Invite user\n3. Enter ${email}\n4. Then update their tier in Supabase → Table Editor → profiles\n\nFull automated invites require the portal Netlify functions to be deployed.`);
+  flashSave('invite-msg');
+});
+
+// ── APPROVALS ─────────────────────────────────────────────
+async function loadApprovals() {
+  if (!sb) return;
+  const { data } = await sb.from('approvals').select('*').order('created_at', { ascending: false });
+  const list = document.getElementById('approvals-list');
+  if (!data || !data.length) {
+    list.innerHTML = '<div style="text-align:center;color:var(--muted);font-size:13px;padding:28px">No approval items yet. Create one above.</div>';
+    return;
+  }
+  const statusClass = { pending:'pill-pending', approved:'pill-approved', changes_requested:'pill-changes' };
+  const statusLabel = { pending:'Pending', approved:'Approved', changes_requested:'Changes requested' };
+  list.innerHTML = data.map(a => `
+    <div class="list-item">
+      <div class="list-item-info">
+        <h4>${a.title}</h4>
+        <p><span class="pill ${statusClass[a.status]||'pill-pending'}">${statusLabel[a.status]||a.status}</span> &nbsp; ${new Date(a.created_at).toLocaleDateString('en-AU')}</p>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn-danger" onclick="deleteApproval('${a.id}')">Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+document.getElementById('btn-add-appr').addEventListener('click', async () => {
+  const title     = document.getElementById('appr-title').value.trim();
+  const clientId  = document.getElementById('appr-client').value;
+  const desc      = document.getElementById('appr-desc').value.trim();
+  const preview   = document.getElementById('appr-preview').value.trim();
+  if (!title || !clientId) { alert('Title and client are required.'); return; }
+  if (!sb) { alert('Connect Supabase first.'); return; }
+  const { error } = await sb.from('approvals').insert({ title, client_id: clientId, description: desc, preview_content: preview, status: 'pending' });
+  if (error) { alert('Error creating item: ' + error.message); return; }
+  ['appr-title','appr-desc','appr-preview'].forEach(id => document.getElementById(id).value = '');
+  flashSave('appr-save-msg');
+  loadApprovals();
+});
+
+async function deleteApproval(id) {
+  if (!confirm('Delete this approval item?')) return;
+  await sb.from('approvals').delete().eq('id', id);
+  loadApprovals();
+}
+
+// ── HOMEPAGE + PAGES CONTENT ──────────────────────────────
+async function saveSiteContent(key, value) {
+  if (sb) { await sb.from('site_content').upsert({ key, value }, { onConflict: 'key' }); }
+  else { localStorage.setItem('sc_' + key, value); }
+}
+
+async function loadSiteContent(key) {
+  if (sb) { const { data } = await sb.from('site_content').select('value').eq('key', key).single(); return data?.value||null; }
+  return localStorage.getItem('sc_' + key);
+}
+
+async function loadHomepageContent() {
+  const fields = ['hp-headline','hp-lead','hp-card-headline','hp-card-body','hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4','hp-cta-headline','hp-cta-body','hp-cta-btn'];
+  for (const f of fields) {
+    const val = await loadSiteContent(f);
+    if (val && document.getElementById(f)) document.getElementById(f).value = val;
+  }
+}
+
+async function loadPagesContent() {
+  const fields = ['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','we-hh','we-acec','we-mdc','we-scd','we-logo-hh','we-logo-acec','we-logo-mdc','we-logo-scd','we-tags-hh','we-tags-acec','we-tags-mdc','we-tags-scd','we-testimonial-1','we-testimonial-2','about-headline','about-p1','about-p2','about-p3','about-sig'];
+  for (const f of fields) {
+    const val = await loadSiteContent(f);
+    if (val && document.getElementById(f)) document.getElementById(f).value = val;
+  }
+}
+
+[
+  { btn:'btn-save-hero',     msg:'hero-save-msg',   fields:['hp-headline','hp-lead','hp-card-headline','hp-card-body'] },
+  { btn:'btn-save-ithy',     msg:'ithy-save-msg',   fields:['hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4'] },
+  { btn:'btn-save-cta',      msg:'cta-save-msg',    fields:['hp-cta-headline','hp-cta-body','hp-cta-btn'] },
+  { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc'] },
+  { btn:'btn-save-we',       msg:'we-save-msg',     fields:['we-hh','we-acec','we-mdc','we-scd','we-logo-hh','we-logo-acec','we-logo-mdc','we-logo-scd','we-tags-hh','we-tags-acec','we-tags-mdc','we-tags-scd','we-testimonial-1','we-testimonial-2'] },
+  { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-headline','about-p1','about-p2','about-p3','about-sig'] },
+].forEach(({ btn, msg, fields }) => {
+  document.getElementById(btn)?.addEventListener('click', async () => {
+    for (const f of fields) await saveSiteContent(f, document.getElementById(f).value);
+    flashSave(msg);
+  });
+});
+
+// ── SETTINGS ─────────────────────────────────────────────
+document.getElementById('btn-save-supabase').addEventListener('click', () => {
+  const url = document.getElementById('sb-url').value.trim();
+  const key = document.getElementById('sb-anon').value.trim();
+  if (!url || !key) { alert('Both fields are required.'); return; }
+  localStorage.setItem('sb_url', url);
+  localStorage.setItem('sb_anon', key);
+  flashSave('sb-save-msg');
+  setTimeout(() => window.location.reload(), 1200);
+});
+
+document.getElementById('btn-save-email').addEventListener('click', async () => {
+  await saveSiteContent('notify_email', document.getElementById('notify-email').value.trim());
+  flashSave('email-save-msg');
+});
+
+// ── CLIENT NOTES EDITOR ──────────────────────────────────
+function editClientNotes(id, notes, pkg, startDate) {
+  const newNotes    = prompt('Internal notes (only you see this):', notes);
+  if (newNotes === null) return;
+  const newPkg      = prompt('Services / package:', pkg);
+  if (newPkg === null) return;
+  const newStart    = prompt('Start date (e.g. June 2026):', startDate);
+  if (newStart === null) return;
+  if (sb) {
+    sb.from('profiles').update({ notes: newNotes, package: newPkg, start_date: newStart }).eq('id', id)
+      .then(() => loadClients());
+  }
+}
+
+async function archiveClient(id, name) {
+  if (!confirm(`Archive ${name}? They will lose portal access but their history is kept. You can restore them by updating their status in Supabase.`)) return;
+  if (sb) {
+    await sb.from('profiles').update({ archived: true }).eq('id', id);
+    loadClients();
+  }
+}
+
+// ── UTILITY ───────────────────────────────────────────────
+function flashSave(msgId) {
+  const el = document.getElementById(msgId);
+  if (!el) return;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>

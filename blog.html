@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Tara Consulting Co</title>
+  <meta name="description" content="Practical reads on social media, SEO, paid ads and AI — grounded in what's actually working in 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+
+    /* ── FILTER ROW ────────────────────────────────────────── */
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .filter-btn {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1.5px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { background: var(--white); border-color: var(--navy); color: var(--navy); }
+    .filter-btn.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+
+    /* ── POST CARD ─────────────────────────────────────────── */
+    .post-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .post-card:hover { border-color: rgba(247,127,0,0.35); box-shadow: var(--shadow-sm); }
+
+    .post-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 22px 24px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .post-num {
+      font-size: 11px;
+      color: var(--line);
+      min-width: 24px;
+      padding-top: 3px;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .post-info { flex: 1; min-width: 0; }
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .tag-seo      { background: #e1f5ee; color: #0a5a3e; }
+    .tag-social   { background: #e3f0fb; color: #1254a0; }
+    .tag-ads      { background: #faeeda; color: #7a4800; }
+    .tag-strategy { background: #eeedfe; color: #4a3aaa; }
+    .tag-ai       { background: #fbeaf0; color: #8a2050; }
+    .tag-content  { background: #eaf3de; color: #2f6010; }
+
+    .read-time { font-size: 11px; color: var(--muted); }
+    .post-title-text {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .post-excerpt { font-size: 0.9rem; color: var(--muted); line-height: 1.55; }
+    .post-arrow {
+      font-size: 22px;
+      color: var(--line);
+      transition: transform 0.2s, color 0.2s;
+      flex-shrink: 0;
+      padding-top: 2px;
+      line-height: 1;
+    }
+    .post-arrow.open { transform: rotate(90deg); color: var(--orange); }
+
+    /* ── POST BODY ─────────────────────────────────────────── */
+    .post-body { display: none; border-top: 1px solid var(--grey); }
+    .post-body.open { display: block; }
+    .post-body-inner {
+      padding: 28px 24px 28px 64px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .post-body-inner p { margin-bottom: 1rem; }
+    .post-body-inner p:last-of-type { margin-bottom: 0; }
+    .post-body-inner strong { color: var(--navy); }
+
+    .stat-row { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+    .stat-box {
+      background: var(--grey);
+      border-radius: 10px;
+      padding: 16px 18px;
+      flex: 1;
+      min-width: 130px;
+      border: 1px solid var(--line);
+    }
+    .stat-val { font-size: 1.5rem; font-weight: 700; color: var(--navy); }
+    .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+    .cta-line {
+      margin-top: 22px;
+      padding: 16px 20px;
+      background: var(--cream);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.93rem;
+      color: var(--navy);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    .no-posts {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .post-body-inner { padding-left: 24px; }
+      .post-header { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Blog</div>
+        <h1>What's actually working in <em>marketing right now.</em></h1>
+        <p>Practical reads on social media, SEO, paid ads and AI — grounded in what's genuinely changing in 2026, not what worked three years ago.</p>
+      </div>
+    </section>
+
+    <section class="block pale">
+      <div class="container">
+        <div class="filter-row" id="filter-row">
+          <button class="filter-btn active" data-filter="all">All posts</button>
+          <button class="filter-btn" data-filter="seo">SEO</button>
+          <button class="filter-btn" data-filter="social">Social media</button>
+          <button class="filter-btn" data-filter="ads">Paid ads</button>
+          <button class="filter-btn" data-filter="strategy">Strategy</button>
+          <button class="filter-btn" data-filter="ai">AI &amp; efficiency</button>
+          <button class="filter-btn" data-filter="content">Content</button>
+        </div>
+        <div id="posts-container"></div>
+      </div>
+    </section>
+
+    <section class="block cta" id="contact">
+      <div class="container cta-inner">
+        <h2>Ready to put any of this into practice?</h2>
+        <p>Book a free consultation and we'll work out what actually applies to your business right now.</p>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Strategy%20Call%20Enquiry">Book My Free Call <span class="arrow">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="posts-data.js"></script>
+  <script>
+
+    const tagClassMap = {
+      seo: 'tag-seo', social: 'tag-social', ads: 'tag-ads',
+      strategy: 'tag-strategy', ai: 'tag-ai', content: 'tag-content'
+    };
+
+    function renderPosts(filter) {
+      const container = document.getElementById('posts-container');
+      const source = (typeof window.POSTS !== 'undefined' && window.POSTS.length)
+        ? window.POSTS : FALLBACK_POSTS;
+      const filtered = filter === 'all' ? source : source.filter(p => p.tag === filter);
+
+      if (!filtered.length) {
+        container.innerHTML = '<div class="no-posts">No posts in this category yet.</div>';
+        return;
+      }
+
+      container.innerHTML = '';
+      filtered.forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'post-card';
+        card.dataset.tag = p.tag;
+        const num = String(i + 1).padStart(2, '0');
+        card.innerHTML = `
+          <div class="post-header" role="button" tabindex="0" aria-expanded="false">
+            <span class="post-num">${num}</span>
+            <div class="post-info">
+              <div class="post-meta">
+                <span class="tag ${tagClassMap[p.tag] || ''}">${p.tagLabel}</span>
+                <span class="read-time">${p.readTime}</span>
+              </div>
+              <p class="post-title-text">${p.title}</p>
+              <p class="post-excerpt">${p.excerpt}</p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">›</span>
+          </div>
+          <div class="post-body">
+            <div class="post-body-inner">${p.body}</div>
+          </div>`;
+
+        const header = card.querySelector('.post-header');
+        const body   = card.querySelector('.post-body');
+        const arrow  = card.querySelector('.post-arrow');
+        const toggle = () => {
+          const isOpen = body.classList.contains('open');
+          body.classList.toggle('open', !isOpen);
+          arrow.classList.toggle('open', !isOpen);
+          header.setAttribute('aria-expanded', !isOpen);
+        };
+        header.addEventListener('click', toggle);
+        header.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById('filter-row').addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderPosts(btn.dataset.filter);
+    });
+
+    renderPosts('all');
+  </script>
+</body>
+</html>
