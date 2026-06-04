@@ -31,3 +31,17 @@ SELECT * FROM (VALUES
   ('South Coast Demolition and Excavation','SCD','Trades and excavation business on the NSW South Coast. Demolition, earthworks and site preparation for residential and commercial clients.','Operations,Admin systems,Job management','Operations management and internal systems support|Job file management and admin process improvement|Payroll and wage processing support',NULL,NULL,NULL,NULL,4)
 ) AS v(name,initials,description,tags,support_items,testimonial,testimonial_cite,social_url,social_label,sort_order)
 WHERE NOT EXISTS (SELECT 1 FROM work_examples LIMIT 1);
+
+-- Leads table for homepage email capture
+CREATE TABLE IF NOT EXISTS leads (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email      TEXT NOT NULL,
+  source     TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Anyone can submit a lead" ON leads;
+CREATE POLICY "Anyone can submit a lead" ON leads FOR INSERT TO anon WITH CHECK (true);
+CREATE POLICY "Admin reads leads" ON leads FOR SELECT TO authenticated USING (true);
+GRANT INSERT ON leads TO anon;
+GRANT SELECT ON leads TO authenticated;

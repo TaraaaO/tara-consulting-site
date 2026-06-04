@@ -199,10 +199,24 @@
       strategy: 'tag-strategy', ai: 'tag-ai', content: 'tag-content'
     };
 
+    let LIVE_POSTS = null;
+
+    async function fetchPostsFromSupabase() {
+      try {
+        const r = await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/site_posts?select=*&published=eq.true&order=sort_order.asc', {
+          headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g' }
+        });
+        const data = await r.json();
+        if (Array.isArray(data) && data.length) {
+          LIVE_POSTS = data;
+          renderPosts(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
+        }
+      } catch(e) {}
+    }
+
     function renderPosts(filter) {
       const container = document.getElementById('posts-container');
-      const source = (typeof window.POSTS !== 'undefined' && window.POSTS.length)
-        ? window.POSTS : FALLBACK_POSTS;
+      const source = LIVE_POSTS || [];
       const filtered = filter === 'all' ? source : source.filter(p => p.tag === filter);
 
       if (!filtered.length) {
@@ -259,6 +273,7 @@
     });
 
     renderPosts('all');
+    fetchPostsFromSupabase();
   </script>
 </body>
 </html>

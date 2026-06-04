@@ -293,16 +293,16 @@
       <div class="container hero-grid">
         <div>
           <span class="eyebrow reveal"><span class="pulse"></span> Social media, AI &amp; marketing for small business</span>
-          <h1 class="reveal delay-1">Modern marketing made <em>less overwhelming</em>.</h1>
-          <p class="lead reveal delay-2">We help small business owners who are great at what they do, but haven't quite found their feet with social media, AI or modern marketing yet. Clear steps, practical support and no overcomplicating it.</p>
+          <h1 class="reveal delay-1" id="hp-headline">Modern marketing made <em>less overwhelming</em>.</h1>
+          <p class="lead reveal delay-2" id="hp-lead">We help small business owners who are great at what they do, but haven't quite found their feet with social media, AI or modern marketing yet. Clear steps, practical support and no overcomplicating it.</p>
           <div class="hero-ctas reveal delay-3">
             <a class="btn" href="#contact">Book a Free Strategy Call <span class="arrow">→</span></a>
             <a class="btn secondary" href="start-here.html">Where to start</a>
           </div>
         </div>
         <aside class="hero-card reveal delay-2">
-          <h3>For businesses ready to stop putting it off.</h3>
-          <p>We help you get set up with social media that sounds like you, simple systems behind the scenes, and practical AI that saves time without making things harder than they need to be.</p>
+          <h3 id="hp-card-headline">For businesses ready to stop putting it off.</h3>
+          <p id="hp-card-body">We help you get set up with social media that sounds like you, simple systems behind the scenes, and practical AI that saves time without making things harder than they need to be.</p>
           <ul>
             <li>Social media direction and content support</li>
             <li>Practical AI setup and training</li>
@@ -320,10 +320,10 @@
           <p class="section-eyebrow">Not sure where to start?</p>
           <h2 class="section-title">Pick what sounds most like you.</h2>
           <div class="ithy-grid">
-            <a class="ithy-item" href="start-here.html#get-started">I need to get started with social media but I keep putting it off.</a>
-            <a class="ithy-item" href="start-here.html#show-up">My content feels inconsistent — it doesn't really sound like my business.</a>
-            <a class="ithy-item" href="start-here.html#ai-basics">I want to use AI but I don't know where to begin without getting it wrong.</a>
-            <a class="ithy-item" href="start-here.html#brand-kit">My brand feels patchy. I need things to look and feel more consistent.</a>
+            <a class="ithy-item" href="start-here.html#get-started" id="hp-ithy-1">I need to get started with social media but I keep putting it off.</a>
+            <a class="ithy-item" href="start-here.html#show-up" id="hp-ithy-2">My content feels inconsistent — it doesn't really sound like my business.</a>
+            <a class="ithy-item" href="start-here.html#ai-basics" id="hp-ithy-3">I want to use AI but I don't know where to begin without getting it wrong.</a>
+            <a class="ithy-item" href="start-here.html#brand-kit" id="hp-ithy-4">My brand feels patchy. I need things to look and feel more consistent.</a>
           </div>
           <div class="ithy-cta">
             <a class="btn" href="#contact">Book a free consultation <span class="arrow">→</span></a>
@@ -387,9 +387,9 @@
     <!-- CTA -->
     <section class="block cta" id="contact">
       <div class="container cta-inner">
-        <h2>Ready to make modern marketing feel less overwhelming?</h2>
-        <p>Book a free consultation and we'll talk through where you're at, what's feeling messy, and what support would make the next step easier.</p>
-        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Strategy%20Call%20Enquiry">Book My Free Call <span class="arrow">→</span></a>
+        <h2 id="hp-cta-headline">Ready to make modern marketing feel less overwhelming?</h2>
+        <p id="hp-cta-body">Book a free consultation and we'll talk through where you're at, what's feeling messy, and what support would make the next step easier.</p>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Strategy%20Call%20Enquiry"><span id="hp-cta-btn">Book My Free Call</span> <span class="arrow">→</span></a>
       </div>
     </section>
 
@@ -398,31 +398,87 @@
   <script src="shared.js"></script>
   <script src="posts-data.js"></script>
   <script>
-    document.getElementById('lead-form')?.addEventListener('submit', e => {
+  // Load editable homepage content from Supabase
+  (async function() {
+    try {
+      const keys = 'hp-headline,hp-lead,hp-card-headline,hp-card-body,hp-ithy-1,hp-ithy-2,hp-ithy-3,hp-ithy-4,hp-cta-headline,hp-cta-body,hp-cta-btn';
+      const r = await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/site_content?select=key,value&key=in.(' + keys + ')', {
+        headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g' }
+      });
+      const data = await r.json();
+      if (!Array.isArray(data)) return;
+      data.forEach(row => {
+        const el = document.getElementById(row.key);
+        if (!el) return;
+        // CTA button is an <a> tag
+        if (row.key === 'hp-cta-btn') { el.textContent = row.value; return; }
+        // ithy items are <a> tags - update text only
+        if (row.key.startsWith('hp-ithy-')) { el.textContent = row.value; return; }
+        // Headline may contain <em> - use innerHTML
+        if (row.key === 'hp-headline') { el.innerHTML = row.value; return; }
+        el.textContent = row.value;
+      });
+    } catch(e) {}
+  })();
+  </script>
+  <script>
+    document.getElementById('lead-form')?.addEventListener('submit', async e => {
       e.preventDefault();
-      alert('Prototype only — this will connect to your email list.');
-      e.currentTarget.reset();
+      const email = document.getElementById('lead-email').value.trim();
+      const btn = e.currentTarget.querySelector('button');
+      const original = btn.innerHTML;
+      if (!email) return;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      try {
+        await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/leads', {
+          method: 'POST',
+          headers: {
+            'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: email, source: 'homepage' })
+        });
+      } catch(err) {}
+      btn.innerHTML = '✓ Thank you!';
+      e.target.reset();
+      setTimeout(() => { btn.disabled = false; btn.innerHTML = original; }, 3000);
     });
   </script>
   <script>
-    // Render 3 latest posts as preview cards on homepage
-    (function() {
+    // Render 3 latest published posts as preview cards
+    (async function() {
       const tagClassMap = {
         seo: 'tag-seo', social: 'tag-social', ads: 'tag-ads',
         strategy: 'tag-strategy', ai: 'tag-ai', content: 'tag-content'
       };
-      const source = (typeof window.POSTS !== 'undefined' && window.POSTS.length)
-        ? window.POSTS : FALLBACK_POSTS;
-      const preview = source.slice(0, 3);
       const grid = document.getElementById('blog-preview-grid');
       if (!grid) return;
-      grid.innerHTML = preview.map(p => `
-        <a class="blog-preview-card" href="blog.html">
-          <span class="blog-preview-tag ${tagClassMap[p.tag] || ''}">${p.tagLabel}</span>
-          <h4>${p.title}</h4>
-          <p>${p.excerpt}</p>
-          <span class="blog-preview-read">Read post →</span>
-        </a>`).join('');
+
+      function renderPreview(posts) {
+        const preview = posts.slice(0, 3);
+        grid.innerHTML = preview.map(p => `
+          <a class="blog-preview-card" href="blog.html">
+            <span class="blog-preview-tag ${tagClassMap[p.tag] || ''}">${p.tagLabel}</span>
+            <h4>${p.title}</h4>
+            <p>${p.excerpt}</p>
+            <span class="blog-preview-read">Read post →</span>
+          </a>`).join('');
+      }
+
+      // Try Supabase first
+      try {
+        const r = await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/site_posts?select=*&published=eq.true&order=sort_order.asc&limit=3', {
+          headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g' }
+        });
+        const data = await r.json();
+        if (Array.isArray(data) && data.length) { renderPreview(data); return; }
+      } catch(e) {}
+
+      // Fall back to local
+      const source = (typeof window.POSTS !== 'undefined' && window.POSTS.length) ? window.POSTS : FALLBACK_POSTS;
+      renderPreview(source);
     })();
   </script>
 </body>

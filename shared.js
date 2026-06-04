@@ -35,12 +35,34 @@
 
   const footerHTML = `
   <footer>
-    <div>© ${new Date().getFullYear()} Tara Consulting Co · Social media, AI and marketing made practical.</div>
-    <div class="meta">Made in Australia · <a href="mailto:hello@taraconsultingco.com">hello@taraconsultingco.com</a></div>
+    <div id="footer-tagline">© ${new Date().getFullYear()} Tara Consulting Co · Social media, AI and marketing made practical.</div>
+    <div class="meta" id="footer-meta">Made in Australia · <a href="mailto:hello@taraconsultingco.com" id="footer-email">hello@taraconsultingco.com</a></div>
   </footer>`;
 
   document.body.insertAdjacentHTML('afterbegin', headerHTML);
   document.body.insertAdjacentHTML('beforeend', footerHTML);
+
+  // Load editable footer content from Supabase
+  (async function() {
+    try {
+      const r = await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/site_content?select=key,value&key=in.(footer-tagline,footer-meta,footer-email)', {
+        headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g' }
+      });
+      const data = await r.json();
+      if (!Array.isArray(data)) return;
+      data.forEach(row => {
+        const el = document.getElementById(row.key);
+        if (el) {
+          if (row.key === 'footer-email') {
+            el.textContent = row.value;
+            el.href = 'mailto:' + row.value;
+          } else {
+            el.textContent = row.value;
+          }
+        }
+      });
+    } catch(e) {}
+  })();
 
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');

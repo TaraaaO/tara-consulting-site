@@ -489,6 +489,9 @@
 
       <div class="admin-card">
         <div class="admin-card-title">About page</div>
+        <label class="field-label">Your photo URL</label>
+        <input type="text" id="about-photo" placeholder="https://... paste a public image URL"/>
+        <div class="field-hint">Upload your photo to Supabase Storage → images bucket → copy URL → paste here. Looks best as a square or portrait crop.</div>
         <label class="field-label">Page headline</label>
         <input type="text" id="about-headline" value="Practical support for real businesses."/>
         <label class="field-label">Paragraph 1</label>
@@ -564,6 +567,16 @@ Small business generally — wherever social media, AI, marketing or operations 
           <div class="field-hint">Where approval responses and client suggestions get sent. Update in Netlify environment variables too (NOTIFY_EMAIL).</div>
           <button class="btn-save" id="btn-save-email">Save email</button>
           <span class="save-msg" id="email-save-msg">✓ Saved</span>
+        </div>
+        <div class="settings-card">
+          <h3>Footer text</h3>
+          <label class="field-label">Tagline (left side)</label>
+          <input type="text" id="footer-tagline" value="Tara Consulting Co · Social media, AI and marketing made practical."/>
+          <div class="field-hint">The © year is added automatically.</div>
+          <label class="field-label">Email address</label>
+          <input type="email" id="footer-email" value="hello@taraconsultingco.com"/>
+          <button class="btn-save" id="btn-save-footer" style="margin-top:16px">Save footer</button>
+          <span class="save-msg" id="footer-save-msg">✓ Saved</span>
         </div>
         <div class="settings-card">
           <h3>Admin password</h3>
@@ -893,7 +906,7 @@ async function loadHomepageContent() {
 }
 
 async function loadPagesContent() {
-  const fields = ['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','we-page-intro','we-section-title','we-section-intro','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'];
+  const fields = ['footer-tagline','footer-email','sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -907,8 +920,9 @@ async function loadPagesContent() {
   { btn:'btn-save-we-text',  msg:'we-text-save-msg', fields:['we-page-intro','we-section-title','we-section-intro'] },
   { btn:'btn-save-sh-text',  msg:'sh-text-save-msg', fields:['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro'] },
   { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc'] },
-  { btn:'btn-save-we',       msg:'we-save-msg',     fields:['we-hh','we-acec','we-mdc','we-scd','we-logo-hh','we-logo-acec','we-logo-mdc','we-logo-scd','we-tags-hh','we-tags-acec','we-tags-mdc','we-tags-scd','we-testimonial-1','we-testimonial-2'] },
-  { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'] },
+  
+  { btn:'btn-save-footer', msg:'footer-save-msg', fields:['footer-tagline','footer-email'] },
+  { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'] },
 ].forEach(({ btn, msg, fields }) => {
   document.getElementById(btn)?.addEventListener('click', async () => {
     for (const f of fields) await saveSiteContent(f, document.getElementById(f).value);

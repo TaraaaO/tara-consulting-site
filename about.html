@@ -130,10 +130,11 @@
     <section class="block">
       <div class="container">
         <div class="about-grid">
-          <div class="about-photo">
-            <div>
-              <strong>Photo of Tara goes here</strong>
-              A relaxed shot — at a desk, with a coffee, or on-site with a client. Real beats polished every time.
+          <div class="about-photo" id="about-photo-wrap">
+            <img id="about-photo" src="" alt="Tara Odgers — Tara Consulting Co" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:none"/>
+            <div id="about-photo-placeholder" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:0.9rem;text-align:center;padding:24px;gap:8px">
+              <span style="font-size:2rem">📷</span>
+              <span>Add your photo URL in the admin panel</span>
             </div>
           </div>
 
@@ -222,7 +223,7 @@
       try {
         const SUPABASE_URL = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
-        const keys = 'about-headline,about-p1,about-p2,about-p3,about-sig,about-believe-title,about-believe-items,about-work-title,about-work-intro,about-work-items,about-tools-title,about-tools-items';
+        const keys = 'about-headline,about-p1,about-p2,about-p3,about-sig,about-photo,about-believe-title,about-believe-items,about-work-title,about-work-intro,about-work-items,about-tools-title,about-tools-items';
         const res = await fetch(SUPABASE_URL + '/rest/v1/site_content?select=key,value&key=in.(' + keys + ')', {
           headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY }
         });
@@ -230,7 +231,14 @@
         if (!Array.isArray(data)) return;
         data.forEach(function(row) {
           // Simple text fields
-          var simple = ['about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-work-title','about-work-intro','about-tools-title'];
+          // Photo
+          if (row.key === 'about-photo' && row.value) {
+            var img = document.getElementById('about-photo');
+            var placeholder = document.getElementById('about-photo-placeholder');
+            if (img) { img.src = row.value; img.style.display = 'block'; }
+            if (placeholder) placeholder.style.display = 'none';
+          }
+          var simple = ['about-p1','about-p2','about-p3','about-sig','about-believe-title','about-work-title','about-work-intro','about-tools-title'];
           if (simple.indexOf(row.key) > -1) {
             var el = document.getElementById(row.key);
             if (el) el.textContent = row.value;
@@ -239,8 +247,7 @@
           if (row.key === 'about-believe-items') {
             var list = document.getElementById('about-believe-list');
             if (list && row.value) {
-              list.innerHTML = row.value.split('
-').filter(Boolean).map(function(line) {
+              list.innerHTML = row.value.split(String.fromCharCode(10)).filter(Boolean).map(function(line) {
                 var parts = line.match(/^([^.]+\.) ?(.*)$/);
                 if (parts) return '<li><strong>' + parts[1] + '</strong> ' + parts[2] + '</li>';
                 return '<li>' + line + '</li>';
@@ -251,8 +258,7 @@
           if (row.key === 'about-work-items') {
             var list2 = document.getElementById('about-work-list');
             if (list2 && row.value) {
-              list2.innerHTML = row.value.split('
-').filter(Boolean).map(function(line) {
+              list2.innerHTML = row.value.split(String.fromCharCode(10)).filter(Boolean).map(function(line) {
                 return '<li>' + line + '</li>';
               }).join('');
             }
