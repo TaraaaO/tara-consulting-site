@@ -417,6 +417,41 @@
             <textarea id="sh-bk-desc" style="min-height:70px">Pull your colours, fonts, logo use and simple brand rules into one easy guide so your content feels more consistent.</textarea>
           </div>
         </div>
+        <div style="border-top:1px solid var(--line);margin:24px 0 4px"></div>
+        <p class="field-hint" style="margin-bottom:16px;font-weight:700;color:var(--navy)">Guide panel content (the expanded section that opens when a card is clicked)</p>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Get Started — guide panel</div>
+          <label class="field-label">Panel heading</label>
+          <input type="text" id="sh-gs-panel-title" value="Before you post, get clear on the basics."/>
+          <label class="field-label">Panel intro paragraph</label>
+          <textarea id="sh-gs-panel-intro" style="min-height:70px">Most businesses don't need more random content ideas. They need a simple starting point: who they're talking to, what they want to be known for, and what their customers actually need to hear.</textarea>
+        </div>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Show Up Better — guide panel</div>
+          <label class="field-label">Panel heading</label>
+          <input type="text" id="sh-su-panel-title" value="Showing up better can look different for every business."/>
+          <label class="field-label">Panel intro paragraph</label>
+          <textarea id="sh-su-panel-intro" style="min-height:70px">This can include social content, reels, captions, marketing copy, guides, campaign concepts or before-and-after messaging. The goal is simple: help your business sound more like you and make it easier for customers to understand what you do.</textarea>
+        </div>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Use AI Practically — guide panel</div>
+          <label class="field-label">Panel heading</label>
+          <input type="text" id="sh-ai-panel-title" value="A beginner-friendly way to think about AI."/>
+          <label class="field-label">Panel intro paragraph</label>
+          <textarea id="sh-ai-panel-intro" style="min-height:70px">ChatGPT, Claude and Gemini can help you draft, organise, summarise and plan. They don't replace your judgement, but they can save real time when you give them clear instructions and check the output properly.</textarea>
+        </div>
+
+        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Build a Brand Kit — guide panel</div>
+          <label class="field-label">Panel heading</label>
+          <input type="text" id="sh-bk-panel-title" value="A simple brand kit helps everything feel more consistent."/>
+          <label class="field-label">Panel intro paragraph</label>
+          <textarea id="sh-bk-panel-intro" style="min-height:70px">This is for businesses that already have the bones of a brand, but need it pulled together into something practical they can actually use when creating posts, flyers, emails or client documents.</textarea>
+        </div>
+
         <button class="btn-save" id="btn-save-starthero">Save Start Here cards</button>
         <span class="save-msg" id="sh-save-msg">✓ Saved</span>
       </div>
@@ -575,6 +610,8 @@ Small business generally — wherever social media, AI, marketing or operations 
           <div class="field-hint">The © year is added automatically.</div>
           <label class="field-label">Email address</label>
           <input type="email" id="footer-email" value="hello@taraconsultingco.com"/>
+          <label class="field-label">Footer meta line (e.g. "Made in Australia")</label>
+          <input type="text" id="footer-meta" value="Made in Australia"/>
           <button class="btn-save" id="btn-save-footer" style="margin-top:16px">Save footer</button>
           <span class="save-msg" id="footer-save-msg">✓ Saved</span>
         </div>
@@ -608,11 +645,11 @@ let sb = null;
 let editingPostId = null;
 
 // ── SUPABASE ──────────────────────────────────────────────
+const SB_URL = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
 function initSupabase() {
-  const url = localStorage.getItem('sb_url');
-  const key = localStorage.getItem('sb_anon');
-  if (url && key && window.supabase) {
-    try { sb = supabase.createClient(url, key); return true; } catch(e) { return false; }
+  if (window.supabase) {
+    try { sb = supabase.createClient(SB_URL, SB_ANON); return true; } catch(e) { return false; }
   }
   return false;
 }
@@ -650,7 +687,7 @@ function enterAdmin() {
   loadPosts();
   if (sb) { loadClients(); loadApprovals(); loadHomepageContent(); loadPagesContent(); loadWeExamples(); }
   // Pre-fill saved keys
-  const url = localStorage.getItem('sb_url'); const key = localStorage.getItem('sb_anon');
+  const url = SB_URL; const key = SB_ANON;
   if (url) document.getElementById('sb-url').value = url;
   if (key) document.getElementById('sb-anon').value = key;
 }
@@ -906,7 +943,7 @@ async function loadHomepageContent() {
 }
 
 async function loadPagesContent() {
-  const fields = ['footer-tagline','footer-email','sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'];
+  const fields = ['footer-tagline','footer-email','footer-meta','sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -919,9 +956,9 @@ async function loadPagesContent() {
   { btn:'btn-save-cta',      msg:'cta-save-msg',    fields:['hp-cta-headline','hp-cta-body','hp-cta-btn'] },
   { btn:'btn-save-we-text',  msg:'we-text-save-msg', fields:['we-page-intro','we-section-title','we-section-intro'] },
   { btn:'btn-save-sh-text',  msg:'sh-text-save-msg', fields:['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro'] },
-  { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc'] },
+  { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro'] },
   
-  { btn:'btn-save-footer', msg:'footer-save-msg', fields:['footer-tagline','footer-email'] },
+  { btn:'btn-save-footer', msg:'footer-save-msg', fields:['footer-tagline','footer-email','footer-meta'] },
   { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'] },
 ].forEach(({ btn, msg, fields }) => {
   document.getElementById(btn)?.addEventListener('click', async () => {
