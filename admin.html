@@ -628,7 +628,7 @@ Small business generally — wherever social media, AI, marketing or operations 
             <a href="start-here.html" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">Start Here →</a>
             <a href="work-examples.html" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">Work Examples →</a>
             <a href="about.html" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">About →</a>
-            <a href="https://members.taracoconsulting.com" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">Client Portal →</a>
+            <a href="https://tara-client-portal.netlify.app" target="_blank" style="font-size:13px;color:var(--orange);text-decoration:none;font-weight:600">Client Portal →</a>
           </div>
         </div>
       </div>
@@ -787,15 +787,27 @@ document.getElementById('btn-save-post').addEventListener('click', async () => {
   const published = document.getElementById('edit-published').value === 'true';
   if (!title || !body) { alert('Title and body are required.'); return; }
   const post = { tag, tagLabel: tagLabels[tag]||tag, readTime, title, excerpt, body, published, sort_order: localPosts.length+1 };
+  let saveError = null;
   if (editingPostId) {
     post.id = editingPostId;
     const idx = localPosts.findIndex(p => p.id === editingPostId);
     if (idx > -1) localPosts[idx] = post;
-    if (sb) await sb.from('site_posts').update(post).eq('id', editingPostId);
+    if (sb) {
+      const { error } = await sb.from('site_posts').upsert(post, { onConflict: 'id' });
+      saveError = error;
+    }
   } else {
     post.id = 'post-' + Date.now();
     localPosts.push(post);
-    if (sb) await sb.from('site_posts').insert(post);
+    if (sb) {
+      const { error } = await sb.from('site_posts').insert(post);
+      saveError = error;
+    }
+  }
+  if (saveError) {
+    alert('Could not save to database:\n\n' + saveError.message + '\n\nCode: ' + (saveError.code||'') + '\nDetails: ' + (saveError.details||''));
+    console.error('Save error:', saveError);
+    return;
   }
   renderPostList(); closeEditor(); flashSave('post-save-msg');
 });
@@ -930,7 +942,7 @@ async function saveSiteContent(key, value) {
 }
 
 async function loadSiteContent(key) {
-  if (sb) { const { data } = await sb.from('site_content').select('value').eq('key', key).single(); return data?.value||null; }
+  if (sb) { const { data } = await sb.from('site_content').select('value').eq('key', key).maybeSingle(); return data?.value||null; }
   return localStorage.getItem('sc_' + key);
 }
 
@@ -1034,7 +1046,7 @@ async function loadWeExamples() {
 
 async function openWeEditor(id) {
   if (!sb) return;
-  const { data: item } = await sb.from('work_examples').select('*').eq('id', id).single();
+  const { data: item } = await sb.from('work_examples').select('*').eq('id', id).maybeSingle();
   if (!item) return;
   editingWeId = id;
   document.getElementById('we-edit-id').value = id;
