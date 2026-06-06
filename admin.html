@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin | Tara Consulting Co</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -143,7 +144,7 @@
 <div id="login-screen">
   <div class="login-box">
     <div class="eyebrow">Tara Consulting Co</div>
-    <h1>Admin panel <span style="font-size:11px;color:#1a9e60;font-weight:700;vertical-align:middle">v2.1 ✓</span></h1>
+    <h1>Admin panel <span style="font-size:11px;color:#1a9e60;font-weight:700;vertical-align:middle">v2.2 ✓</span></h1>
     <div id="login-error"></div>
     <label for="admin-email">Email address</label>
     <input type="email" id="admin-email" placeholder="taraodgers88@gmail.com" autocomplete="email"/>
@@ -163,6 +164,7 @@
     <div class="admin-tabs">
       <button class="admin-tab active" data-section="blog">Blog posts</button>
       <button class="admin-tab" data-section="clients">Clients</button>
+      <button class="admin-tab" data-section="leads">Leads</button>
       <button class="admin-tab" data-section="approvals">Approvals</button>
       <button class="admin-tab" data-section="homepage">Homepage</button>
       <button class="admin-tab" data-section="pages">Other pages</button>
@@ -277,6 +279,17 @@
     </div>
 
     <!-- ── APPROVALS ───────────────────────────────── -->
+    <div class="tab-section" id="section-leads">
+      <div class="section-head">
+        <h2>Leads</h2>
+        <p>Email addresses captured from the homepage free-resource form. Click any email to reply.</p>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-title">Captured leads</div>
+        <div id="leads-list"><p style="color:var(--muted);font-size:13px">Loading…</p></div>
+      </div>
+    </div>
+
     <div class="tab-section" id="section-approvals">
       <div class="section-head">
         <h2>Approvals</h2>
@@ -685,7 +698,7 @@ function enterAdmin() {
   document.getElementById('admin-screen').style.display = 'block';
   updateAllStatuses();
   loadPosts();
-  if (sb) { loadClients(); loadApprovals(); loadHomepageContent(); loadPagesContent(); loadWeExamples(); }
+  if (sb) { loadClients(); loadApprovals(); loadHomepageContent(); loadPagesContent(); loadWeExamples(); loadLeads(); }
   // Pre-fill saved keys
   const url = SB_URL; const key = SB_ANON;
   if (url) document.getElementById('sb-url').value = url;
@@ -1019,6 +1032,25 @@ async function archiveClient(id, name) {
 
 // ── WORK EXAMPLES MANAGER ────────────────────────────────
 let editingWeId = null;
+
+async function loadLeads() {
+  if (!sb) return;
+  const list = document.getElementById('leads-list');
+  if (!list) return;
+  const { data, error } = await sb.from('leads').select('*').order('created_at', { ascending: false });
+  if (error) { list.innerHTML = '<p style="color:var(--muted);font-size:13px">Could not load leads.</p>'; return; }
+  if (!data || !data.length) {
+    list.innerHTML = '<p style="color:var(--muted);font-size:13px">No leads captured yet. When someone enters their email on the homepage form, it will appear here.</p>';
+    return;
+  }
+  list.innerHTML = '<div class="client-table-wrap"><table><thead><tr><th>Email</th><th>Source</th><th>Date</th></tr></thead><tbody>' +
+    data.map(function(l) {
+      return '<tr><td><a href="mailto:' + l.email + '" style="color:var(--orange);text-decoration:none;font-weight:600">' + l.email + '</a></td>' +
+        '<td>' + (l.source||'—') + '</td>' +
+        '<td>' + new Date(l.created_at).toLocaleDateString('en-AU', {day:'numeric',month:'short',year:'numeric'}) + '</td></tr>';
+    }).join('') + '</tbody></table></div>' +
+    '<p style="color:var(--muted);font-size:12px;margin-top:12px">' + data.length + ' lead' + (data.length>1?'s':'') + ' total. Click an email to reply.</p>';
+}
 
 async function loadWeExamples() {
   if (!sb) return;
