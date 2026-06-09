@@ -301,7 +301,7 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow reveal"><span class="pulse"></span> Social media, AI &amp; marketing for small business</span>
+          <span class="eyebrow reveal"><span class="pulse"></span> <span id="hp-eyebrow">Social media, AI &amp; marketing for small business</span></span>
           <h1 class="reveal delay-1" id="hp-headline">Modern marketing made <em>less overwhelming</em>.</h1>
           <p class="lead reveal delay-2" id="hp-lead">We help small business owners who are great at what they do, but haven't quite found their feet with social media, AI or modern marketing yet. Clear steps, practical support and no overcomplicating it.</p>
           <div class="hero-ctas reveal delay-3">
@@ -326,8 +326,8 @@
     <section class="block">
       <div class="container">
         <div class="is-this-you">
-          <p class="section-eyebrow">Not sure where to start?</p>
-          <h2 class="section-title">Pick what sounds most like you.</h2>
+          <p class="section-eyebrow" id="hp-ithy-eyebrow">Not sure where to start?</p>
+          <h2 class="section-title" id="hp-ithy-title">Pick what sounds most like you.</h2>
           <div class="ithy-grid">
             <a class="ithy-item" href="start-here.html#get-started" id="hp-ithy-1">I need to get started with social media but I keep putting it off.</a>
             <a class="ithy-item" href="start-here.html#show-up" id="hp-ithy-2">My content feels inconsistent — it doesn't really sound like my business.</a>
@@ -345,15 +345,15 @@
     <!-- WHY IT HELPS -->
     <section class="block pale">
       <div class="container">
-        <p class="section-eyebrow">Why it helps</p>
-        <h2 class="section-title">What feels easier when you have the right support.</h2>
+        <p class="section-eyebrow" id="hp-why-eyebrow">Why it helps</p>
+        <h2 class="section-title" id="hp-why-title">What feels easier when you have the right support.</h2>
         <div class="grid-3">
-          <div class="card"><h3>Clearer Direction</h3><p>Know what to say, where to say it and what matters most for your next stage.</p></div>
-          <div class="card"><h3>Less Overwhelm</h3><p>Break social media, AI and marketing into simple actions instead of another giant job on your list.</p></div>
-          <div class="card"><h3>Better Content</h3><p>Create posts, reels, captions and copy that sound like your business and make sense to your customers.</p></div>
-          <div class="card"><h3>Practical Systems</h3><p>Use templates, prompts and repeatable steps so you're not starting from scratch every time.</p></div>
-          <div class="card"><h3>More Confidence</h3><p>Understand how to use the tools without needing to become a tech expert.</p></div>
-          <div class="card"><h3>Room to Grow</h3><p>Get the foundations in place so marketing and admin feel easier to keep up with.</p></div>
+          <div class="card"><h3 id="hp-b1-t">Clearer Direction</h3><p id="hp-b1-d">Know what to say, where to say it and what matters most for your next stage.</p></div>
+          <div class="card"><h3 id="hp-b2-t">Less Overwhelm</h3><p id="hp-b2-d">Break social media, AI and marketing into simple actions instead of another giant job on your list.</p></div>
+          <div class="card"><h3 id="hp-b3-t">Better Content</h3><p id="hp-b3-d">Create posts, reels, captions and copy that sound like your business and make sense to your customers.</p></div>
+          <div class="card"><h3 id="hp-b4-t">Practical Systems</h3><p id="hp-b4-d">Use templates, prompts and repeatable steps so you're not starting from scratch every time.</p></div>
+          <div class="card"><h3 id="hp-b5-t">More Confidence</h3><p id="hp-b5-d">Understand how to use the tools without needing to become a tech expert.</p></div>
+          <div class="card"><h3 id="hp-b6-t">Room to Grow</h3><p id="hp-b6-d">Get the foundations in place so marketing and admin feel easier to keep up with.</p></div>
         </div>
       </div>
     </section>
@@ -363,9 +363,9 @@
       <div class="container">
         <div class="lead-magnet">
           <div>
-            <p class="section-eyebrow">Free resource</p>
-            <h2 class="section-title">Start with a simple AI and social media checklist.</h2>
-            <p>Pop your email in and I'll send through a practical starter resource you can use to get clearer on your content, your message and where AI might actually save you time.</p>
+            <p class="section-eyebrow" id="hp-free-eyebrow">Free resource</p>
+            <h2 class="section-title" id="hp-free-title">Start with a simple AI and social media checklist.</h2>
+            <p id="hp-free-body">Pop your email in and I'll send through a practical starter resource you can use to get clearer on your content, your message and where AI might actually save you time.</p>
           </div>
           <form class="lead-form" id="lead-form">
             <label for="lead-email">Email address</label>
@@ -410,7 +410,7 @@
   // Load editable homepage content from Supabase
   (async function() {
     try {
-      const keys = 'hp-headline,hp-lead,hp-card-headline,hp-card-body,hp-ithy-1,hp-ithy-2,hp-ithy-3,hp-ithy-4,hp-cta-headline,hp-cta-body,hp-cta-btn';
+      const keys = 'hp-eyebrow,hp-headline,hp-lead,hp-card-headline,hp-card-body,hp-ithy-eyebrow,hp-ithy-title,hp-ithy-1,hp-ithy-2,hp-ithy-3,hp-ithy-4,hp-why-eyebrow,hp-why-title,hp-b1-t,hp-b1-d,hp-b2-t,hp-b2-d,hp-b3-t,hp-b3-d,hp-b4-t,hp-b4-d,hp-b5-t,hp-b5-d,hp-b6-t,hp-b6-d,hp-free-eyebrow,hp-free-title,hp-free-body,hp-cta-headline,hp-cta-body,hp-cta-btn';
       const r = await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/site_content?select=key,value&key=in.(' + keys + ')', {
         headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g' }
       });

@@ -144,7 +144,7 @@
 <div id="login-screen">
   <div class="login-box">
     <div class="eyebrow">Tara Consulting Co</div>
-    <h1>Admin panel <span style="font-size:11px;color:#1a9e60;font-weight:700;vertical-align:middle">v2.2 ✓</span></h1>
+    <h1>Admin panel <span style="font-size:11px;color:#1a9e60;font-weight:700;vertical-align:middle">v2.4 ✓</span></h1>
     <div id="login-error"></div>
     <label for="admin-email">Email address</label>
     <input type="email" id="admin-email" placeholder="taraodgers88@gmail.com" autocomplete="email"/>
@@ -337,6 +337,8 @@
 
       <div class="admin-card">
         <div class="admin-card-title">Hero section</div>
+        <label class="field-label">Eyebrow pill (small label above the headline)</label>
+        <input type="text" id="hp-eyebrow" value="Social media, AI & marketing for small business"/>
         <label class="field-label">Main headline</label>
         <input type="text" id="hp-headline" value="Modern marketing made less overwhelming."/>
         <label class="field-label">Lead paragraph</label>
@@ -374,6 +376,46 @@
         <input type="text" id="hp-cta-btn" value="Book My Free Call"/>
         <button class="btn-save" id="btn-save-cta">Save CTA section</button>
         <span class="save-msg" id="cta-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">"Pick what sounds like you" section</div>
+        <label class="field-label">Eyebrow label</label>
+        <input type="text" id="hp-ithy-eyebrow" value="Not sure where to start?"/>
+        <label class="field-label">Section heading</label>
+        <input type="text" id="hp-ithy-title" value="Pick what sounds most like you."/>
+        <button class="btn-save" id="btn-save-ithy-head">Save section</button>
+        <span class="save-msg" id="ithy-head-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">"Why it helps" section + the 6 benefit boxes</div>
+        <label class="field-label">Eyebrow label</label>
+        <input type="text" id="hp-why-eyebrow" value="Why it helps"/>
+        <label class="field-label">Section heading</label>
+        <input type="text" id="hp-why-title" value="What feels easier when you have the right support."/>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+          <div style="background:var(--grey);border-radius:10px;padding:14px"><label class="field-label">Box 1 title</label><input type="text" id="hp-b1-t" value="Clearer Direction"/><label class="field-label">Box 1 text</label><textarea id="hp-b1-d" style="min-height:60px">Know what to say, where to say it and what matters most for your next stage.</textarea></div>
+          <div style="background:var(--grey);border-radius:10px;padding:14px"><label class="field-label">Box 2 title</label><input type="text" id="hp-b2-t" value="Less Overwhelm"/><label class="field-label">Box 2 text</label><textarea id="hp-b2-d" style="min-height:60px">Break social media, AI and marketing into simple actions instead of another giant job on your list.</textarea></div>
+          <div style="background:var(--grey);border-radius:10px;padding:14px"><label class="field-label">Box 3 title</label><input type="text" id="hp-b3-t" value="Better Content"/><label class="field-label">Box 3 text</label><textarea id="hp-b3-d" style="min-height:60px">Create posts, reels, captions and copy that sound like your business and make sense to your customers.</textarea></div>
+          <div style="background:var(--grey);border-radius:10px;padding:14px"><label class="field-label">Box 4 title</label><input type="text" id="hp-b4-t" value="Practical Systems"/><label class="field-label">Box 4 text</label><textarea id="hp-b4-d" style="min-height:60px">Use templates, prompts and repeatable steps so you're not starting from scratch every time.</textarea></div>
+          <div style="background:var(--grey);border-radius:10px;padding:14px"><label class="field-label">Box 5 title</label><input type="text" id="hp-b5-t" value="More Confidence"/><label class="field-label">Box 5 text</label><textarea id="hp-b5-d" style="min-height:60px">Understand how to use the tools without needing to become a tech expert.</textarea></div>
+          <div style="background:var(--grey);border-radius:10px;padding:14px"><label class="field-label">Box 6 title</label><input type="text" id="hp-b6-t" value="Room to Grow"/><label class="field-label">Box 6 text</label><textarea id="hp-b6-d" style="min-height:60px">Get the foundations in place so marketing and admin feel easier to keep up with.</textarea></div>
+        </div>
+        <button class="btn-save" id="btn-save-why">Save section</button>
+        <span class="save-msg" id="why-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Free resource (email capture) section</div>
+        <label class="field-label">Eyebrow label</label>
+        <input type="text" id="hp-free-eyebrow" value="Free resource"/>
+        <label class="field-label">Section heading</label>
+        <input type="text" id="hp-free-title" value="Start with a simple AI and social media checklist."/>
+        <label class="field-label">Body text</label>
+        <textarea id="hp-free-body" style="min-height:80px">Pop your email in and I'll send through a practical starter resource you can use to get clearer on your content, your message and where AI might actually save you time.</textarea>
+        <button class="btn-save" id="btn-save-free">Save section</button>
+        <span class="save-msg" id="free-save-msg">✓ Saved</span>
       </div>
     </div>
 
@@ -960,7 +1002,7 @@ async function loadSiteContent(key) {
 }
 
 async function loadHomepageContent() {
-  const fields = ['hp-headline','hp-lead','hp-card-headline','hp-card-body','hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4','hp-cta-headline','hp-cta-body','hp-cta-btn'];
+  const fields = ['hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body','hp-ithy-eyebrow','hp-ithy-title','hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4','hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d','hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d','hp-free-eyebrow','hp-free-title','hp-free-body','hp-cta-headline','hp-cta-body','hp-cta-btn'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -976,9 +1018,12 @@ async function loadPagesContent() {
 }
 
 [
-  { btn:'btn-save-hero',     msg:'hero-save-msg',   fields:['hp-headline','hp-lead','hp-card-headline','hp-card-body'] },
+  { btn:'btn-save-hero',     msg:'hero-save-msg',   fields:['hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body'] },
   { btn:'btn-save-ithy',     msg:'ithy-save-msg',   fields:['hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4'] },
   { btn:'btn-save-cta',      msg:'cta-save-msg',    fields:['hp-cta-headline','hp-cta-body','hp-cta-btn'] },
+  { btn:'btn-save-ithy-head',msg:'ithy-head-save-msg', fields:['hp-ithy-eyebrow','hp-ithy-title'] },
+  { btn:'btn-save-why',      msg:'why-save-msg',    fields:['hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d','hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d'] },
+  { btn:'btn-save-free',     msg:'free-save-msg',   fields:['hp-free-eyebrow','hp-free-title','hp-free-body'] },
   { btn:'btn-save-we-text',  msg:'we-text-save-msg', fields:['we-page-intro','we-section-title','we-section-intro'] },
   { btn:'btn-save-sh-text',  msg:'sh-text-save-msg', fields:['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro'] },
   { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro'] },
