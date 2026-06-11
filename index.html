@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tara Consulting Co | Social Media, AI &amp; Marketing for Small Business</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Tara Consulting Co — Social media, AI & marketing for small business"/>
   <meta property="og:description" content="Practical social media, AI and marketing support for small businesses. Clear steps, no jargon, real results."/>
@@ -335,7 +335,7 @@
             <a class="ithy-item" href="start-here.html#brand-kit" id="hp-ithy-4">My brand feels patchy. I need things to look and feel more consistent.</a>
           </div>
           <div class="ithy-cta">
-            <a class="btn" href="#contact">Book a free consultation <span class="arrow">→</span></a>
+            <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Consultation%20Enquiry&body=Hi%20Tara%2C%0A%0AI%27d%20like%20to%20book%20a%20free%20consultation.%0A%0AA%20bit%20about%20my%20business%3A%0A%0A">Book a free consultation <span class="arrow">→</span></a>
             <span class="ithy-note">No pitch. Just a conversation about where you're at.</span>
           </div>
         </div>
@@ -364,8 +364,8 @@
         <div class="lead-magnet">
           <div>
             <p class="section-eyebrow" id="hp-free-eyebrow">Free resource</p>
-            <h2 class="section-title" id="hp-free-title">Start with a simple AI and social media checklist.</h2>
-            <p id="hp-free-body">Pop your email in and I'll send through a practical starter resource you can use to get clearer on your content, your message and where AI might actually save you time.</p>
+            <h2 class="section-title" id="hp-free-title">Start with a free Business Growth Scorecard.</h2>
+            <p id="hp-free-body">Pop your email in and you'll get free access to your client portal, with a Business Growth Scorecard waiting inside. It's a quick, honest snapshot of where your business is right now, and the simplest place to start.</p>
           </div>
           <form class="lead-form" id="lead-form">
             <label for="lead-email">Email address</label>
@@ -398,7 +398,7 @@
       <div class="container cta-inner">
         <h2 id="hp-cta-headline">Ready to make modern marketing feel less overwhelming?</h2>
         <p id="hp-cta-body">Book a free consultation and we'll talk through where you're at, what's feeling messy, and what support would make the next step easier.</p>
-        <a class="btn" href="#get-started"><span id="hp-cta-btn">Book My Free Call</span> <span class="arrow">→</span></a>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Consultation%20Enquiry&body=Hi%20Tara%2C%0A%0AI%27d%20like%20to%20book%20a%20free%20consultation.%0A%0AA%20bit%20about%20my%20business%3A%0A%0A"><span id="hp-cta-btn">Book My Free Call</span> <span class="arrow">→</span></a>
       </div>
     </section>
 
@@ -439,20 +439,38 @@
       if (!email) return;
       btn.disabled = true;
       btn.textContent = 'Sending…';
+      const SB = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
+      const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
+      // 1. Save the lead so Tara has the record
       try {
-        await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/leads', {
+        await fetch(SB + '/rest/v1/leads', {
           method: 'POST',
-          headers: {
-            'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g',
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g',
-            'Content-Type': 'application/json'
-          },
+          headers: { 'apikey': ANON, 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email, source: 'homepage' })
         });
       } catch(err) {}
-      btn.innerHTML = '✓ Thank you!';
+      // 2. Create a free Starter portal account + send them the confirm/set-password email
+      let signupOk = false;
+      try {
+        const res = await fetch(SB + '/auth/v1/signup', {
+          method: 'POST',
+          headers: { 'apikey': ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            password: Math.random().toString(36).slice(2) + 'Aa1!' + Math.random().toString(36).slice(2),
+            data: { tier: 'starter', source: 'free_resource' },
+            options: { email_redirect_to: 'https://tara-client-portal.netlify.app/set-password.html' }
+          })
+        });
+        signupOk = res.ok;
+      } catch(err) {}
+      if (signupOk) {
+        btn.innerHTML = '✓ Check your email!';
+      } else {
+        btn.innerHTML = '✓ Thank you!';
+      }
       e.target.reset();
-      setTimeout(() => { btn.disabled = false; btn.innerHTML = original; }, 3000);
+      setTimeout(() => { btn.disabled = false; btn.innerHTML = original; }, 4000);
     });
   </script>
   <script>

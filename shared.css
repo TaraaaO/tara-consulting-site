@@ -75,6 +75,14 @@ header {
   background: var(--orange);
   display: inline-block;
 }
+.logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+@media (max-width: 600px) {
+  .logo-img { height: 30px; }
+}
 nav { display: flex; align-items: center; gap: 2px; }
 nav a {
   text-decoration: none;

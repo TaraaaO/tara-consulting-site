@@ -10,7 +10,7 @@
   const headerHTML = `
   <header>
     <div class="container header-inner">
-      <a href="index.html" class="logo"><span class="dot"></span>Tara Consulting Co</a>
+      <a href="index.html" class="logo"><img src="logo.png" alt="Tara Consulting Co" class="logo-img"/></a>
       <nav>
         <a class="nav-link"${activeIf(['index.html',''])} href="index.html">Home</a>
         <a class="nav-link"${activeIf(['start-here.html'])} href="start-here.html">Start Here</a>
