@@ -371,6 +371,7 @@
             <label for="lead-email">Email address</label>
             <input type="email" id="lead-email" placeholder="you@example.com" required>
             <button class="btn" type="submit">Send me the free resource <span class="arrow">→</span></button>
+            <div id="lead-msg" style="display:none;margin-top:14px;padding:12px 16px;border-radius:8px;font-size:14px;line-height:1.5"></div>
             <small>You'll also be added to the monthly Tara Consulting Co update. No spam, no overwhelm, just useful tips and resources.</small>
           </form>
         </div>
@@ -450,7 +451,7 @@
         });
       } catch(err) {}
       // 2. Create a free Starter portal account + send them the confirm/set-password email
-      let signupOk = false;
+      let outcome = 'thanks';
       try {
         const res = await fetch(SB + '/auth/v1/signup', {
           method: 'POST',
@@ -462,12 +463,31 @@
             options: { email_redirect_to: 'https://tara-client-portal.netlify.app/set-password.html' }
           })
         });
-        signupOk = res.ok;
+        const data = await res.json().catch(() => ({}));
+        if (res.ok) {
+          outcome = 'new';
+        } else if ((data.msg || data.message || data.error_description || '').toLowerCase().includes('already') ||
+                   (data.code === 'user_already_exists') || res.status === 422) {
+          outcome = 'existing';
+        }
       } catch(err) {}
-      if (signupOk) {
-        btn.innerHTML = '✓ Check your email!';
+
+      const msg = document.getElementById('lead-msg');
+      btn.disabled = false;
+      btn.innerHTML = original;
+      if (outcome === 'new') {
+        btn.innerHTML = '\u2713 Check your email!';
+        msg.style.background = '#E8F5EC'; msg.style.color = '#1a6b3a';
+        msg.innerHTML = 'You\u2019re in! Check your email for a link to set your password \u2014 your free Business Growth Scorecard is waiting inside your portal.';
+        msg.style.display = 'block';
+      } else if (outcome === 'existing') {
+        msg.style.background = '#FFF3E0'; msg.style.color = '#9d510b';
+        msg.innerHTML = 'Looks like you already have a portal account. <a href="https://tara-client-portal.netlify.app" style="color:#F77F00;font-weight:700">Log in here</a> \u2014 your scorecard is in the Resources tab. Forgot your password? Use the reset link on the login page.';
+        msg.style.display = 'block';
       } else {
-        btn.innerHTML = '✓ Thank you!';
+        msg.style.background = '#E8F5EC'; msg.style.color = '#1a6b3a';
+        msg.innerHTML = 'Thanks! You\u2019re on the list \u2014 I\u2019ll be in touch.';
+        msg.style.display = 'block';
       }
       e.target.reset();
       setTimeout(() => { btn.disabled = false; btn.innerHTML = original; }, 4000);
