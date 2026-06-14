@@ -23,8 +23,10 @@ exports.handler = async (event) => {
  
   const KEY = process.env.RESEND_API_KEY;
   if (!KEY) {
-    return { statusCode: 500, body: JSON.stringify({ error: 'Email not configured' }) };
+    return { statusCode: 500, body: JSON.stringify({ error: 'KEY_MISSING', detail: 'RESEND_API_KEY not found in environment. Check it is set on this site and redeploy.' }) };
   }
+  // Diagnostic: confirm the key looks valid (starts with re_) without exposing it
+  const keyPreview = KEY.substring(0, 3) + '...(' + KEY.length + ' chars)';
  
   // 1. Email the resource to the person
   const resourceHtml = `
@@ -57,10 +59,10 @@ exports.handler = async (event) => {
     });
     if (!r.ok) {
       const txt = await r.text();
-      return { statusCode: 502, body: JSON.stringify({ error: 'Send failed', detail: txt }) };
+      return { statusCode: 502, body: JSON.stringify({ error: 'RESEND_REJECTED', status: r.status, detail: txt, keyPreview: keyPreview }) };
     }
   } catch (e) {
-    return { statusCode: 502, body: JSON.stringify({ error: 'Send failed' }) };
+    return { statusCode: 502, body: JSON.stringify({ error: 'FETCH_FAILED', detail: String(e), keyPreview: keyPreview }) };
   }
  
   // 2. Notify Tara (best effort - don't fail the request if this part errors)
