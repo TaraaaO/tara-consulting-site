@@ -365,7 +365,7 @@
           <div>
             <p class="section-eyebrow" id="hp-free-eyebrow">Free resource</p>
             <h2 class="section-title" id="hp-free-title">Start with a free Business Growth Scorecard.</h2>
-            <p id="hp-free-body">Pop your email in and you'll get free access to your client portal, with a Business Growth Scorecard waiting inside. It's a quick, honest snapshot of where your business is right now, and the simplest place to start.</p>
+            <p id="hp-free-body">Pop your email in and I'll send you a free Business Growth Scorecard — a quick, honest snapshot of where your business is right now, and the simplest place to start.</p>
           </div>
           <form class="lead-form" id="lead-form">
             <label for="lead-email">Email address</label>
@@ -450,43 +450,28 @@
           body: JSON.stringify({ email: email, source: 'homepage' })
         });
       } catch(err) {}
-      // 2. Create a free Starter portal account + send them the confirm/set-password email
-      let outcome = 'thanks';
+      // 2. Email them the scorecard (via Netlify function + Resend)
+      let sent = false;
       try {
-        const res = await fetch(SB + '/auth/v1/signup', {
+        const res = await fetch('/.netlify/functions/send-resource', {
           method: 'POST',
-          headers: { 'apikey': ANON, 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: email,
-            password: Math.random().toString(36).slice(2) + 'Aa1!' + Math.random().toString(36).slice(2),
-            data: { tier: 'starter', source: 'free_resource' },
-            options: { email_redirect_to: 'https://tara-client-portal.netlify.app/set-password.html' }
-          })
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
         });
-        const data = await res.json().catch(() => ({}));
-        if (res.ok) {
-          outcome = 'new';
-        } else if ((data.msg || data.message || data.error_description || '').toLowerCase().includes('already') ||
-                   (data.code === 'user_already_exists') || res.status === 422) {
-          outcome = 'existing';
-        }
+        sent = res.ok;
       } catch(err) {}
 
       const msg = document.getElementById('lead-msg');
       btn.disabled = false;
       btn.innerHTML = original;
-      if (outcome === 'new') {
+      if (sent) {
         btn.innerHTML = '\u2713 Check your email!';
         msg.style.background = '#E8F5EC'; msg.style.color = '#1a6b3a';
-        msg.innerHTML = 'You\u2019re in! Check your email for a link to set your password \u2014 your free Business Growth Scorecard is waiting inside your portal.';
-        msg.style.display = 'block';
-      } else if (outcome === 'existing') {
-        msg.style.background = '#FFF3E0'; msg.style.color = '#9d510b';
-        msg.innerHTML = 'Looks like you already have a portal account. <a href="https://tara-client-portal.netlify.app" style="color:#F77F00;font-weight:700">Log in here</a> \u2014 your scorecard is in the Resources tab. Forgot your password? Use the reset link on the login page.';
+        msg.innerHTML = 'On its way! Check your email \u2014 your free Business Growth Scorecard is waiting in your inbox. (Have a peek in spam if it\u2019s not there in a minute.)';
         msg.style.display = 'block';
       } else {
         msg.style.background = '#E8F5EC'; msg.style.color = '#1a6b3a';
-        msg.innerHTML = 'Thanks! You\u2019re on the list \u2014 I\u2019ll be in touch.';
+        msg.innerHTML = 'Thanks! You\u2019re on the list and I\u2019ll get your scorecard across to you shortly.';
         msg.style.display = 'block';
       }
       e.target.reset();

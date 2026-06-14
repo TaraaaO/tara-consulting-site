@@ -36,7 +36,7 @@
   const footerHTML = `
   <footer>
     <div id="footer-tagline">© ${new Date().getFullYear()} Tara Consulting Co · Social media, AI and marketing made practical.</div>
-    <div class="meta"><span id="footer-meta">Made in Australia</span> · <a href="mailto:hello@taraconsultingco.com" id="footer-email">hello@taraconsultingco.com</a></div>
+    <div class="meta"><span id="footer-meta">Made in Australia</span> · <a href="mailto:hello@taraconsultingco.com" id="footer-email">hello@taraconsultingco.com</a> · <a href="privacy.html">Privacy</a></div>
   </footer>`;
 
   document.body.insertAdjacentHTML('afterbegin', headerHTML);
