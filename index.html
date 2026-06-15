@@ -453,9 +453,12 @@
       // 2. Email them the scorecard (via Netlify function + Resend)
       let sent = false;
       try {
-        const res = await fetch('/.netlify/functions/send-resource', {
+       const res = await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/functions/v1/send-resource', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g'
+          },
           body: JSON.stringify({ email: email })
         });
         sent = res.ok;
