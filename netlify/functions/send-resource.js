@@ -1,3 +1,4 @@
+// updated to refresh deploy
 // Sends the free Business Growth Scorecard to anyone who requests it on the homepage.
 // Uses Resend. Requires env var RESEND_API_KEY set in Netlify.
 // Also emails Tara a heads-up that a new lead came in.
