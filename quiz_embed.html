@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Kind of Content Creator Are You?</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f2ec;
+    color: #12243a;
+    min-height: 100vh;
+  }
+
+  /* INTRO SECTION */
+  .intro {
+    background: #12243a;
+    padding: 56px 24px 60px;
+    text-align: center;
+  }
+  .intro-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e87c2a;
+    margin-bottom: 16px;
+  }
+  .intro h1 {
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+    max-width: 600px;
+    margin: 0 auto 16px;
+  }
+  .intro p {
+    font-size: 16px;
+    color: #b0bcc9;
+    max-width: 500px;
+    margin: 0 auto 32px;
+    line-height: 1.65;
+  }
+  .start-btn {
+    display: inline-block;
+    background: #e87c2a;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.01em;
+  }
+  .start-btn:hover { background: #cf6a1e; transform: translateY(-1px); }
+  .start-btn:active { transform: scale(0.98); }
+
+  /* AVATAR STRIP */
+  .avatar-strip {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 28px 24px 0;
+  }
+  .avatar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.55;
+    transition: opacity 0.2s;
+  }
+  .avatar-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    border: 2px solid rgba(255,255,255,0.15);
+  }
+  .avatar-label {
+    font-size: 11px;
+    color: #b0bcc9;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* QUIZ SECTION */
+  .quiz-section {
+    padding: 48px 16px 64px;
+    max-width: 680px;
+    margin: 0 auto;
+    display: none;
+  }
+  .quiz-section.active { display: block; }
+
+  .progress-wrap { margin-bottom: 8px; }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #7a8a9a;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .progress-bar {
+    height: 5px;
+    background: #ddd8cf;
+    border-radius: 3px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #e87c2a;
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  .q-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px 24px;
+    margin-top: 24px;
+    border: 1px solid #e5e0d6;
+  }
+  .q-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #12243a;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 480px) { .options-grid { grid-template-columns: 1fr; } }
+
+  .opt-btn {
+    background: #f9f7f3;
+    border: 1.5px solid #e5e0d6;
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: inherit;
+  }
+  .opt-btn:hover { border-color: #e87c2a; background: #fff8f3; }
+  .opt-btn.selected { border-color: #e87c2a; background: #fff3e8; }
+  .opt-letter {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #e87c2a;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .opt-text { font-size: 13.5px; color: #12243a; line-height: 1.45; }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 4px;
+  }
+  .nav-btn {
+    background: transparent;
+    border: 1.5px solid #c8c0b4;
+    border-radius: 50px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #12243a;
+    font-family: inherit;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .nav-btn:hover { border-color: #12243a; background: #f0ece4; }
+  .nav-btn.primary {
+    background: #e87c2a;
+    border-color: #e87c2a;
+    color: #fff;
+  }
+  .nav-btn.primary:hover { background: #cf6a1e; border-color: #cf6a1e; }
+  .nav-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+  /* RESULT SECTION */
+  .result-section {
+    padding: 48px 16px 64px;
+    max-width: 680px;
+    margin: 0 auto;
+    display: none;
+  }
+  .result-section.active { display: block; }
+
+  .result-card {
+    background: #12243a;
+    border-radius: 20px;
+    padding: 40px 32px 36px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .result-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+  }
+  .result-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e87c2a;
+    margin-bottom: 8px;
+  }
+  .result-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .result-traits {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .trait-pill {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 13px;
+    border-radius: 20px;
+    background: rgba(232,124,42,0.18);
+    color: #f5a96a;
+    border: 1px solid rgba(232,124,42,0.3);
+  }
+  .result-desc {
+    font-size: 15px;
+    color: #b0bcc9;
+    line-height: 1.75;
+    text-align: left;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .breakdown-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 24px 20px;
+    border: 1px solid #e5e0d6;
+    margin-bottom: 20px;
+  }
+  .breakdown-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7a8a9a;
+    margin-bottom: 16px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .bar-label { font-size: 13px; color: #12243a; font-weight: 500; width: 140px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 7px; background: #ede9e1; border-radius: 4px; }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width 0.7s ease; }
+  .bar-pct { font-size: 12px; color: #7a8a9a; font-weight: 500; width: 34px; text-align: right; }
+
+  .cta-card {
+    background: #e87c2a;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .cta-card h3 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .cta-card p { font-size: 14px; color: rgba(255,255,255,0.85); margin-bottom: 20px; line-height: 1.6; }
+  .cta-card a {
+    display: inline-block;
+    background: #12243a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .cta-card a:hover { background: #1e3a5a; }
+
+  .retake-row { text-align: center; margin-top: 16px; }
+  .retake-btn {
+    background: none;
+    border: 1.5px solid #c8c0b4;
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #7a8a9a;
+    font-family: inherit;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .retake-btn:hover { border-color: #12243a; color: #12243a; }
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div class="intro" id="introSection">
+  <span class="intro-tag">Find your content style</span>
+  <h1>Marketing should be fun — so what kind of creator are you?</h1>
+  <p>Not sure what to post or why some content feels effortless while other stuff just doesn't land? Take this quick quiz to find your natural content posting style.</p>
+  <button class="start-btn" onclick="startQuiz()">Take the quiz →</button>
+
+  <div class="avatar-strip">
+    <div class="avatar-item">
+      <div class="avatar-circle" style="background:#1e3a5a;">🎤</div>
+      <span class="avatar-label">Storyteller</span>
+    </div>
+    <div class="avatar-item">
+      <div class="avatar-circle" style="background:#1e3a5a;">📚</div>
+      <span class="avatar-label">Educator</span>
+    </div>
+    <div class="avatar-item">
+      <div class="avatar-circle" style="background:#1e3a5a;">⚡</div>
+      <span class="avatar-label">Disruptor</span>
+    </div>
+    <div class="avatar-item">
+      <div class="avatar-circle" style="background:#1e3a5a;">📸</div>
+      <span class="avatar-label">Behind-the-Scenes</span>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-section" id="quizSection">
+  <div class="progress-wrap">
+    <div class="progress-meta">
+      <span id="qLabel">Question 1 of 7</span>
+      <span id="qPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+  <div class="q-card">
+    <p class="q-text" id="qText"></p>
+    <div class="options-grid" id="optsGrid"></div>
+    <div class="nav-row">
+      <button type="button" class="nav-btn" id="backBtn" onclick="goBack()">← Back</button>
+      <button type="button" class="nav-btn primary" id="nextBtn" onclick="goNext()" disabled>Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="result-section" id="resultSection">
+  <div class="result-card">
+    <div class="result-avatar" id="rAvatar"></div>
+    <p class="result-eyebrow">Your content creator type</p>
+    <p class="result-name" id="rName"></p>
+    <div class="result-traits" id="rTraits"></div>
+    <p class="result-desc" id="rDesc"></p>
+  </div>
+  <div class="breakdown-card">
+    <p class="breakdown-title">Your full mix</p>
+    <div id="rBars"></div>
+  </div>
+  <div class="cta-card">
+    <h3>Ready to post with purpose?</h3>
+    <p>Book a free strategy call and we'll map out a content approach that actually sounds like you.</p>
+    <a href="https://taraconsultingco.com" target="_blank">Book a free strategy call →</a>
+  </div>
+  <div class="retake-row">
+    <button type="button" class="retake-btn" onclick="retake()">← Retake the quiz</button>
+  </div>
+</div>
+
+<script>
+const LETTERS = ['A','B','C','D'];
+
+const baseQuestions = [
+  {
+    text: "You're sitting down to create a post. What's your instinct?",
+    opts: [
+      { t: "Start with something that happened to me recently", scores: { storyteller: 3, bts: 1 } },
+      { t: "Research a topic I can break down and teach", scores: { educator: 3 } },
+      { t: "Think of a hot take that'll get people talking", scores: { disruptor: 3 } },
+      { t: "Film or photograph what I'm actually doing right now", scores: { bts: 3, storyteller: 1 } }
+    ]
+  },
+  {
+    text: "What kind of comment makes you happiest to receive?",
+    opts: [
+      { t: '"This made me tear up, I felt so seen"', scores: { storyteller: 3 } },
+      { t: '"I saved this — so helpful, thank you!"', scores: { educator: 3 } },
+      { t: '"Finally someone said it! 🔥"', scores: { disruptor: 3 } },
+      { t: '"This is so real, I love how honest you are"', scores: { bts: 3, storyteller: 1 } }
+    ]
+  },
+  {
+    text: "Your social media presence is a reflection of...",
+    opts: [
+      { t: "A journey — people watching my story unfold", scores: { storyteller: 3, bts: 1 } },
+      { t: "A library — valuable resources they keep coming back to", scores: { educator: 3 } },
+      { t: "A perspective — bold opinions and fresh takes", scores: { disruptor: 3 } },
+      { t: "A window — real life, unfiltered and unscripted", scores: { bts: 3 } }
+    ]
+  },
+  {
+    text: "When you think about going viral, what kind of post do you picture?",
+    opts: [
+      { t: "An emotional story thousands reshare saying 'me too'", scores: { storyteller: 3 } },
+      { t: "A carousel packed with tips saved 10,000 times", scores: { educator: 3 } },
+      { t: "A spicy take that ignites a 500-comment debate", scores: { disruptor: 3 } },
+      { t: "A raw, unpolished moment that blows up for being 100% real", scores: { bts: 3, storyteller: 1 } }
+    ]
+  },
+  {
+    text: "You're about to post but you're pressed for time. What do you do?",
+    opts: [
+      { t: "Share a quick story from your week, even if it's rough around the edges", scores: { storyteller: 2, bts: 1 } },
+      { t: "Pull together a quick tip or fact you know well", scores: { educator: 3 } },
+      { t: "Fire off a short punchy opinion — done in two minutes", scores: { disruptor: 3 } },
+      { t: "Grab your phone, film what's happening right now, post it raw", scores: { bts: 3 } }
+    ]
+  },
+  {
+    text: "How do you feel about showing the messy, imperfect parts of your business?",
+    opts: [
+      { t: "I use it to show growth — the mess is part of the story", scores: { storyteller: 2, bts: 1 } },
+      { t: "I'd rather share the polished lesson than the messy process", scores: { educator: 2 } },
+      { t: "I lean into it — it makes my hot takes more credible", scores: { disruptor: 2, bts: 1 } },
+      { t: "That IS my content — the messier the better", scores: { bts: 3 } }
+    ]
+  },
+  {
+    text: "What's your relationship with trends?",
+    opts: [
+      { t: "I use trending formats but fill them with my own personal stories", scores: { storyteller: 2 } },
+      { t: "I only follow trends if they help me teach something useful", scores: { educator: 2 } },
+      { t: "I often push back or offer a contrarian take on trends", scores: { disruptor: 3 } },
+      { t: "I catch trends naturally by documenting what I'm already doing", scores: { bts: 2, storyteller: 1 } }
+    ]
+  }
+];
+
+const archetypes = {
+  storyteller: {
+    name: "The Storyteller",
+    emoji: "🎤",
+    avatarBg: "#2a1a4a",
+    traits: ["Emotionally resonant", "Community builder", "Narrative-led"],
+    barColor: "#7c6dd8",
+    desc: "Your superpower is making people feel something. You lead with personal experience, vulnerability, and story — and your audience doesn't just follow you, they root for you. In a world of polished perfection, your content cuts through because it's real, warm, and deeply human. People share your posts with captions like 'you need to read this.' Storytelling is the hottest content trend right now, and you're already doing it naturally."
+  },
+  educator: {
+    name: "The Educator",
+    emoji: "📚",
+    avatarBg: "#0a3d2e",
+    traits: ["Trust-building", "Save-worthy content", "Authority in your niche"],
+    barColor: "#1D9E75",
+    desc: "You break things down, simplify the complex, and leave your audience genuinely smarter. Your posts are the ones people screenshot, save, and come back to. You're building something powerful — a reputation as the go-to person in your space. Educators consistently outperform on saves and shares, and those metrics signal real value to the algorithm. People buy from the person who taught them something useful, and that person is you."
+  },
+  disruptor: {
+    name: "The Disruptor",
+    emoji: "⚡",
+    avatarBg: "#4a1a0a",
+    traits: ["High engagement", "Bold opinions", "Thought leader"],
+    barColor: "#e87c2a",
+    desc: "You're not here to play it safe — and your audience loves you for it. You challenge assumptions, call out what isn't working, and say the quiet part loud. Your comments section is always busy because even the people who disagree can't look away. In 2025, audiences are craving authenticity and conviction over carefully curated perfection. Disruptors attract the most passionate, loyal communities online — and that engagement is pure gold."
+  },
+  bts: {
+    name: "The Behind-the-Scenes",
+    emoji: "📸",
+    avatarBg: "#0a2240",
+    traits: ["Deeply authentic", "Trust at scale", "Real and relatable"],
+    barColor: "#378ADD",
+    desc: "You show the real, unfiltered day-to-day — and that's your biggest competitive advantage. While others are polishing their highlight reels, you're building something far more valuable: genuine trust. Research consistently shows audiences respond most to authenticity, and the rise of 'consumable content' over perfectly produced posts proves people crave the real thing. Your followers feel like they know you — and that relationship is what eventually drives real action."
+  }
+};
+
+let questions = [];
+let current = 0;
+let answers = [];
+let scores = {};
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildQuestions() {
+  questions = baseQuestions.map(q => ({
+    text: q.text,
+    opts: shuffle(q.opts)
+  }));
+}
+
+function startQuiz() {
+  buildQuestions();
+  current = 0;
+  answers = new Array(questions.length).fill(null);
+  scores = { storyteller: 0, educator: 0, disruptor: 0, bts: 0 };
+  document.getElementById('introSection').style.display = 'none';
+  document.getElementById('quizSection').classList.add('active');
+  renderQ();
+}
+
+function renderQ() {
+  const q = questions[current];
+  const pct = Math.round((current / questions.length) * 100);
+  document.getElementById('qLabel').textContent = `Question ${current + 1} of ${questions.length}`;
+  document.getElementById('qPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('qText').textContent = q.text;
+
+  const grid = document.getElementById('optsGrid');
+  grid.innerHTML = q.opts.map((o, i) => `
+    <button type="button" class="opt-btn${answers[current] === i ? ' selected' : ''}" onclick="selectOpt(${i})">
+      <div class="opt-letter">${LETTERS[i]}</div>
+      <div class="opt-text">${o.t}</div>
+    </button>
+  `).join('');
+
+  document.getElementById('backBtn').disabled = current === 0;
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.disabled = answers[current] === null;
+  nextBtn.textContent = current === questions.length - 1 ? 'See my result →' : 'Next →';
+}
+
+function selectOpt(i) {
+  answers[current] = i;
+  renderQ();
+}
+
+function goBack() {
+  if (current > 0) { current--; renderQ(); }
+}
+
+function goNext() {
+  if (answers[current] === null) return;
+  const opt = questions[current].opts[answers[current]];
+  Object.entries(opt.scores).forEach(([k, v]) => { scores[k] = (scores[k] || 0) + v; });
+  current++;
+  if (current < questions.length) {
+    renderQ();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById('quizSection').classList.remove('active');
+  const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+  const arch = archetypes[winner];
+  const total = Object.values(scores).reduce((a, b) => a + b, 0) || 1;
+  const order = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
+  document.getElementById('rAvatar').style.background = arch.avatarBg;
+  document.getElementById('rAvatar').textContent = arch.emoji;
+  document.getElementById('rName').textContent = arch.name;
+  document.getElementById('rDesc').textContent = arch.desc;
+  document.getElementById('rTraits').innerHTML = arch.traits.map(t =>
+    `<span class="trait-pill">${t}</span>`).join('');
+
+  document.getElementById('rBars').innerHTML = order.map(([key, val]) => {
+    const a = archetypes[key];
+    const pct = Math.round((val / total) * 100);
+    return `<div class="bar-row">
+      <span class="bar-label">${a.emoji} ${a.name.replace('The ','')}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%; background:${a.barColor}"></div></div>
+      <span class="bar-pct">${pct}%</span>
+    </div>`;
+  }).join('');
+
+  document.getElementById('resultSection').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function retake() {
+  document.getElementById('resultSection').classList.remove('active');
+  document.getElementById('introSection').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  reportHeight();
+}
+
+function reportHeight() {
+  const h = document.body.scrollHeight;
+  window.parent.postMessage({ type: 'quizHeight', height: h }, '*');
+}
+
+window.addEventListener('load', reportHeight);
+const observer = new MutationObserver(reportHeight);
+observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+</script>
+</body>
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tara Consulting Co — Referral Partner Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #14213D;
+    --orange: #F77F00;
+    --peach: #FFE2C2;
+    --cream: #FFF8EF;
+    --cream-dark: #F5EFE4;
+    --text-muted: rgba(20,33,61,0.58);
+    --line: rgba(20,33,61,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--cream-dark);
+    color: var(--navy);
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    border-radius: 0 0 28px 28px;
+    padding: 52px 48px 48px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: -40px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(247,127,0,0.08);
+    pointer-events: none;
+  }
+
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 480;
+    font-size: clamp(32px, 5vw, 46px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 18px;
+  }
+
+  .header h1 .dot { color: var(--orange); }
+
+  .header-sub {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,248,239,0.68);
+    max-width: 52ch;
+  }
+
+  .header-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--orange);
+    margin: 24px 0 0;
+  }
+
+  /* ── INTRO STRIP ── */
+  .intro-strip {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 32px 36px;
+    margin-bottom: 32px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--navy);
+  }
+
+  .intro-strip p + p { margin-top: 14px; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  /* ── SIGNAL GRID ── */
+  .signal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .signal-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px 22px;
+  }
+
+  .signal-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--peach);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+
+  .signal-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--navy);
+  }
+
+  .signal-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 480;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .signal-card p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  /* ── WHO SECTION ── */
+  .who-block {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 32px 36px;
+    margin-bottom: 32px;
+  }
+
+  .who-block h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 480;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
+  }
+
+  .who-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .who-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--navy);
+  }
+
+  .who-list li::before {
+    content: '';
+    flex: 0 0 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    margin-top: 6px;
+  }
+
+  /* ── WHAT I DO ── */
+  .what-block {
+    background: var(--navy);
+    border-radius: 18px;
+    padding: 36px 36px;
+    margin-bottom: 32px;
+    color: var(--cream);
+  }
+
+  .what-block .section-label { color: var(--orange); }
+
+  .what-block h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 480;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+    color: var(--cream);
+  }
+
+  .what-block .intro-note {
+    font-size: 14px;
+    color: rgba(255,248,239,0.62);
+    margin-bottom: 24px;
+    line-height: 1.55;
+  }
+
+  .what-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .what-item {
+    background: rgba(255,248,239,0.07);
+    border: 1px solid rgba(255,248,239,0.10);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: rgba(255,248,239,0.88);
+  }
+
+  .what-item strong {
+    display: block;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 4px;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── REFERRAL BOX ── */
+  .referral-box {
+    background: var(--peach);
+    border-radius: 18px;
+    padding: 32px 36px;
+    margin-bottom: 32px;
+  }
+
+  .referral-box h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 480;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    margin-bottom: 14px;
+    color: var(--navy);
+  }
+
+  .referral-box p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  .referral-signals {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rsig {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255,255,255,0.55);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--navy);
+  }
+
+  .rsig-q {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--orange);
+    line-height: 1;
+    flex: 0 0 auto;
+    margin-top: 1px;
+  }
+
+  /* ── BACKGROUND STRIP ── */
+  .background-strip {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 32px 36px;
+    margin-bottom: 32px;
+  }
+
+  .background-strip h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 480;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    margin-bottom: 16px;
+  }
+
+  .bg-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bg-tag {
+    background: var(--cream-dark);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .footer-wordmark {
+    font-family: 'Fraunces', serif;
+    font-weight: 480;
+    font-size: 22px;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .footer-wordmark .dot { color: var(--orange); }
+
+  .footer-sub {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .footer-contact {
+    text-align: right;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .footer-contact a {
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  @media (max-width: 560px) {
+    .header { padding: 36px 24px 36px; border-radius: 0 0 20px 20px; }
+    .intro-strip, .who-block, .what-block, .referral-box, .background-strip { padding: 24px 20px; }
+    .footer { flex-direction: column; align-items: flex-start; }
+    .footer-contact { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Referral Partner Overview</div>
+    <h1>Tara<span class="dot">.</span><br>Consulting Co</h1>
+    <p class="header-sub">Helping small business owners turn scattered processes, unclear communication and inconsistent marketing into simple systems that actually work.</p>
+    <div class="header-rule"></div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro-strip">
+    <p>Hi — I'm Tara. I work with small business owners who are good at what they do but feel like the behind-the-scenes of their business is holding them back.</p>
+    <p>That might look like inconsistent marketing, no real systems, a client experience that relies entirely on the owner's memory, or a business that can't function properly if they're not in it every day. That's where I come in.</p>
+    <p>I'm based on the NSW South Coast and work with businesses across a range of industries. My background spans early childhood education, demolition operations and tourism — so I understand what it actually takes to keep a business running day to day.</p>
+  </div>
+
+  <!-- SIGNAL CARDS -->
+  <div class="section-label">What I help with</div>
+  <div class="signal-grid">
+
+    <div class="signal-card">
+      <div class="signal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17h7M17 14v7"/></svg>
+      </div>
+      <h3>Business Systems</h3>
+      <p>Getting the repeatable parts of a business out of someone's head and into a clear, usable process.</p>
+    </div>
+
+    <div class="signal-card">
+      <div class="signal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h3>Marketing & Content</h3>
+      <p>Social media strategy, content planning, Google Business Profile and making sure the message actually lands.</p>
+    </div>
+
+    <div class="signal-card">
+      <div class="signal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>Client Experience</h3>
+      <p>Improving how a business communicates with clients — from first enquiry through to delivery and follow-up.</p>
+    </div>
+
+    <div class="signal-card">
+      <div class="signal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>AI & Practical Tools</h3>
+      <p>Setting up AI tools that actually save time — not just experimenting, but building workflows that stick.</p>
+    </div>
+
+    <div class="signal-card">
+      <div class="signal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3>Resources & Templates</h3>
+      <p>Building practical documents, guides and tools that a business can use straight away — not shelf-ware.</p>
+    </div>
+
+    <div class="signal-card">
+      <div class="signal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3>Training & Support</h3>
+      <p>Teaching business owners and their teams how to use new tools and processes — in plain language, at a pace that actually works.</p>
+    </div>
+
+  </div>
+
+  <!-- WHO I WORK WITH -->
+  <div class="who-block">
+    <div class="section-label">Who I work with</div>
+    <h2>The kinds of businesses I'm a good fit for</h2>
+    <p style="font-size:14px; line-height:1.6; color:var(--text-muted); margin-bottom:18px;">I've worked with council-operated tourism parks, heavy plant and machinery businesses, early childhood education centres, wellness and recovery businesses, and everything in between. The industry matters less than the situation.</p>
+    <ul class="who-list">
+      <li>Business owners who are stretched thin and need structure, not more to-do lists</li>
+      <li>Businesses that are growing but still running on gut feel and scattered processes</li>
+      <li>Anyone whose marketing is inconsistent — good intentions, but no real system behind it</li>
+      <li>Owners who want to use AI tools but don't know where to start — or have tried and given up</li>
+      <li>Businesses preparing to bring on staff or hand over tasks but haven't documented anything yet</li>
+      <li>Anyone who knows something isn't working but can't quite put their finger on what</li>
+    </ul>
+  </div>
+
+  <!-- WHAT I DO -->
+  <div class="what-block">
+    <div class="section-label">How I work</div>
+    <h2>Flexible by nature</h2>
+    <p class="intro-note">No two businesses need the same thing. Some clients need a single focused project. Others want ongoing support. I work across both — and I don't box people into a package that doesn't fit.</p>
+    <div class="what-grid">
+      <div class="what-item"><strong>Systems Audits</strong>Review what's working, what's not, and what needs to be documented or simplified.</div>
+      <div class="what-item"><strong>Process Documentation</strong>Getting repeatable tasks out of someone's head and into a clear, usable format.</div>
+      <div class="what-item"><strong>Social Media Strategy</strong>Content planning, captions, scheduling and platform setup — practical and consistent.</div>
+      <div class="what-item"><strong>Google Business Profile</strong>Setup, optimisation and ongoing content for local visibility.</div>
+      <div class="what-item"><strong>Client Communication</strong>Improving how a business talks to clients at every stage.</div>
+      <div class="what-item"><strong>AI Tool Setup</strong>Building real workflows using Claude, ChatGPT and similar tools — not just showing someone what they are.</div>
+      <div class="what-item"><strong>Resources & Guides</strong>Practical, professional documents clients can actually use.</div>
+      <div class="what-item"><strong>Business Growth Planning</strong>Helping owners see the clearest path forward and what to focus on first.</div>
+    </div>
+  </div>
+
+  <!-- REFERRAL SIGNALS -->
+  <div class="referral-box">
+    <div class="section-label">For referral partners</div>
+    <h2>Signs a business might be a good fit</h2>
+    <p>If you come across business owners saying any of these things, it's worth mentioning my name.</p>
+    <div class="referral-signals">
+      <div class="rsig"><span class="rsig-q">"</span><span>I know I should be posting on social media but I never get around to it — or I don't know what to say."</span></div>
+      <div class="rsig"><span class="rsig-q">"</span><span>Everything relies on me. If I'm not there, things fall apart."</span></div>
+      <div class="rsig"><span class="rsig-q">"</span><span>I've tried using AI but it doesn't really work for my business."</span></div>
+      <div class="rsig"><span class="rsig-q">"</span><span>My Google listing is probably a mess — I set it up years ago and haven't touched it."</span></div>
+      <div class="rsig"><span class="rsig-q">"</span><span>I want to hire someone but I haven't documented any of our processes yet."</span></div>
+      <div class="rsig"><span class="rsig-q">"</span><span>Our marketing is inconsistent — we post for a bit then go quiet for weeks."</span></div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND -->
+  <div class="background-strip">
+    <div class="section-label">Background</div>
+    <h2>Real-world experience across real industries</h2>
+    <p style="font-size:14.5px; line-height:1.6; color:var(--text-muted); margin-bottom:20px;">I've spent 15+ years working across industries that require genuine attention to process, people and quality — not just marketing theory. That background is what I bring to every client engagement.</p>
+    <div class="bg-tags">
+      <span class="bg-tag">Early Childhood Education</span>
+      <span class="bg-tag">Training &amp; Assessment</span>
+      <span class="bg-tag">Demolition Operations</span>
+      <span class="bg-tag">Tourism &amp; Hospitality</span>
+      <span class="bg-tag">Team Leadership</span>
+      <span class="bg-tag">Process Improvement</span>
+      <span class="bg-tag">Social Media Management</span>
+      <span class="bg-tag">Client Communication</span>
+      <span class="bg-tag">Document &amp; Resource Design</span>
+      <span class="bg-tag">AI Tool Implementation</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="footer-wordmark">Tara<span class="dot">.</span> <span style="font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; vertical-align:middle; color:var(--text-muted);">Consulting Co</span></div>
+      <div class="footer-sub">NSW South Coast, Australia</div>
+    </div>
+    <div class="footer-contact">
+      <a href="https://taraconsultingco.com">taraconsultingco.com</a><br>
+      <a href="mailto:hello@taraconsultingco.com">hello@taraconsultingco.com</a><br>
+      <span style="color:var(--text-muted);">@taraconsultingco &nbsp;·&nbsp; Instagram &amp; Facebook</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
