@@ -527,6 +527,7 @@ function startQuiz() {
   document.getElementById('introSection').style.display = 'none';
   document.getElementById('quizSection').classList.add('active');
   renderQ();
+  setTimeout(reportHeight, 50);
 }
 
 function renderQ() {
@@ -549,6 +550,7 @@ function renderQ() {
   const nextBtn = document.getElementById('nextBtn');
   nextBtn.disabled = answers[current] === null;
   nextBtn.textContent = current === questions.length - 1 ? 'See my result →' : 'Next →';
+  setTimeout(reportHeight, 50);
 }
 
 function selectOpt(i) {
@@ -598,6 +600,7 @@ function showResult() {
 
   document.getElementById('resultSection').classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(reportHeight, 100);
 }
 
 function retake() {
