@@ -10,26 +10,26 @@
   const headerHTML = `
   <header>
     <div class="container header-inner">
-      <a href="index.html" class="logo"><img src="logo.png" alt="Tara Consulting Co" class="logo-img"/></a>
+      <a href="/" class="logo"><img src="logo.png" alt="Tara Consulting Co" class="logo-img"/></a>
       <nav>
-        <a class="nav-link"${activeIf(['index.html',''])} href="index.html">Home</a>
+        <a class="nav-link"${activeIf(['index.html',''])} href="/">Home</a>
         <a class="nav-link"${activeIf(['start-here.html'])} href="start-here.html">Start Here</a>
         <a class="nav-link"${activeIf(['work-examples.html'])} href="work-examples.html">Work Examples</a>
         <a class="nav-link"${activeIf(['blog.html'])} href="blog.html">Blog</a>
         <a class="nav-link"${activeIf(['about.html'])} href="about.html">About</a>
         <a class="nav-portal" href="https://tara-client-portal.netlify.app">Client Portal →</a>
-        <a class="nav-cta" href="index.html#contact">Book a Call</a>
+        <a class="nav-cta" href="/#contact">Book a Call</a>
       </nav>
       <button class="menu-toggle" id="menu-toggle" aria-expanded="false">Menu</button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
-      <a${activeIf(['index.html',''])} href="index.html">Home</a>
+      <a${activeIf(['index.html',''])} href="/">Home</a>
       <a${activeIf(['start-here.html'])} href="start-here.html">Start Here</a>
       <a${activeIf(['work-examples.html'])} href="work-examples.html">Work Examples</a>
       <a${activeIf(['blog.html'])} href="blog.html">Blog</a>
       <a${activeIf(['about.html'])} href="about.html">About</a>
       <a class="mob-portal" href="https://tara-client-portal.netlify.app">Client Portal →</a>
-      <a class="mob-cta" href="index.html#contact">Book a Free Call</a>
+      <a class="mob-cta" href="/#contact">Book a Free Call</a>
     </nav>
   </header>`;
 
