@@ -1,12 +1,12 @@
 // shared.js — injects nav and footer, handles mobile menu, marks active page
-
+ 
 (function() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
-
+ 
   function activeIf(names) {
     return names.includes(page) ? ' class="active-page"' : '';
   }
-
+ 
   const headerHTML = `
   <header>
     <div class="container header-inner">
@@ -32,16 +32,16 @@
       <a class="mob-cta" href="/#contact">Book a Free Call</a>
     </nav>
   </header>`;
-
+ 
   const footerHTML = `
   <footer>
     <div id="footer-tagline">© ${new Date().getFullYear()} Tara Consulting Co · Social media, AI and marketing made practical.</div>
     <div class="meta"><span id="footer-meta">Made in Australia</span> · <a href="mailto:hello@taraconsultingco.com" id="footer-email">hello@taraconsultingco.com</a> · <a href="privacy.html">Privacy</a></div>
   </footer>`;
-
+ 
   document.body.insertAdjacentHTML('afterbegin', headerHTML);
   document.body.insertAdjacentHTML('beforeend', footerHTML);
-
+ 
   // Load editable footer content from Supabase
   (async function() {
     try {
@@ -63,7 +63,7 @@
       });
     } catch(e) {}
   })();
-
+ 
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   if (toggle && menu) {
@@ -81,7 +81,26 @@
     });
   }
 })();
-
+ 
+ 
+// ── SAME-PAGE NAV INTERCEPT ─────────────────────────────────
+// Prevents flash when clicking a nav link for the page you're already on
+document.addEventListener('DOMContentLoaded', function() {
+  var currentPage = window.location.pathname;
+  document.querySelectorAll('a[href]').forEach(function(link) {
+    var href = link.getAttribute('href');
+    // Normalise both to compare
+    var linkPath = href.replace('index.html','').replace(/\/+$/,'/') || '/';
+    var curPath = currentPage.replace('index.html','').replace(/\/+$/,'/') || '/';
+    if (linkPath === curPath) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  });
+});
+ 
 // ── BFCACHE FIX ─────────────────────────────────────────────
 // Forces a full reload when browser restores page from bfcache
 // (prevents flash of old page content on navigation)
