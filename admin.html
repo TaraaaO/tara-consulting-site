@@ -512,6 +512,30 @@
       </div>
 
       <div class="admin-card">
+        <div class="admin-card-title">Start Here — "Is This You" &amp; Free Resource</div>
+        <label class="field-label">Section eyebrow</label>
+        <input type="text" id="sh-ithy-eyebrow" value="Not sure where to start?"/>
+        <label class="field-label">Section heading</label>
+        <input type="text" id="sh-ithy-title" value="Pick what sounds most like you."/>
+        <label class="field-label">Card 1</label>
+        <input type="text" id="sh-ithy-1" value="I need to get started with social media but I keep putting it off."/>
+        <label class="field-label">Card 2</label>
+        <input type="text" id="sh-ithy-2" value="My content feels inconsistent — it doesn't really sound like my business."/>
+        <label class="field-label">Card 3</label>
+        <input type="text" id="sh-ithy-3" value="I want to use AI but I don't know where to begin without getting it wrong."/>
+        <label class="field-label">Card 4</label>
+        <input type="text" id="sh-ithy-4" value="My brand feels patchy. I need things to look and feel more consistent."/>
+        <label class="field-label">Free resource eyebrow</label>
+        <input type="text" id="sh-free-eyebrow" value="Free resource"/>
+        <label class="field-label">Free resource heading</label>
+        <input type="text" id="sh-free-title" value="Start with a free Business Growth Scorecard."/>
+        <label class="field-label">Free resource body text</label>
+        <textarea id="sh-free-body" style="min-height:80px">Pop your email in and I'll send you a free Business Growth Scorecard — a quick, honest snapshot of where your business is right now, and the simplest place to start.</textarea>
+        <button class="btn-save" id="btn-save-sh-ithy">Save Is This You &amp; Free Resource</button>
+        <span class="save-msg" id="sh-ithy-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
         <div class="admin-card-title">Work Examples — page text</div>
         <p class="field-hint" style="margin-bottom:16px">Edit the intro text at the top of the Work Examples page.</p>
         <label class="field-label">Page intro paragraph</label>
@@ -1010,7 +1034,7 @@ async function loadHomepageContent() {
 }
 
 async function loadPagesContent() {
-  const fields = ['footer-tagline','footer-email','footer-meta','sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'];
+  const fields = ['footer-tagline','footer-email','footer-meta','sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro','sh-ithy-eyebrow','sh-ithy-title','sh-ithy-1','sh-ithy-2','sh-ithy-3','sh-ithy-4','sh-free-eyebrow','sh-free-title','sh-free-body','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -1027,6 +1051,7 @@ async function loadPagesContent() {
   { btn:'btn-save-we-text',  msg:'we-text-save-msg', fields:['we-page-intro','we-section-title','we-section-intro'] },
   { btn:'btn-save-sh-text',  msg:'sh-text-save-msg', fields:['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro'] },
   { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro'] },
+  { btn:'btn-save-sh-ithy', msg:'sh-ithy-save-msg', fields:['sh-ithy-eyebrow','sh-ithy-title','sh-ithy-1','sh-ithy-2','sh-ithy-3','sh-ithy-4','sh-free-eyebrow','sh-free-title','sh-free-body'] },
   
   { btn:'btn-save-footer', msg:'footer-save-msg', fields:['footer-tagline','footer-email','footer-meta'] },
   { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'] },
