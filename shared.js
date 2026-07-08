@@ -81,3 +81,12 @@
     });
   }
 })();
+
+// ── BFCACHE FIX ─────────────────────────────────────────────
+// Forces a full reload when browser restores page from bfcache
+// (prevents flash of old page content on navigation)
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) {
+    window.location.reload();
+  }
+});
