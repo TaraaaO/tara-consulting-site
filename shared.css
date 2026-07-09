@@ -2,6 +2,13 @@
    Used by: index.html, start-here.html, work-examples.html, about.html
    ──────────────────────────────────────────────────────────── */
 
+/* Smooth crossfade between pages instead of the browser holding the
+   previous page's frame until the new page paints (which reads as a
+   flash of "old" content). Supporting browsers only; no-op elsewhere. */
+@view-transition {
+  navigation: auto;
+}
+
 :root {
   --navy: #14213D;
   --navy-deep: #0E172A;
