@@ -229,8 +229,8 @@ nav .nav-cta:hover { background: var(--navy-deep); }
 
 /* ── SECTIONS ───────────────────────────────────────────── */
 section.block {
-  padding-top: clamp(64px, 8vw, 100px);
-  padding-bottom: clamp(64px, 8vw, 100px);
+  padding-top: clamp(36px, 5vw, 56px);
+  padding-bottom: clamp(36px, 5vw, 56px);
 }
 .pale { background: var(--grey); }
 .tint-olive { background: linear-gradient(rgba(92,107,46,0.08), rgba(92,107,46,0.08)), var(--white); }
