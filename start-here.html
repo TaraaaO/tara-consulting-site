@@ -1039,26 +1039,20 @@
     setTimeout(openFromHash, 150);
     window.addEventListener('hashchange', openFromHash);
 
-    // Load editable page text from Supabase
-    (async function() {
-      try {
-        const SUPABASE_URL = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
-        const keys = ['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro','sh-ithy-eyebrow','sh-ithy-title','sh-ithy-1','sh-ithy-2','sh-ithy-3','sh-ithy-4','sh-free-eyebrow','sh-free-title','sh-free-body'].join(',');
-        const res = await fetch(SUPABASE_URL + '/rest/v1/site_content?select=key,value&key=in.(' + keys + ')', {
-          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY }
-        });
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          data.forEach(function(row) {
-            var el = document.getElementById(row.key);
-            if (!el) return;
-            if (row.key === 'sh-page-title') { el.innerHTML = row.value; return; }
-            el.textContent = row.value;
-          });
-        }
-      } catch(e) {}
-    })();
+    // Load editable page text from Supabase (cache-first, see shared.js)
+    window.loadSiteContent([
+      'sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc',
+      'sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc',
+      'sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro',
+      'sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro',
+      'sh-ithy-eyebrow','sh-ithy-title','sh-ithy-1','sh-ithy-2','sh-ithy-3','sh-ithy-4',
+      'sh-free-eyebrow','sh-free-title','sh-free-body'
+    ], function(key, value) {
+      var el = document.getElementById(key);
+      if (!el) return;
+      if (key === 'sh-page-title') { el.innerHTML = value; return; }
+      el.textContent = value;
+    });
 
     // ── FREE RESOURCE FORM (Start Here page) ──────────────────
     document.getElementById('sh-lead-form')?.addEventListener('submit', async e => {

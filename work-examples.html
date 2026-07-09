@@ -268,20 +268,12 @@
       }
     }
 
-    // Load editable page text from Supabase
-    async function loadPageContent() {
-      try {
-        const res = await fetch(SUPABASE_URL + '/rest/v1/site_content?select=key,value&key=in.(we-page-intro,we-section-title,we-section-intro)', {
-          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY }
-        });
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          data.forEach(function(row) {
-            var el = document.getElementById(row.key);
-            if (el) el.textContent = row.value;
-          });
-        }
-      } catch(e) {}
+    // Load editable page text from Supabase (cache-first, see shared.js)
+    function loadPageContent() {
+      window.loadSiteContent(['we-page-intro', 'we-section-title', 'we-section-intro'], function(key, value) {
+        var el = document.getElementById(key);
+        if (el) el.textContent = value;
+      });
     }
 
     loadExamples();

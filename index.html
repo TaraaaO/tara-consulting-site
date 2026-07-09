@@ -415,28 +415,24 @@
   <script src="shared.js"></script>
   <script src="posts-data.js"></script>
   <script>
-  // Load editable homepage content from Supabase
-  (async function() {
-    try {
-      const keys = 'hp-eyebrow,hp-headline,hp-lead,hp-card-headline,hp-card-body,hp-ithy-eyebrow,hp-ithy-title,hp-ithy-1,hp-ithy-2,hp-ithy-3,hp-ithy-4,hp-why-eyebrow,hp-why-title,hp-b1-t,hp-b1-d,hp-b2-t,hp-b2-d,hp-b3-t,hp-b3-d,hp-b4-t,hp-b4-d,hp-b5-t,hp-b5-d,hp-b6-t,hp-b6-d,hp-free-eyebrow,hp-free-title,hp-free-body,hp-cta-headline,hp-cta-body,hp-cta-btn';
-      const r = await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/site_content?select=key,value&key=in.(' + keys + ')', {
-        headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g' }
-      });
-      const data = await r.json();
-      if (!Array.isArray(data)) return;
-      data.forEach(row => {
-        const el = document.getElementById(row.key);
-        if (!el) return;
-        // CTA button is an <a> tag
-        if (row.key === 'hp-cta-btn') { el.textContent = row.value; return; }
-        // ithy items are <a> tags - update text only
-        if (row.key.startsWith('hp-ithy-')) { el.textContent = row.value; return; }
-        // Headline may contain <em> - use innerHTML
-        if (row.key === 'hp-headline') { el.innerHTML = row.value; return; }
-        el.textContent = row.value;
-      });
-    } catch(e) {}
-  })();
+  // Load editable homepage content from Supabase (cache-first, see shared.js)
+  window.loadSiteContent([
+    'hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body',
+    'hp-ithy-eyebrow','hp-ithy-title','hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4',
+    'hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d',
+    'hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d',
+    'hp-free-eyebrow','hp-free-title','hp-free-body','hp-cta-headline','hp-cta-body','hp-cta-btn'
+  ], function(key, value) {
+    const el = document.getElementById(key);
+    if (!el) return;
+    // CTA button is an <a> tag
+    if (key === 'hp-cta-btn') { el.textContent = value; return; }
+    // ithy items are <a> tags - update text only
+    if (key.startsWith('hp-ithy-')) { el.textContent = value; return; }
+    // Headline may contain <em> - use innerHTML
+    if (key === 'hp-headline') { el.innerHTML = value; return; }
+    el.textContent = value;
+  });
   </script>
   <script>
     document.getElementById('lead-form')?.addEventListener('submit', async e => {

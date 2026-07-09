@@ -1,5 +1,43 @@
 // shared.js — injects nav and footer, handles mobile menu, marks active page
- 
+
+// ── CACHE-FIRST CONTENT LOADER ──────────────────────────────
+// Every page fetches its editable copy from Supabase after the static
+// HTML (which always contains the *last hand-edited* fallback text) has
+// already painted. If that fallback has drifted from what's actually
+// configured in Supabase, the fetch silently overwrites it a moment
+// later - a real, visible flash of old text swapping to new text on
+// every single load. loadSiteContent() applies the last-known values
+// from localStorage immediately (so repeat visits, i.e. almost all
+// browsing on this site, never show a swap), then fetches fresh values
+// in the background and only touches the DOM again if something
+// actually changed.
+(function() {
+  var CACHE_KEY = 'tara-content-cache-v1';
+  function readCache() {
+    try { return JSON.parse(localStorage.getItem(CACHE_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function writeCache(cache) {
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e) {}
+  }
+  window.loadSiteContent = function(keys, applyFn) {
+    var cache = readCache();
+    keys.forEach(function(key) {
+      if (cache[key] !== undefined) applyFn(key, cache[key]);
+    });
+    var ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
+    fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/site_content?select=key,value&key=in.(' + keys.join(',') + ')', {
+      headers: { 'apikey': ANON, 'Authorization': 'Bearer ' + ANON }
+    }).then(function(r) { return r.json(); }).then(function(data) {
+      if (!Array.isArray(data)) return;
+      data.forEach(function(row) {
+        if (cache[row.key] !== row.value) applyFn(row.key, row.value);
+        cache[row.key] = row.value;
+      });
+      writeCache(cache);
+    }).catch(function() {});
+  };
+})();
+
 (function() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
  
@@ -42,27 +80,17 @@
   document.body.insertAdjacentHTML('afterbegin', headerHTML);
   document.body.insertAdjacentHTML('beforeend', footerHTML);
  
-  // Load editable footer content from Supabase
-  (async function() {
-    try {
-      const r = await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/site_content?select=key,value&key=in.(footer-tagline,footer-meta,footer-email)', {
-        headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g' }
-      });
-      const data = await r.json();
-      if (!Array.isArray(data)) return;
-      data.forEach(row => {
-        const el = document.getElementById(row.key);
-        if (el) {
-          if (row.key === 'footer-email') {
-            el.textContent = row.value;
-            el.href = 'mailto:' + row.value;
-          } else {
-            el.textContent = row.value;
-          }
-        }
-      });
-    } catch(e) {}
-  })();
+  // Load editable footer content from Supabase (cache-first, see above)
+  window.loadSiteContent(['footer-tagline', 'footer-meta', 'footer-email'], function(key, value) {
+    const el = document.getElementById(key);
+    if (!el) return;
+    if (key === 'footer-email') {
+      el.textContent = value;
+      el.href = 'mailto:' + value;
+    } else {
+      el.textContent = value;
+    }
+  });
  
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
