@@ -63,6 +63,7 @@
         <a class="nav-link"${activeIf(['index.html',''])} href="/">Home</a>
         <a class="nav-link"${activeIf(['start-here.html'])} href="start-here.html">Start Here</a>
         <a class="nav-link"${activeIf(['work-examples.html'])} href="work-examples.html">Work Examples</a>
+        <a class="nav-link"${activeIf(['packages.html'])} href="packages.html">Packages</a>
         <a class="nav-link"${activeIf(['blog.html'])} href="blog.html">Blog</a>
         <a class="nav-link"${activeIf(['about.html'])} href="about.html">Meet Tara</a>
         <a class="nav-portal" href="https://tara-client-portal.netlify.app">Client Portal →</a>
@@ -79,6 +80,7 @@
       <a${activeIf(['index.html',''])} href="/">Home</a>
       <a${activeIf(['start-here.html'])} href="start-here.html">Start Here</a>
       <a${activeIf(['work-examples.html'])} href="work-examples.html">Work Examples</a>
+      <a${activeIf(['packages.html'])} href="packages.html">Packages</a>
       <a${activeIf(['blog.html'])} href="blog.html">Blog</a>
       <a${activeIf(['about.html'])} href="about.html">Meet Tara</a>
       <a class="mob-portal" href="https://tara-client-portal.netlify.app">Client Portal →</a>
@@ -147,6 +149,7 @@
     { title: 'Home', url: '/', excerpt: 'Social media, AI and marketing support for small business owners.' },
     { title: 'Start Here', url: 'start-here.html', excerpt: "Not sure where to begin? Pick the starting point that sounds most like you." },
     { title: 'Work Examples', url: 'work-examples.html', excerpt: 'Businesses and community projects supported across social media, AI and marketing.' },
+    { title: 'Packages', url: 'packages.html', excerpt: 'Weekly social media support or a one-off starter package, with clear pricing.' },
     { title: 'Blog', url: 'blog.html', excerpt: 'Practical articles on social media, SEO, AI and marketing for small business.' },
     { title: 'Meet Tara', url: 'about.html', excerpt: 'Practical support for real businesses, from someone who has worked in them.' },
     { title: 'Referral Partner', url: 'referral-partner.html', excerpt: 'Find out what it looks like to partner with Tara Consulting Co.' }

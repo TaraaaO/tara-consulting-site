@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPKE3N8VXG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HPKE3N8VXG');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packages | Tara Consulting Co</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Packages — Tara Consulting Co"/>
+  <meta property="og:description" content="Clear, straightforward social media packages — ongoing weekly support or a one-off starter package. No jargon, no lock-in contracts."/>
+  <meta property="og:url" content="https://taraconsultingco.com/packages"/>
+  <meta property="og:image" content="https://taraconsultingco.com/favicon.svg"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Packages — Tara Consulting Co"/>
+  <meta name="twitter:description" content="Clear, straightforward social media packages — ongoing weekly support or a one-off starter package. No jargon, no lock-in contracts."/>
+  <meta name="description" content="Social media support packages from Tara Consulting Co — ongoing weekly support or a one-off starter package, with clear pricing and no lock-in contracts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+
+    /* ── PACKAGE CARDS ─────────────────────────────────────── */
+    .pkg-section + .pkg-section { border-top: 1px solid var(--line); }
+    .pkg-intro { max-width: 640px; margin-bottom: 36px; }
+    .pkg-intro p { font-size: 1.05rem; color: var(--muted); }
+
+    .pkg-head-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .pkg-price-tag {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+      font-weight: 500;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+    .pkg-price-tag span {
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    /* Weekly package inclusion blocks */
+    .pkg-inc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 32px 0;
+    }
+    .pkg-inc-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 22px 20px;
+      border-left: 3px solid var(--terracotta);
+    }
+    .pkg-inc-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .pkg-inc-card ul { list-style: none; display: grid; gap: 8px; }
+    .pkg-inc-card li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 16px;
+      position: relative;
+    }
+    .pkg-inc-card li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 1.2rem;
+      line-height: 1;
+      top: 0.05em;
+    }
+
+    /* Starter package pricing tiers */
+    .pkg-tiers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 32px 0;
+    }
+    .pkg-tier {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 26px 24px;
+      position: relative;
+    }
+    .pkg-tier.feat {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .pkg-tier-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+    .pkg-tier-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .pkg-tier.feat .pkg-tier-label { color: rgba(255,255,255,0.55); }
+    .pkg-tier-amount {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 2.1rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .pkg-tier.feat .pkg-tier-amount { color: var(--white); }
+    .pkg-tier-period {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .pkg-tier.feat .pkg-tier-period { color: rgba(255,255,255,0.5); }
+    .pkg-tier-list { list-style: none; display: grid; gap: 10px; }
+    .pkg-tier-list li {
+      font-size: 0.92rem;
+      color: var(--text);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.4;
+    }
+    .pkg-tier.feat .pkg-tier-list li { color: rgba(255,255,255,0.9); }
+    .pkg-tier-list .tick { color: var(--orange); flex-shrink: 0; }
+    .pkg-tier-list .cross { color: var(--muted); flex-shrink: 0; }
+    .pkg-tier.feat .pkg-tier-list .cross { color: rgba(255,255,255,0.4); }
+    .pkg-tier-list .no { color: var(--muted); }
+    .pkg-tier.feat .pkg-tier-list .no { color: rgba(255,255,255,0.55); }
+
+    .pkg-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin: 32px 0;
+    }
+    .pkg-step-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.3rem;
+      color: var(--olive);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .pkg-step h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .pkg-step p { font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
+
+    .pkg-fine {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 24px 0 28px;
+    }
+    .pkg-fine strong { color: var(--navy); }
+
+    @media (max-width: 860px) {
+      .pkg-inc-grid, .pkg-tiers, .pkg-steps { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Packages</div>
+        <h1>Ways to <em>work together.</em></h1>
+        <p>Two clear options — ongoing weekly support if you want it handled for you, or a one-off starter package if you'd rather have a plan and take it from there. No jargon, no lock-in contracts.</p>
+      </div>
+    </section>
+
+    <!-- WEEKLY SOCIAL MEDIA SUPPORT -->
+    <section class="block pkg-section">
+      <div class="container">
+        <p class="section-eyebrow">Ongoing support</p>
+        <div class="pkg-head-row">
+          <h2 class="section-title" style="margin-bottom:0">Weekly Social Media Support</h2>
+          <p class="pkg-price-tag">$350 <span>/ week</span></p>
+        </div>
+        <div class="pkg-intro">
+          <p>Ongoing weekly support covering content creation, scheduling, monitoring and resharing across your business's social media pages — so it's consistently taken care of without it being another thing on your plate.</p>
+        </div>
+
+        <div class="pkg-inc-grid">
+          <div class="pkg-inc-card">
+            <h3>Weekly Content Creation</h3>
+            <ul>
+              <li>Three social media posts created and scheduled each week</li>
+              <li>A minimum of one reel per week</li>
+              <li>A combination of image posts</li>
+              <li>Captions written in your business's tone of voice</li>
+              <li>Content aligned with your current promotions, seasonal campaigns, events and key messaging</li>
+            </ul>
+          </div>
+          <div class="pkg-inc-card">
+            <h3>Monitoring &amp; Resharing</h3>
+            <ul>
+              <li>Ongoing monitoring across your Facebook and Instagram pages throughout the week</li>
+              <li>Monitoring tagged content and resharing stories your business is tagged in</li>
+              <li>Looking out for relevant local or industry content that aligns with your business</li>
+              <li>Handled whether your accounts are linked or managed separately</li>
+            </ul>
+          </div>
+          <div class="pkg-inc-card">
+            <h3>Staying Across Your Marketing</h3>
+            <ul>
+              <li>Keeping up to date with your current offers and promotions</li>
+              <li>Reading your newsletters and updates</li>
+              <li>Staying across relevant local events and industry news</li>
+              <li>Advising on relevant marketing opportunities where appropriate</li>
+              <li>Aligning social content with your current campaigns and messaging</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="pkg-fine">Billed weekly. <strong>No lock-in contracts</strong> — pause or cancel any time with 14 days notice.</p>
+
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Weekly%20Social%20Media%20Support%20Enquiry">Get started <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+    <!-- SOCIAL MEDIA STARTER PACKAGE -->
+    <section class="block pkg-section pale">
+      <div class="container">
+        <p class="section-eyebrow">One-off package</p>
+        <h2 class="section-title">Social Media Starter Package</h2>
+        <div class="pkg-intro">
+          <p>For business owners who want to take control of their social media — not hand it off entirely. You get a clear strategy, a ready-to-use plan, and someone in your corner to help you make sense of it all along the way.</p>
+        </div>
+
+        <div class="pkg-tiers">
+          <div class="pkg-tier">
+            <p class="pkg-tier-label">Starter</p>
+            <p class="pkg-tier-amount">$750</p>
+            <p class="pkg-tier-period">one-off · renew anytime</p>
+            <ul class="pkg-tier-list">
+              <li><span class="tick">✓</span>1-hour discovery call</li>
+              <li><span class="tick">✓</span>One month's content calendar</li>
+              <li><span class="tick">✓</span>12 captions in your voice</li>
+              <li><span class="tick">✓</span>One round of revisions</li>
+              <li><span class="tick">✓</span>Instagram + Facebook</li>
+              <li class="no"><span class="cross">✕</span>Strategy audit not included</li>
+              <li class="no"><span class="cross">✕</span>Reflection call not included</li>
+            </ul>
+          </div>
+          <div class="pkg-tier feat">
+            <span class="pkg-tier-badge">Most popular</span>
+            <p class="pkg-tier-label">Full Package</p>
+            <p class="pkg-tier-amount">$1,000</p>
+            <p class="pkg-tier-period">one-off · optional monthly renewal</p>
+            <ul class="pkg-tier-list">
+              <li><span class="tick">✓</span>1-hour discovery call</li>
+              <li><span class="tick">✓</span>Strategy audit + action plan</li>
+              <li><span class="tick">✓</span>One month's content calendar</li>
+              <li><span class="tick">✓</span>12 captions in your voice</li>
+              <li><span class="tick">✓</span>One round of revisions</li>
+              <li><span class="tick">✓</span>Instagram + Facebook</li>
+              <li><span class="tick">✓</span>40-min monthly reflection call</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pkg-steps">
+          <div class="pkg-step">
+            <span class="pkg-step-num">01</span>
+            <h4>Discovery call — 1 hour</h4>
+            <p>Phone, video or onsite in the Shoalhaven. We go deep on your business, audience and voice.</p>
+          </div>
+          <div class="pkg-step">
+            <span class="pkg-step-num">02</span>
+            <h4>I research and build</h4>
+            <p>I review your current presence and build everything around your actual business — not a template.</p>
+          </div>
+          <div class="pkg-step">
+            <span class="pkg-step-num">03</span>
+            <h4>You receive the deliverables</h4>
+            <p>Clean, ready-to-use documents. Post straight away or hand to a team member.</p>
+          </div>
+          <div class="pkg-step">
+            <span class="pkg-step-num">04</span>
+            <h4>Continue monthly (optional)</h4>
+            <p>Full Package clients can renew each month. We check in, review what worked and keep building.</p>
+          </div>
+        </div>
+
+        <p class="pkg-fine">All prices in AUD. 50% deposit required to begin. Full Package can be renewed month to month with 14 days notice to pause or cancel — <strong>no lock-in contracts.</strong></p>
+
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Social%20Media%20Package%20Enquiry">Get started <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="block cta" id="contact">
+      <div class="container cta-inner">
+        <h2>Not sure which one fits?</h2>
+        <p>Book a free consultation and we'll talk through where you're at and which option makes the most sense for your business right now.</p>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Package%20Enquiry">Book My Free Call <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="shared.js"></script>
+</body>
+</html>
