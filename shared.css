@@ -8,6 +8,13 @@
 @view-transition {
   navigation: auto;
 }
+/* Keep the crossfade short - pages here have quite different layouts,
+   so a long overlap between old/new snapshots can look like ghosting
+   rather than a clean transition. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.15s;
+}
 
 :root {
   --navy: #14213D;
@@ -381,10 +388,15 @@ footer .meta { margin-top: 8px; font-size: 0.82rem; color: rgba(255,255,255,0.5)
 .portal-strip .btn { position: relative; flex-shrink: 0; }
 
 /* ── REVEAL ANIMATION ───────────────────────────────────── */
+/* Previously started at opacity:0 and faded in over ~0.7-0.9s on every
+   page load, so the hero text (headline, lead, CTAs, card) was
+   genuinely invisible for a beat after paint - reading as "the page
+   hasn't caught up yet" / a flash of missing content. Content is now
+   visible immediately; the animation is disabled. */
 .reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: reveal 0.7s ease forwards;
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 .reveal.delay-1 { animation-delay: 0.08s; }
 .reveal.delay-2 { animation-delay: 0.16s; }
