@@ -372,6 +372,17 @@
       </div>
 
       <div class="admin-card">
+        <div class="admin-card-title">Testimonial section</div>
+        <p class="field-hint" style="margin-bottom:14px">The pull-quote between "Why It Helps" and the contact section.</p>
+        <label class="field-label">Quote</label>
+        <textarea id="hp-testimonial-quote" style="min-height:110px">"Tara has been an absolute weapon for everything Katie and I have been trying to figure out — no question is too small, and she's always happy to explain something again if we don't get it the first time. It's such a godsend having someone who just knows what you're thinking, even when you don't have a solution for it yourself. If we're stuck, we know we can flick it to Tara — she always seems to have an answer."</textarea>
+        <label class="field-label">Attribution</label>
+        <input type="text" id="hp-testimonial-cite" value="Dom's Plant Repairs"/>
+        <button class="btn-save" id="btn-save-testimonial">Save testimonial</button>
+        <span class="save-msg" id="testimonial-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
         <div class="admin-card-title">Contact / CTA section</div>
         <label class="field-label">Headline</label>
         <input type="text" id="hp-cta-headline" value="Got something on your plate you're not sure how to tackle?"/>
@@ -1010,7 +1021,7 @@ async function loadSiteContent(key) {
 }
 
 async function loadHomepageContent() {
-  const fields = ['hp-banner-text','hp-banner-link','hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body','hp-li-1','hp-li-2','hp-li-3','hp-li-4','hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d','hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d','hp-cta-headline','hp-cta-body','hp-cta-btn'];
+  const fields = ['hp-banner-text','hp-banner-link','hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body','hp-li-1','hp-li-2','hp-li-3','hp-li-4','hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d','hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d','hp-testimonial-quote','hp-testimonial-cite','hp-cta-headline','hp-cta-body','hp-cta-btn'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -1028,6 +1039,7 @@ async function loadPagesContent() {
 [
   { btn:'btn-save-banner',   msg:'banner-save-msg', fields:['hp-banner-text','hp-banner-link'] },
   { btn:'btn-save-hero',     msg:'hero-save-msg',   fields:['hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body','hp-li-1','hp-li-2','hp-li-3','hp-li-4'] },
+  { btn:'btn-save-testimonial', msg:'testimonial-save-msg', fields:['hp-testimonial-quote','hp-testimonial-cite'] },
   { btn:'btn-save-cta',      msg:'cta-save-msg',    fields:['hp-cta-headline','hp-cta-body','hp-cta-btn'] },
   { btn:'btn-save-why',      msg:'why-save-msg',    fields:['hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d','hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d'] },
   { btn:'btn-save-we-text',  msg:'we-text-save-msg', fields:['we-page-intro','we-section-title','we-section-intro'] },

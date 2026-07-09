@@ -105,6 +105,29 @@
       color: var(--muted);
     }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* ── TESTIMONIAL ───────────────────────────────────────── */
+    .testimonial-inner {
+      max-width: 760px;
+      text-align: center;
+    }
+    .testimonial-quote {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+      line-height: 1.5;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+    .testimonial-cite {
+      margin-top: 22px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
     .hero-card {
       background: var(--navy);
       color: var(--white);
@@ -423,6 +446,14 @@
       </div>
     </section>
 
+    <!-- TESTIMONIAL -->
+    <section class="block testimonial-section">
+      <div class="container testimonial-inner">
+        <p class="testimonial-quote" id="hp-testimonial-quote">"Tara has been an absolute weapon for everything Katie and I have been trying to figure out &mdash; no question is too small, and she's always happy to explain something again if we don't get it the first time. It's such a godsend having someone who just knows what you're thinking, even when you don't have a solution for it yourself. If we're stuck, we know we can flick it to Tara &mdash; she always seems to have an answer."</p>
+        <p class="testimonial-cite" id="hp-testimonial-cite">Dom's Plant Repairs</p>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="block cta" id="contact">
       <div class="container cta-inner">
@@ -445,6 +476,7 @@
     'hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d',
     'hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d',
     'hp-cta-headline','hp-cta-body','hp-cta-btn',
+    'hp-testimonial-quote','hp-testimonial-cite',
     'about-photo'
   ], function(key, value) {
     // Banner link updates the href, not the element's own text
