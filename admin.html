@@ -337,6 +337,17 @@
       <div id="db-status-hp" class="db-status disconnected">Supabase not connected</div>
 
       <div class="admin-card">
+        <div class="admin-card-title">Announcement banner</div>
+        <p class="field-hint" style="margin-bottom:14px">The orange bar at the very top of the homepage.</p>
+        <label class="field-label">Banner text</label>
+        <input type="text" id="hp-banner-text" value="Find out what it looks like to partner with me"/>
+        <label class="field-label">Banner link (where it goes when clicked)</label>
+        <input type="text" id="hp-banner-link" value="/referral-partner"/>
+        <button class="btn-save" id="btn-save-banner">Save banner</button>
+        <span class="save-msg" id="banner-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
         <div class="admin-card-title">Hero section</div>
         <label class="field-label">Eyebrow pill (small label above the headline)</label>
         <input type="text" id="hp-eyebrow" value="Social media, AI & marketing for small business"/>
@@ -348,23 +359,16 @@
         <input type="text" id="hp-card-headline" value="For businesses ready to stop putting it off."/>
         <label class="field-label">Hero card body text</label>
         <textarea id="hp-card-body" style="min-height:80px">We help you get set up with social media that sounds like you, simple systems behind the scenes, and practical AI that saves time without making things harder than they need to be.</textarea>
+        <label class="field-label">Hero card bullet 1</label>
+        <input type="text" id="hp-li-1" value="Social media direction and content support"/>
+        <label class="field-label">Hero card bullet 2</label>
+        <input type="text" id="hp-li-2" value="Practical AI setup and training"/>
+        <label class="field-label">Hero card bullet 3</label>
+        <input type="text" id="hp-li-3" value="Clearer marketing copy and campaigns"/>
+        <label class="field-label">Hero card bullet 4</label>
+        <input type="text" id="hp-li-4" value="Simple systems you can keep using"/>
         <button class="btn-save" id="btn-save-hero">Save hero section</button>
         <span class="save-msg" id="hero-save-msg">✓ Saved</span>
-      </div>
-
-      <div class="admin-card">
-        <div class="admin-card-title">Is this you? section</div>
-        <p class="field-hint" style="margin-bottom:14px">The four clickable statements on the homepage that link through to Start Here.</p>
-        <label class="field-label">Statement 1</label>
-        <input type="text" id="hp-ithy-1" value="I need to get started with social media but I keep putting it off."/>
-        <label class="field-label">Statement 2</label>
-        <input type="text" id="hp-ithy-2" value="My content feels inconsistent — it doesn't really sound like my business."/>
-        <label class="field-label">Statement 3</label>
-        <input type="text" id="hp-ithy-3" value="I want to use AI but I don't know where to begin without getting it wrong."/>
-        <label class="field-label">Statement 4</label>
-        <input type="text" id="hp-ithy-4" value="My brand feels patchy. I need things to look and feel more consistent."/>
-        <button class="btn-save" id="btn-save-ithy">Save statements</button>
-        <span class="save-msg" id="ithy-save-msg">✓ Saved</span>
       </div>
 
       <div class="admin-card">
@@ -377,16 +381,6 @@
         <input type="text" id="hp-cta-btn" value="Book My Free Call"/>
         <button class="btn-save" id="btn-save-cta">Save CTA section</button>
         <span class="save-msg" id="cta-save-msg">✓ Saved</span>
-      </div>
-
-      <div class="admin-card">
-        <div class="admin-card-title">"Pick what sounds like you" section</div>
-        <label class="field-label">Eyebrow label</label>
-        <input type="text" id="hp-ithy-eyebrow" value="Not sure where to start?"/>
-        <label class="field-label">Section heading</label>
-        <input type="text" id="hp-ithy-title" value="Pick what sounds most like you."/>
-        <button class="btn-save" id="btn-save-ithy-head">Save section</button>
-        <span class="save-msg" id="ithy-head-save-msg">✓ Saved</span>
       </div>
 
       <div class="admin-card">
@@ -407,17 +401,6 @@
         <span class="save-msg" id="why-save-msg">✓ Saved</span>
       </div>
 
-      <div class="admin-card">
-        <div class="admin-card-title">Free resource (email capture) section</div>
-        <label class="field-label">Eyebrow label</label>
-        <input type="text" id="hp-free-eyebrow" value="Free resource"/>
-        <label class="field-label">Section heading</label>
-        <input type="text" id="hp-free-title" value="Start with a simple AI and social media checklist."/>
-        <label class="field-label">Body text</label>
-        <textarea id="hp-free-body" style="min-height:80px">Pop your email in and I'll send through a practical starter resource you can use to get clearer on your content, your message and where AI might actually save you time.</textarea>
-        <button class="btn-save" id="btn-save-free">Save section</button>
-        <span class="save-msg" id="free-save-msg">✓ Saved</span>
-      </div>
     </div>
 
     <!-- ── OTHER PAGES ─────────────────────────────── -->
@@ -1027,7 +1010,7 @@ async function loadSiteContent(key) {
 }
 
 async function loadHomepageContent() {
-  const fields = ['hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body','hp-ithy-eyebrow','hp-ithy-title','hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4','hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d','hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d','hp-free-eyebrow','hp-free-title','hp-free-body','hp-cta-headline','hp-cta-body','hp-cta-btn'];
+  const fields = ['hp-banner-text','hp-banner-link','hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body','hp-li-1','hp-li-2','hp-li-3','hp-li-4','hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d','hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d','hp-cta-headline','hp-cta-body','hp-cta-btn'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -1043,12 +1026,10 @@ async function loadPagesContent() {
 }
 
 [
-  { btn:'btn-save-hero',     msg:'hero-save-msg',   fields:['hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body'] },
-  { btn:'btn-save-ithy',     msg:'ithy-save-msg',   fields:['hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4'] },
+  { btn:'btn-save-banner',   msg:'banner-save-msg', fields:['hp-banner-text','hp-banner-link'] },
+  { btn:'btn-save-hero',     msg:'hero-save-msg',   fields:['hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body','hp-li-1','hp-li-2','hp-li-3','hp-li-4'] },
   { btn:'btn-save-cta',      msg:'cta-save-msg',    fields:['hp-cta-headline','hp-cta-body','hp-cta-btn'] },
-  { btn:'btn-save-ithy-head',msg:'ithy-head-save-msg', fields:['hp-ithy-eyebrow','hp-ithy-title'] },
   { btn:'btn-save-why',      msg:'why-save-msg',    fields:['hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d','hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d'] },
-  { btn:'btn-save-free',     msg:'free-save-msg',   fields:['hp-free-eyebrow','hp-free-title','hp-free-body'] },
   { btn:'btn-save-we-text',  msg:'we-text-save-msg', fields:['we-page-intro','we-section-title','we-section-intro'] },
   { btn:'btn-save-sh-text',  msg:'sh-text-save-msg', fields:['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro'] },
   { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro'] },
