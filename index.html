@@ -333,8 +333,8 @@
 <body>
     <!-- ANNOUNCEMENT BANNER -->
     <div class="announcement-banner">
-      <a href="/referral-partner" class="announcement-link">
-        Find out what it looks like to partner with me <span class="ann-arrow">→</span>
+      <a href="/referral-partner" class="announcement-link" id="hp-banner-link">
+        <span id="hp-banner-text">Find out what it looks like to partner with me</span> <span class="ann-arrow">→</span>
       </a>
     </div>
 
@@ -357,10 +357,10 @@
           <h3 id="hp-card-headline">For businesses ready to stop putting it off.</h3>
           <p id="hp-card-body">We help you get set up with social media that sounds like you, simple systems behind the scenes, and practical AI that saves time without making things harder than they need to be.</p>
           <ul>
-            <li>Social media direction and content support</li>
-            <li>Practical AI setup and training</li>
-            <li>Clearer marketing copy and campaigns</li>
-            <li>Simple systems you can keep using</li>
+            <li id="hp-li-1">Social media direction and content support</li>
+            <li id="hp-li-2">Practical AI setup and training</li>
+            <li id="hp-li-3">Clearer marketing copy and campaigns</li>
+            <li id="hp-li-4">Simple systems you can keep using</li>
           </ul>
         </aside>
       </div>
@@ -417,18 +417,19 @@
   <script>
   // Load editable homepage content from Supabase (cache-first, see shared.js)
   window.loadSiteContent([
+    'hp-banner-text','hp-banner-link',
     'hp-eyebrow','hp-headline','hp-lead','hp-card-headline','hp-card-body',
-    'hp-ithy-eyebrow','hp-ithy-title','hp-ithy-1','hp-ithy-2','hp-ithy-3','hp-ithy-4',
+    'hp-li-1','hp-li-2','hp-li-3','hp-li-4',
     'hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d',
     'hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d',
-    'hp-free-eyebrow','hp-free-title','hp-free-body','hp-cta-headline','hp-cta-body','hp-cta-btn'
+    'hp-cta-headline','hp-cta-body','hp-cta-btn'
   ], function(key, value) {
+    // Banner link updates the href, not the element's own text
+    if (key === 'hp-banner-link') { const a = document.getElementById('hp-banner-link'); if (a) a.href = value; return; }
     const el = document.getElementById(key);
     if (!el) return;
     // CTA button is an <a> tag
     if (key === 'hp-cta-btn') { el.textContent = value; return; }
-    // ithy items are <a> tags - update text only
-    if (key.startsWith('hp-ithy-')) { el.textContent = value; return; }
     // Headline may contain <em> - use innerHTML
     if (key === 'hp-headline') { el.innerHTML = value; return; }
     el.textContent = value;
