@@ -15,13 +15,13 @@
   <link rel="icon" type="image/png" href="favicon.png"/>
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Start Here — Tara Consulting Co"/>
-  <meta property="og:description" content="Four practical starting points for small businesses getting into social media, AI and marketing."/>
+  <meta property="og:description" content="The marketing and systems you know you need, built for your business and taught to your team."/>
   <meta property="og:url" content="https://taraconsultingco.com/start-here"/>
   <meta property="og:image" content="https://taraconsultingco.com/favicon.svg"/>
   <meta name="twitter:card" content="summary"/>
   <meta name="twitter:title" content="Start Here — Tara Consulting Co"/>
-  <meta name="twitter:description" content="Four practical starting points for small businesses getting into social media, AI and marketing."/>
-  <meta name="description" content="Four practical starting points for small businesses getting into social media, AI, and marketing." />
+  <meta name="twitter:description" content="The marketing and systems you know you need, built for your business and taught to your team."/>
+  <meta name="description" content="Tara Consulting Co helps small business owners build the marketing and systems they know they need, and trains their team to keep them running." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -29,477 +29,359 @@
   <link rel="stylesheet" href="shared.css">
   <style>
 
-    /* ── STARTING POINT CARDS ────────────────────────────── */
-    .start-grid {
+    /* ── HERO ──────────────────────────────────────────────── */
+    .sh-hero h1 {
+      max-width: 780px;
+    }
+    .sh-hero-sub {
+      max-width: 620px;
+      font-size: clamp(1.02rem, 1.4vw, 1.15rem);
+      color: var(--muted);
+      margin-bottom: 26px;
+    }
+
+    /* ── PROBLEM BLOCK ─────────────────────────────────────── */
+    .problem-block {
+      max-width: 680px;
+    }
+    .problem-block p {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .problem-block p:last-child { margin-bottom: 0; }
+    .problem-block .credibility-line {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    /* ── TWO PATHS FORK ────────────────────────────────────── */
+    .paths-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-bottom: 36px;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 30px;
     }
-
-    .start-card {
+    .path-card {
       background: var(--white);
-      border: 2px solid var(--line);
+      border: 1px solid var(--line);
       border-radius: var(--radius-md);
-      padding: 26px;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      text-align: left;
-      font-family: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+      padding: 26px 24px;
     }
-    .start-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: rgba(247,127,0,0.4);
+    .path-card .path-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 10px;
     }
-    /* Active — orange border on card */
-    .start-card.is-active {
-      border-color: var(--orange);
-      box-shadow: 0 0 0 3px rgba(247,127,0,0.14), var(--shadow-md);
-      transform: translateY(-2px);
-    }
-
-    .start-card .icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: var(--cream);
-      display: inline-flex;
-      align-items: center; justify-content: center;
-      margin-bottom: 16px;
-      color: var(--orange);
-      transition: background 0.2s;
-    }
-    .start-card.is-active .icon { background: var(--orange-soft); }
-
-    .start-card h3 {
+    .path-card h3 {
       font-family: 'Fraunces', Georgia, serif;
       font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 8px;
       font-size: 1.2rem;
-    }
-    .start-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; flex: 1; }
-
-    .start-card .card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 14px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      color: var(--orange);
-      transition: color 0.15s;
-    }
-    .start-card.is-active .card-cta { color: var(--navy); }
-    .start-card .card-cta .caret {
-      display: inline-block;
-      transition: transform 0.25s ease;
-    }
-    .start-card.is-active .card-cta .caret { transform: rotate(180deg); }
-
-    /* ── CONTENT PANELS ──────────────────────────────────── */
-    .focus-panels { margin-top: 4px; }
-
-    .content-panel {
-      display: none;
-      background: var(--white);
-      /* Orange border on panel when active */
-      border: 2px solid var(--line);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-      padding: 32px 36px;
-      gap: 22px;
-      margin-bottom: 8px;
-      transition: border-color 0.2s;
-      scroll-margin-top: 100px;
-    }
-    .content-panel.is-active {
-      display: grid;
-      border-color: var(--orange);
-      box-shadow: 0 0 0 3px rgba(247,127,0,0.12), var(--shadow-md);
-      animation: panelReveal 0.3s ease;
-    }
-    @keyframes panelReveal {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Orange accent bar at top of panel */
-    .content-panel.is-active::before {
-      content: '';
-      display: block;
-      height: 3px;
-      background: var(--orange);
-      border-radius: 2px;
-      margin-bottom: 6px;
-    }
-
-    .content-panel h4 {
       color: var(--navy);
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.35rem;
-      font-weight: 500;
       margin-bottom: 10px;
-      line-height: 1.25;
     }
-    .content-panel > p { color: var(--muted); font-size: 1rem; line-height: 1.65; }
-
-    .tip-list {
-      display: grid;
-      gap: 12px;
-      list-style: none;
-    }
-    .tip-list li {
-      background: var(--grey);
-      border: 1px solid var(--line);
-      border-radius: 14px;
+    .path-card p { color: var(--muted); font-size: 0.97rem; line-height: 1.6; }
+    .paths-note {
+      margin-top: 18px;
+      font-size: 0.9rem;
       color: var(--muted);
-      padding: 15px 18px;
-      line-height: 1.6;
-    }
-    .tip-list strong {
-      color: var(--navy);
-      display: block;
-      margin-bottom: 4px;
-      font-size: 0.97rem;
+      font-style: italic;
     }
 
-    .panel-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
-
-    /* ── PROMPT BOX (for AI section) ─────────────────────── */
-    .prompt-box {
-      background: var(--navy);
-      border-radius: var(--radius-sm);
-      padding: 20px 24px;
-      color: rgba(255,255,255,0.88);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      position: relative;
-    }
-    .prompt-box::before {
-      content: 'Example prompt';
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 8px;
-    }
-    .prompt-box em { color: rgba(255,255,255,0.55); font-style: normal; }
-
-    @media (max-width: 720px) {
-      .start-grid { grid-template-columns: 1fr; }
-      .content-panel { padding: 22px 20px; }
-    }
-
-    /* ── IS THIS YOU (moved from homepage) ─────────────────── */
-    .is-this-you {
-      background: var(--navy);
+    /* ── OFFERS ────────────────────────────────────────────── */
+    .offer-block + .offer-block { margin-top: 22px; }
+    .offer-card {
       border-radius: var(--radius-lg);
-      padding: clamp(36px, 5vw, 56px);
+      padding: clamp(28px, 4vw, 44px);
+    }
+    .offer-card.starting-point {
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+    .offer-card.growth-partner {
+      background: var(--navy);
+      color: var(--white);
       position: relative;
       overflow: hidden;
     }
-    .is-this-you::before {
+    .offer-card.growth-partner::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(600px 300px at 80% -10%, rgba(247,127,0,0.15), transparent 65%);
+      background: radial-gradient(700px 350px at 90% -10%, rgba(247,127,0,0.18), transparent 65%);
       pointer-events: none;
     }
-    .is-this-you .section-eyebrow { color: var(--orange); position: relative; }
-    .is-this-you .section-title { color: var(--white); position: relative; max-width: 600px; }
-    .ithy-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 32px;
-      position: relative;
+    .offer-card.growth-partner > * { position: relative; }
+    .offer-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 10px;
     }
-    .ithy-item {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius-sm);
-      padding: 18px 20px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
-      text-align: left;
-      font-family: inherit;
-      color: rgba(255,255,255,0.88);
-      font-size: 0.97rem;
-      line-height: 1.5;
-      text-decoration: none;
-    }
-    .ithy-item:hover { background: rgba(247,127,0,0.15); border-color: rgba(247,127,0,0.4); }
-    .ithy-item::before {
-      content: '';
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      background: rgba(247,127,0,0.3);
-      border: 2px solid var(--orange);
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .ithy-cta {
-      margin-top: 32px;
-      position: relative;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .ithy-note { color: rgba(255,255,255,0.52); font-size: 0.88rem; }
-
-    /* ── LEAD MAGNET (moved from homepage) ─────────────────── */
-    .lead-magnet {
-      background:
-        radial-gradient(600px 280px at 85% 10%, rgba(247,127,0,0.16), transparent 70%),
-        var(--navy);
-      color: var(--white);
-      border-radius: var(--radius-lg);
-      display: grid;
-      gap: 28px;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
-      padding: clamp(28px, 5vw, 48px);
-    }
-    .lead-magnet h2, .lead-magnet p { color: inherit; }
-    .lead-magnet p { color: rgba(255,255,255,0.78); }
-    .lead-form {
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 18px;
-      display: grid;
-      gap: 14px;
-      padding: 22px;
-    }
-    .lead-form label { color: var(--white); font-weight: 800; display: block; }
-    .lead-form input {
-      border: 0;
-      border-radius: 999px;
+    .growth-partner .offer-label { color: var(--orange); }
+    .offer-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+      margin-bottom: 14px;
       color: var(--navy);
-      min-height: 48px;
-      padding: 12px 16px;
+    }
+    .growth-partner h3 { color: var(--white); }
+    .offer-card p { line-height: 1.65; margin-bottom: 14px; }
+    .offer-card p:last-of-type { margin-bottom: 0; }
+    .offer-card .offer-body { color: var(--muted); max-width: 620px; }
+    .growth-partner .offer-body { color: rgba(255,255,255,0.82); }
+    .offer-card .offer-outcome {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin: 20px 0;
+    }
+    .growth-partner .offer-outcome { color: var(--orange); }
+    .offer-card .offer-spots {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 20px;
+    }
+    .offer-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+    .offer-note { font-size: 0.86rem; color: var(--muted); }
+    .growth-partner .offer-note { color: rgba(255,255,255,0.55); }
+
+    /* ── FINISH LINE REPORT CALLOUT ────────────────────────── */
+    .finish-line {
+      background: var(--cream);
+      border: 1.5px dashed var(--orange);
+      border-radius: var(--radius-lg);
+      padding: clamp(26px, 4vw, 40px);
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .finish-line .fl-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+    .finish-line h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+      color: var(--navy);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .finish-line p { color: var(--muted); font-size: 1rem; line-height: 1.6; }
+    .finish-line .fl-line {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-top: 14px;
+    }
+
+    /* ── OTHER SERVICES (condensed, collapsed) ─────────────── */
+    .other-services {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .other-services-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       width: 100%;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 16px 22px;
+      cursor: pointer;
       font-family: inherit;
-      font-size: 0.97rem;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--navy);
+      transition: border-color 0.15s;
     }
-    .lead-form small { color: rgba(255,255,255,0.62); line-height: 1.5; }
-    @media (max-width: 860px) {
-      .lead-magnet { grid-template-columns: 1fr; }
-      .ithy-grid { grid-template-columns: 1fr; }
+    .other-services-toggle:hover { border-color: var(--orange); }
+    .other-services-toggle .caret { transition: transform 0.2s ease; color: var(--orange); }
+    .other-services.is-open .other-services-toggle .caret { transform: rotate(180deg); }
+    .other-services-panel {
+      display: none;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: none;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      padding: 6px 22px 18px;
     }
-    @media (max-width: 520px) {
-      .ithy-cta { flex-direction: column; }
+    .other-services.is-open .other-services-panel { display: block; }
+    .other-services.is-open .other-services-toggle {
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      border-bottom-color: var(--line);
     }
+    .osp-item { padding: 14px 0; border-top: 1px solid var(--line); }
+    .osp-item:first-child { border-top: none; }
+    .osp-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .osp-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+    .osp-item a { font-size: 0.85rem; font-weight: 700; color: var(--orange); text-decoration: none; }
+    .osp-item a:hover { text-decoration: underline; }
+
+    @media (max-width: 780px) {
+      .paths-grid { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
 
   <main>
 
-    <!-- PAGE HERO -->
-    <section class="page-hero" style="padding-top: clamp(32px,4vw,56px); padding-bottom: clamp(24px,3vw,40px);">
+    <!-- HERO -->
+    <section class="page-hero sh-hero" style="padding-top: clamp(36px,5vw,56px); padding-bottom: clamp(28px,4vw,44px);">
       <div class="container">
         <div class="breadcrumb"><a href="index.html">Home</a> / Start Here</div>
-        <h1 id="sh-page-title">Not sure <em>where to begin?</em></h1>
-        <p id="sh-page-intro">Pick the starting point that sounds most like where you're at right now. Each one gives you practical next steps you can actually use — no jargon, no theory.</p>
+        <h1 id="sh-page-title">I help small business owners build the marketing and systems they know they need <em>and train their team to keep them running.</em></h1>
+        <p class="sh-hero-sub" id="sh-page-intro">If there's a list in your head of things you know should be sorted by now, this is where that conversation starts.</p>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Let%27s%20have%20a%20chat">Let's have a chat <span class="arrow">→</span></a>
       </div>
     </section>
 
-    <!-- FOUR STARTING POINTS -->
-    <section class="block pale" style="padding-top: clamp(36px,5vw,56px); padding-bottom: clamp(36px,5vw,56px);">
+    <!-- PROBLEM BLOCK -->
+    <section class="block pale">
       <div class="container">
-        <p class="section-eyebrow">Starting points</p>
-        <h2 class="section-title" id="sh-section-title">Click a card to open the guide.</h2>
-        <p class="section-intro" id="sh-section-intro">The card and the guide below it will both get an orange border so you can see they're connected. Click a different card to switch.</p>
-
-        <div class="start-grid">
-
-          <button class="start-card" data-panel="get-started" id="card-get-started">
-            <div class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <h3 id="sh-gs-title">Get Started</h3>
-            <p id="sh-gs-desc">Turn the messy "we should really do something" stage into a clear, practical plan you can actually follow.</p>
-            <span class="card-cta">Read starter tips <span class="caret">↓</span></span>
-          </button>
-
-          <button class="start-card" data-panel="show-up" id="card-show-up">
-            <div class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h12"/></svg>
-            </div>
-            <h3 id="sh-su-title">Show Up Better</h3>
-            <p id="sh-su-desc">Create social media, copy and marketing that sounds like your business instead of a generic template.</p>
-            <span class="card-cta">See what this can include <span class="caret">↓</span></span>
-          </button>
-
-          <button class="start-card" data-panel="ai-basics" id="card-ai-basics">
-            <div class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="7 14 11 10 14 13 21 6"/></svg>
-            </div>
-            <h3 id="sh-ai-title">Use AI Practically</h3>
-            <p id="sh-ai-desc">Learn simple ways to use AI to save time and money, without the jargon or overcomplicated tech talk.</p>
-            <span class="card-cta">Start with the basics <span class="caret">↓</span></span>
-          </button>
-
-          <button class="start-card" data-panel="brand-kit" id="card-brand-kit">
-            <div class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a8 8 0 0 0 8-8c0-4.4-3.6-8-8-8S4 9.6 4 14a8 8 0 0 0 8 8Z"/><path d="M8 14h.01"/><path d="M12 10h.01"/><path d="M16 14h.01"/></svg>
-            </div>
-            <h3 id="sh-bk-title">Build a Basic Brand Kit</h3>
-            <p id="sh-bk-desc">Pull your colours, fonts, logo use and simple brand rules into one easy guide so your content feels more consistent.</p>
-            <span class="card-cta">See what goes in it <span class="caret">↓</span></span>
-          </button>
-
-        </div>
-
-        <!-- PANELS — rendered in DOM order, JS moves them below active card -->
-        <div class="focus-panels">
-
-          <article class="content-panel" id="panel-get-started" data-panel="get-started" scroll-margin-top="100">
-            <div>
-              <h4 id="sh-gs-panel-title">Before you post, get clear on the basics.</h4>
-              <p id="sh-gs-panel-intro">Most businesses don't need more random content ideas. They need a simple starting point: who they're talking to, what they want to be known for, and what their customers actually need to hear.</p>
-            </div>
-            <ul class="tip-list">
-              <li><strong>Start with your customer.</strong> Write down who you help, what they're usually stuck on, and what they ask you all the time. If you can't answer this in two sentences, that's your starting point.</li>
-              <li><strong>Pick three content themes.</strong> Try trust, education and proof — what you believe, what you know, and what shows you can do the work. Most accounts only need these three to get going.</li>
-              <li><strong>Choose one platform first.</strong> Trying to be everywhere at once is how you end up posting nothing. Pick the platform where your actual customers are and do that one well.</li>
-              <li><strong>Make it easier to repeat.</strong> A simple content calendar beats a big plan you never open again. Even a basic spreadsheet with dates and ideas is enough.</li>
-            </ul>
-            <div class="panel-actions">
-              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Getting%20started%20with%20social%20media">Email me about this <span class="arrow">→</span></a>
-              <a class="btn secondary" href="work-examples.html">See how I've helped others</a>
-            </div>
-          </article>
-
-          <article class="content-panel" id="panel-show-up" data-panel="show-up">
-            <div>
-              <h4 id="sh-su-panel-title">Showing up better can look different for every business.</h4>
-              <p id="sh-su-panel-intro">This can include social content, reels, captions, marketing copy, guides, campaign concepts or before-and-after messaging. The goal is simple: help your business sound more like you and make it easier for customers to understand what you do.</p>
-            </div>
-            <ul class="tip-list">
-              <li><strong>Start with your voice.</strong> Write down three words that describe how your business should sound. Then look at your last five posts and ask whether they match. Usually they don't — and that gap is the fix.</li>
-              <li><strong>Lead with the customer, not the business.</strong> Instead of "We offer X service", try "If you're dealing with [problem], here's what that usually looks like and what helps." The conversation changes completely.</li>
-              <li><strong>Stop trying to sound professional.</strong> Professional usually means generic. The businesses people remember sound like a person, not a corporate template.</li>
-              <li><strong>Use what customers actually say.</strong> Your best reviews and enquiry emails are full of the exact language your next customer is Googling. Use those words in your captions and copy.</li>
-            </ul>
-            <div class="panel-actions">
-              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Content%20and%20marketing%20support">Email me about this <span class="arrow">→</span></a>
-              <a class="btn secondary" href="work-examples.html">View work examples</a>
-              <button class="btn secondary" onclick="document.getElementById('smp-modal').classList.add('is-open')">View the Social Media Package <span class="arrow">→</span></button>
-            </div>
-          </article>
-
-          <article class="content-panel" id="panel-ai-basics" data-panel="ai-basics">
-            <div>
-              <h4 id="sh-ai-panel-title">A beginner-friendly way to think about AI.</h4>
-              <p id="sh-ai-panel-intro">ChatGPT, Claude and Gemini can help you draft, organise, summarise and plan. They don't replace your judgement, but they can save real time when you give them clear instructions and check the output properly.</p>
-            </div>
-            <ul class="tip-list">
-              <li><strong>Do give context.</strong> Tell the AI who your business helps, what tone you want, and what the final piece is for. The more specific you are, the more useful the output.</li>
-              <li><strong>Don't paste private information.</strong> Avoid uploading client details, passwords, financials or sensitive staff information into any AI tool.</li>
-              <li><strong>Do check privacy settings.</strong> In tools like ChatGPT, look for data controls or privacy settings and turn off training and sharing where it's available.</li>
-              <li><strong>Don't publish without reviewing.</strong> AI can be useful, but it can also sound generic or get things wrong. Read every output before it goes anywhere public.</li>
-            </ul>
-            <div class="prompt-box">
-              "I run a [type of business] on the NSW South Coast. My customers are usually [description]. Write me three Instagram captions for [topic] in a warm, practical tone. No jargon, no corporate language. Each one should start with a different hook."
-              <br><br>
-              <em>Then read the output, adjust the bits that don't sound like you, and use it as a starting draft — not a finished post.</em>
-            </div>
-            <div class="panel-actions">
-              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=AI%20setup%20and%20training">Email me about this <span class="arrow">→</span></a>
-            </div>
-          </article>
-
-          <article class="content-panel" id="panel-brand-kit" data-panel="brand-kit">
-            <div>
-              <h4 id="sh-bk-panel-title">A simple brand kit helps everything feel more consistent.</h4>
-              <p id="sh-bk-panel-intro">This is for businesses that already have the bones of a brand, but need it pulled together into something practical they can actually use when creating posts, flyers, emails or client documents.</p>
-            </div>
-            <ul class="tip-list">
-              <li><strong>Logo and usage notes.</strong> Which logo to use, where it should sit, and what not to do with it. Sounds basic — but most businesses using their brand day-to-day don't have this written down anywhere.</li>
-              <li><strong>Colours and fonts.</strong> A simple palette and font guide so your content stops feeling mismatched. You only need two or three colours and two fonts to look consistent.</li>
-              <li><strong>Voice and message basics.</strong> A few clear notes on how the business should sound, what it should be known for, and what words or phrases to avoid. Useful for anyone helping you create content.</li>
-              <li><strong>Starter templates.</strong> Basic social, document or Canva-style layout direction so you are not starting from scratch every time you need to make something.</li>
-            </ul>
-            <div class="panel-actions">
-              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Basic%20brand%20kit">Email me about this <span class="arrow">→</span></a>
-            </div>
-          </article>
-
+        <div class="problem-block">
+          <p>Most business owners have a list of things they know they should have sorted by now. Regular content. A Google presence that actually works. Systems that don't live entirely in your head. A way for your team to pick things up without you having to explain it every time.</p>
+          <p>You're probably not missing information — you've read enough, watched enough, tried enough. What's actually missing is the runway to get it done, someone to build the strategy properly, and someone to teach your team how to keep it running once it's built.</p>
+          <p class="credibility-line">That's the part I focus on. With over ten years as a trainer and facilitator before I started this business, I don't just hand over advice and leave — I build it with you, and I teach the people around you how to keep using it.</p>
         </div>
       </div>
     </section>
 
-    <!-- IS THIS YOU -->
-    <section class="block" style="padding-top: clamp(36px,5vw,56px); padding-bottom: clamp(36px,5vw,56px);">
+    <!-- TWO PATHS -->
+    <section class="block">
       <div class="container">
-        <div class="is-this-you">
-          <p class="section-eyebrow" id="sh-ithy-eyebrow">Not sure where to start?</p>
-          <h2 class="section-title" id="sh-ithy-title">Pick what sounds most like you.</h2>
-          <div class="ithy-grid">
-            <a class="ithy-item" href="#get-started" id="sh-ithy-1">I need to get started with social media but I keep putting it off.</a>
-            <a class="ithy-item" href="#show-up" id="sh-ithy-2">My content feels inconsistent — it doesn't really sound like my business.</a>
-            <a class="ithy-item" href="#ai-basics" id="sh-ithy-3">I want to use AI but I don't know where to begin without getting it wrong.</a>
-            <a class="ithy-item" href="#brand-kit" id="sh-ithy-4">My brand feels patchy. I need things to look and feel more consistent.</a>
+        <p class="section-eyebrow">Which one sounds like you?</p>
+        <h2 class="section-title">Most businesses I work with fall into one of two spots.</h2>
+        <div class="paths-grid">
+          <div class="path-card">
+            <p class="path-label">Path A</p>
+            <h3>Growth &amp; Revenue</h3>
+            <p>You want more people finding you, more of those people becoming customers, and more revenue and hours back for the work you actually want to do.</p>
           </div>
-          <div class="ithy-cta">
-            <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Consultation%20Enquiry&body=Hi%20Tara%2C%0A%0AI%27d%20like%20to%20book%20a%20free%20consultation.%0A%0AA%20bit%20about%20my%20business%3A%0A%0A">Book a free consultation <span class="arrow">→</span></a>
-            <span class="ithy-note">No pitch. Just a conversation about where you're at.</span>
+          <div class="path-card">
+            <p class="path-label">Path B</p>
+            <h3>Systems &amp; Operations</h3>
+            <p>You want your content happening regularly, your systems out of your head, and a business that runs properly without you standing in the middle of everything.</p>
           </div>
+        </div>
+        <p class="paths-note">Either way, it leads to the same two ways of working together below.</p>
+      </div>
+    </section>
+
+    <!-- TWO OFFERS -->
+    <section class="block pale">
+      <div class="container">
+
+        <div class="offer-block">
+          <div class="offer-card starting-point">
+            <p class="offer-label">Where most people start</p>
+            <h3>The Starting Point</h3>
+            <p class="offer-body">A short, focused look at what's working and what's not — your content, your Google Business Profile, your systems — so you know exactly where the biggest opportunity is hiding. No contracts, no ongoing commitment. Just a clear-eyed look at the one thing worth fixing first.</p>
+            <p class="offer-body"><strong>What you walk away with:</strong> clarity on the one thing worth fixing first, and an honest picture of what leaving it as-is is actually costing you.</p>
+            <div class="offer-cta-row">
+              <a class="btn secondary" href="mailto:hello@taraconsultingco.com?subject=The%20Starting%20Point%20-%20Let%27s%20have%20a%20look">Let's have a look <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="offer-block">
+          <div class="offer-card growth-partner">
+            <p class="offer-label">For when you're ready to move something</p>
+            <h3>The Growth Partner</h3>
+            <p class="offer-body">A monthly partnership where we pick one number in your business and move it. Every month includes a strategy session, one focused build or improvement, weekly check-ins, and a one-page Finish Line Report showing exactly what your business finished the month with.</p>
+            <p class="offer-body">This isn't an agency retainer where an invoice lands and you're left wondering what happened. It's built for your business and taught to your team — every piece of work leaves behind something you keep, not something only I can run.</p>
+            <p class="offer-outcome">"One number. Moved. Reported. Every month."</p>
+            <p class="offer-spots">Five spots per month — genuinely, not a manufactured limit. Each client gets roughly a day of my time a month, and keeping that number small is what keeps the work good.</p>
+            <div class="offer-cta-row">
+              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=The%20Growth%20Partner%20-%20Let%27s%20talk%20about%20your%20number">Let's talk about your number <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FINISH LINE REPORT -->
+    <section class="block">
+      <div class="container">
+        <div class="finish-line">
+          <p class="fl-eyebrow">The Finish Line Report</p>
+          <h3>What did you finish the month with?</h3>
+          <p>At the end of every month as a Growth Partner client, you get one page showing exactly what your business finished with — not a summary of hours worked, an actual result.</p>
+          <p class="fl-line">One number. Moved. Reported.</p>
         </div>
       </div>
     </section>
 
-    <!-- FREE RESOURCE -->
-    <section class="block" id="free-resource" style="padding-top: clamp(36px,5vw,56px); padding-bottom: clamp(36px,5vw,56px);">
+    <!-- OTHER SERVICES (condensed) -->
+    <section class="block pale">
       <div class="container">
-        <div class="lead-magnet">
-          <div>
-            <p class="section-eyebrow" id="sh-free-eyebrow">Free resource</p>
-            <h2 class="section-title" id="sh-free-title">Start with a free Business Growth Scorecard.</h2>
-            <p id="sh-free-body">Pop your email in and I'll send you a free Business Growth Scorecard — a quick, honest snapshot of where your business is right now, and the simplest place to start.</p>
-          </div>
-          <form class="lead-form" id="sh-lead-form">
-            <label for="sh-lead-email">Email address</label>
-            <input type="email" id="sh-lead-email" placeholder="you@example.com" required>
-            <button class="btn" type="submit">Send me the free resource <span class="arrow">→</span></button>
-            <div id="sh-lead-msg" style="display:none;margin-top:14px;padding:12px 16px;border-radius:8px;font-size:14px;line-height:1.5"></div>
-            <small style="display:block;margin-top:14px">Follow us on Instagram and Facebook for practical tips, helpful resources and updates to support your business.</small>
-            <div style="display:flex;gap:12px;margin-top:12px;align-items:center">
-              <a href="https://www.instagram.com/taraconsultingco/" target="_blank" rel="noopener" aria-label="Follow on Instagram" style="display:inline-flex">
-                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="34" height="34" rx="9" fill="#14213D"/>
-                  <rect x="9.5" y="9.5" width="15" height="15" rx="4.5" stroke="#F77F00" stroke-width="2"/>
-                  <circle cx="17" cy="17" r="3.7" stroke="#F77F00" stroke-width="2"/>
-                  <circle cx="21.4" cy="12.6" r="1.2" fill="#F77F00"/>
-                </svg>
-              </a>
-              <a href="https://www.facebook.com/taraconsultingco" target="_blank" rel="noopener" aria-label="Follow on Facebook" style="display:inline-flex">
-                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="34" height="34" rx="9" fill="#14213D"/>
-                  <path d="M19.5 17.5h2.2l.4-2.8h-2.6v-1.8c0-.8.3-1.3 1.4-1.3h1.3V9.1c-.6-.1-1.4-.2-2.2-.2-2.3 0-3.8 1.4-3.8 3.9v2.1h-2.4v2.8h2.4v7h2.9v-7z" fill="#F77F00"/>
-                </svg>
-              </a>
+        <div class="other-services" id="other-services">
+          <button class="other-services-toggle" id="other-services-toggle" aria-expanded="false">
+            <span>Looking for something more specific?</span>
+            <span class="caret">↓</span>
+          </button>
+          <div class="other-services-panel">
+            <div class="osp-item">
+              <h4 id="sh-gs-title">Get Started</h4>
+              <p id="sh-gs-desc">Turn the messy "we should really do something" stage into a clear, practical plan you can actually follow.</p>
+              <a href="mailto:hello@taraconsultingco.com?subject=Getting%20started%20with%20social%20media">Email me about this →</a>
             </div>
-          </form>
+            <div class="osp-item">
+              <h4 id="sh-su-title">Show Up Better</h4>
+              <p id="sh-su-desc">Create social media, copy and marketing that sounds like your business instead of a generic template.</p>
+              <a href="mailto:hello@taraconsultingco.com?subject=Content%20and%20marketing%20support">Email me about this →</a>
+              &nbsp;·&nbsp;
+              <a href="#" onclick="document.getElementById('smp-modal').classList.add('is-open');return false;">View the Social Media Package →</a>
+            </div>
+            <div class="osp-item">
+              <h4 id="sh-ai-title">Use AI Practically</h4>
+              <p id="sh-ai-desc">Learn simple ways to use AI to save time and money, without the jargon or overcomplicated tech talk.</p>
+              <a href="mailto:hello@taraconsultingco.com?subject=AI%20setup%20and%20training">Email me about this →</a>
+            </div>
+            <div class="osp-item">
+              <h4 id="sh-bk-title">Build a Basic Brand Kit</h4>
+              <p id="sh-bk-desc">Pull your colours, fonts, logo use and simple brand rules into one easy guide so your content feels more consistent.</p>
+              <a href="mailto:hello@taraconsultingco.com?subject=Basic%20brand%20kit">Email me about this →</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="block cta" id="contact" style="padding-top: clamp(36px,5vw,56px); padding-bottom: clamp(36px,5vw,56px);">
+    <section class="block cta" id="contact">
       <div class="container cta-inner">
-        <h2>Ready to make modern marketing feel less overwhelming?</h2>
-        <p>Book a free consultation and we'll talk through where you're at, what's feeling messy, and what support would make the next step easier.</p>
-        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Strategy%20Call%20Enquiry">Book My Free Call <span class="arrow">→</span></a>
+        <h2>Let's start the conversation.</h2>
+        <p>Based on the South Coast of NSW, working with business owners who want less guessing and more finishing. Tell me a bit about where you're at, and we'll figure out which way of working together fits.</p>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Tell%20me%20about%20your%20business">Tell me about your business <span class="arrow">→</span></a>
       </div>
     </section>
 
@@ -995,109 +877,28 @@
 
   <script src="shared.js"></script>
   <script>
-    // ── PANEL TOGGLE WITH ORANGE BORDER PAIRING ───────────
-    function openPanel(panelKey) {
-      // Remove active from all cards and panels
-      document.querySelectorAll('.start-card').forEach(c => c.classList.remove('is-active'));
-      document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('is-active'));
-
-      const card  = document.getElementById('card-' + panelKey);
-      const panel = document.getElementById('panel-' + panelKey);
-      if (!card || !panel) return;
-
-      // Both get orange border simultaneously
-      card.classList.add('is-active');
-      panel.classList.add('is-active');
-
-      // Scroll so the panel is visible just below the card
-      const headerH = document.querySelector('header')?.offsetHeight || 80;
-      const top = panel.getBoundingClientRect().top + window.scrollY - headerH - 20;
-      setTimeout(() => window.scrollTo({ top, behavior: 'smooth' }), 30);
-    }
-
-    document.querySelectorAll('.start-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const key = card.dataset.panel;
-        // If already open, close it
-        if (card.classList.contains('is-active')) {
-          card.classList.remove('is-active');
-          document.getElementById('panel-' + key)?.classList.remove('is-active');
-        } else {
-          openPanel(key);
-        }
+    // ── OTHER SERVICES DISCLOSURE ──────────────────────────
+    (function() {
+      var wrap = document.getElementById('other-services');
+      var toggle = document.getElementById('other-services-toggle');
+      if (!wrap || !toggle) return;
+      toggle.addEventListener('click', function() {
+        var open = wrap.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open);
       });
-    });
-
-    // ── OPEN FROM URL HASH (e.g. start-here.html#ai-basics) ──
-    function openFromHash() {
-      const hash = window.location.hash.replace('#', '');
-      if (hash && document.getElementById('card-' + hash)) {
-        openPanel(hash);
-      }
-    }
-    // Small delay so page renders before scrolling
-    setTimeout(openFromHash, 150);
-    window.addEventListener('hashchange', openFromHash);
+    })();
 
     // Load editable page text from Supabase (cache-first, see shared.js)
     window.loadSiteContent([
-      'sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc',
-      'sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc',
-      'sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro',
-      'sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro',
-      'sh-ithy-eyebrow','sh-ithy-title','sh-ithy-1','sh-ithy-2','sh-ithy-3','sh-ithy-4',
-      'sh-free-eyebrow','sh-free-title','sh-free-body'
+      'sh-page-title', 'sh-page-intro',
+      'sh-gs-title', 'sh-gs-desc', 'sh-su-title', 'sh-su-desc',
+      'sh-ai-title', 'sh-ai-desc', 'sh-bk-title', 'sh-bk-desc'
     ], function(key, value) {
       var el = document.getElementById(key);
       if (!el) return;
       if (key === 'sh-page-title') { el.innerHTML = value; return; }
       el.textContent = value;
     });
-
-    // ── FREE RESOURCE FORM (Start Here page) ──────────────────
-    document.getElementById('sh-lead-form')?.addEventListener('submit', async e => {
-      e.preventDefault();
-      const email = document.getElementById('sh-lead-email').value.trim();
-      const btn = e.currentTarget.querySelector('button');
-      const original = btn.innerHTML;
-      if (!email) return;
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      const SB = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
-      const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
-      try {
-        await fetch(SB + '/rest/v1/leads', {
-          method: 'POST',
-          headers: { 'apikey': ANON, 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, source: 'start-here' })
-        });
-      } catch(err) {}
-      let sent = false;
-      try {
-        const res = await fetch(SB + '/functions/v1/send-resource', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ANON },
-          body: JSON.stringify({ email: email })
-        });
-        sent = res.ok;
-      } catch(err) {}
-      const msg = document.getElementById('sh-lead-msg');
-      btn.disabled = false;
-      btn.innerHTML = original;
-      if (sent) {
-        btn.innerHTML = '✓ Check your email!';
-        msg.style.background = '#E8F5EC'; msg.style.color = '#1a6b3a';
-        msg.innerHTML = 'On its way! Check your email — your free Business Growth Scorecard is waiting in your inbox. (Have a peek in spam if it’s not there in a minute.)';
-        msg.style.display = 'block';
-      } else {
-        msg.style.background = '#E8F5EC'; msg.style.color = '#1a6b3a';
-        msg.innerHTML = 'Thanks! You’re on the list and I’ll get your scorecard across to you shortly.';
-        msg.style.display = 'block';
-      }
-      e.target.reset();
-      setTimeout(() => { btn.disabled = false; btn.innerHTML = original; }, 4000);
-    });
-
   </script>
 </body>
 </html>

@@ -422,112 +422,60 @@
       </div>
 
       <div class="admin-card">
-        <div class="admin-card-title">Start Here — page text</div>
-        <p class="field-hint" style="margin-bottom:16px">Edit the intro text at the top of the Start Here page.</p>
-        <label class="field-label">Page title</label>
-        <input type="text" id="sh-page-title" value="Not sure where to begin?"/>
-        <label class="field-label">Page intro paragraph</label>
-        <textarea id="sh-page-intro" style="min-height:70px">Pick the starting point that sounds most like where you're at right now. Each one gives you practical next steps you can actually use — no jargon, no theory.</textarea>
-        <label class="field-label">Section title</label>
-        <input type="text" id="sh-section-title" value="Click a card to open the guide."/>
-        <label class="field-label">Section intro</label>
-        <input type="text" id="sh-section-intro" value="The card and the guide below it will both get an orange border so you can see they're connected. Click a different card to switch."/>
-        <button class="btn-save" id="btn-save-sh-text">Save Start Here page text</button>
+        <div class="admin-card-title">Start Here — hero text</div>
+        <p class="field-hint" style="margin-bottom:16px">The core positioning sentence and sub-line at the top of the Start Here page.</p>
+        <label class="field-label">Hero headline (core positioning sentence)</label>
+        <textarea id="sh-page-title" style="min-height:90px">I help small business owners build the marketing and systems they know they need and train their team to keep them running.</textarea>
+        <label class="field-label">Sub-line under the headline</label>
+        <textarea id="sh-page-intro" style="min-height:60px">If there's a list in your head of things you know should be sorted by now, this is where that conversation starts.</textarea>
+        <button class="btn-save" id="btn-save-sh-text">Save Start Here hero text</button>
         <span class="save-msg" id="sh-text-save-msg">✓ Saved</span>
       </div>
 
       <div class="admin-card">
-        <div class="admin-card-title">Start Here — four panel headings and tips</div>
-        <p class="field-hint" style="margin-bottom:16px">Each card has a heading and intro paragraph. Edit them here. Tips inside the panels are also editable.</p>
+        <div class="admin-card-title">Start Here — "Looking for something more specific?" (collapsed section)</div>
+        <p class="field-hint" style="margin-bottom:16px">These four items sit in a collapsed, click-to-open box near the bottom of Start Here — not the main focus of the page, just there for anyone who wants to dig deeper.</p>
         <div class="form-row">
           <div>
-            <label class="field-label">Get Started — card title</label>
+            <label class="field-label">Get Started — title</label>
             <input type="text" id="sh-gs-title" value="Get Started"/>
-            <label class="field-label">Card description</label>
+            <label class="field-label">Description</label>
             <textarea id="sh-gs-desc" style="min-height:70px">Turn the messy "we should really do something" stage into a clear, practical plan you can actually follow.</textarea>
           </div>
           <div>
-            <label class="field-label">Show Up Better — card title</label>
+            <label class="field-label">Show Up Better — title</label>
             <input type="text" id="sh-su-title" value="Show Up Better"/>
-            <label class="field-label">Card description</label>
+            <label class="field-label">Description</label>
             <textarea id="sh-su-desc" style="min-height:70px">Create social media, copy and marketing that sounds like your business instead of a generic template.</textarea>
           </div>
         </div>
         <div class="form-row" style="margin-top:16px">
           <div>
-            <label class="field-label">Use AI Practically — card title</label>
+            <label class="field-label">Use AI Practically — title</label>
             <input type="text" id="sh-ai-title" value="Use AI Practically"/>
-            <label class="field-label">Card description</label>
+            <label class="field-label">Description</label>
             <textarea id="sh-ai-desc" style="min-height:70px">Learn simple ways to use AI to save time and money, without the jargon or overcomplicated tech talk.</textarea>
           </div>
           <div>
-            <label class="field-label">Build a Brand Kit — card title</label>
+            <label class="field-label">Build a Brand Kit — title</label>
             <input type="text" id="sh-bk-title" value="Build a Basic Brand Kit"/>
-            <label class="field-label">Card description</label>
+            <label class="field-label">Description</label>
             <textarea id="sh-bk-desc" style="min-height:70px">Pull your colours, fonts, logo use and simple brand rules into one easy guide so your content feels more consistent.</textarea>
           </div>
         </div>
-        <div style="border-top:1px solid var(--line);margin:24px 0 4px"></div>
-        <p class="field-hint" style="margin-bottom:16px;font-weight:700;color:var(--navy)">Guide panel content (the expanded section that opens when a card is clicked)</p>
-
-        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:14px">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Get Started — guide panel</div>
-          <label class="field-label">Panel heading</label>
-          <input type="text" id="sh-gs-panel-title" value="Before you post, get clear on the basics."/>
-          <label class="field-label">Panel intro paragraph</label>
-          <textarea id="sh-gs-panel-intro" style="min-height:70px">Most businesses don't need more random content ideas. They need a simple starting point: who they're talking to, what they want to be known for, and what their customers actually need to hear.</textarea>
-        </div>
-
-        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:14px">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Show Up Better — guide panel</div>
-          <label class="field-label">Panel heading</label>
-          <input type="text" id="sh-su-panel-title" value="Showing up better can look different for every business."/>
-          <label class="field-label">Panel intro paragraph</label>
-          <textarea id="sh-su-panel-intro" style="min-height:70px">This can include social content, reels, captions, marketing copy, guides, campaign concepts or before-and-after messaging. The goal is simple: help your business sound more like you and make it easier for customers to understand what you do.</textarea>
-        </div>
-
-        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:14px">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Use AI Practically — guide panel</div>
-          <label class="field-label">Panel heading</label>
-          <input type="text" id="sh-ai-panel-title" value="A beginner-friendly way to think about AI."/>
-          <label class="field-label">Panel intro paragraph</label>
-          <textarea id="sh-ai-panel-intro" style="min-height:70px">ChatGPT, Claude and Gemini can help you draft, organise, summarise and plan. They don't replace your judgement, but they can save real time when you give them clear instructions and check the output properly.</textarea>
-        </div>
-
-        <div style="background:var(--grey);border-radius:10px;padding:18px;margin-bottom:18px">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Build a Brand Kit — guide panel</div>
-          <label class="field-label">Panel heading</label>
-          <input type="text" id="sh-bk-panel-title" value="A simple brand kit helps everything feel more consistent."/>
-          <label class="field-label">Panel intro paragraph</label>
-          <textarea id="sh-bk-panel-intro" style="min-height:70px">This is for businesses that already have the bones of a brand, but need it pulled together into something practical they can actually use when creating posts, flyers, emails or client documents.</textarea>
-        </div>
-
-        <button class="btn-save" id="btn-save-starthero">Save Start Here cards</button>
+        <button class="btn-save" id="btn-save-starthero">Save these four items</button>
         <span class="save-msg" id="sh-save-msg">✓ Saved</span>
       </div>
 
       <div class="admin-card">
-        <div class="admin-card-title">Start Here — "Is This You" &amp; Free Resource</div>
-        <label class="field-label">Section eyebrow</label>
-        <input type="text" id="sh-ithy-eyebrow" value="Not sure where to start?"/>
-        <label class="field-label">Section heading</label>
-        <input type="text" id="sh-ithy-title" value="Pick what sounds most like you."/>
-        <label class="field-label">Card 1</label>
-        <input type="text" id="sh-ithy-1" value="I need to get started with social media but I keep putting it off."/>
-        <label class="field-label">Card 2</label>
-        <input type="text" id="sh-ithy-2" value="My content feels inconsistent — it doesn't really sound like my business."/>
-        <label class="field-label">Card 3</label>
-        <input type="text" id="sh-ithy-3" value="I want to use AI but I don't know where to begin without getting it wrong."/>
-        <label class="field-label">Card 4</label>
-        <input type="text" id="sh-ithy-4" value="My brand feels patchy. I need things to look and feel more consistent."/>
-        <label class="field-label">Free resource eyebrow</label>
-        <input type="text" id="sh-free-eyebrow" value="Free resource"/>
-        <label class="field-label">Free resource heading</label>
-        <input type="text" id="sh-free-title" value="Start with a free Business Growth Scorecard."/>
-        <label class="field-label">Free resource body text</label>
-        <textarea id="sh-free-body" style="min-height:80px">Pop your email in and I'll send you a free Business Growth Scorecard — a quick, honest snapshot of where your business is right now, and the simplest place to start.</textarea>
-        <button class="btn-save" id="btn-save-sh-ithy">Save Is This You &amp; Free Resource</button>
-        <span class="save-msg" id="sh-ithy-save-msg">✓ Saved</span>
+        <div class="admin-card-title">Blog — scorecard box</div>
+        <p class="field-hint" style="margin-bottom:16px">The small email opt-in box in the top-right of the Blog page header.</p>
+        <label class="field-label">Eyebrow</label>
+        <input type="text" id="blog-scorecard-eyebrow" value="Free resource"/>
+        <label class="field-label">Title</label>
+        <input type="text" id="blog-scorecard-title" value="Get your free Business Growth Scorecard"/>
+        <button class="btn-save" id="btn-save-blog-scorecard">Save scorecard box</button>
+        <span class="save-msg" id="blog-scorecard-save-msg">✓ Saved</span>
       </div>
 
       <div class="admin-card">
@@ -1029,7 +977,7 @@ async function loadHomepageContent() {
 }
 
 async function loadPagesContent() {
-  const fields = ['footer-tagline','footer-email','footer-meta','sh-page-title','sh-page-intro','sh-section-title','sh-section-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro','sh-ithy-eyebrow','sh-ithy-title','sh-ithy-1','sh-ithy-2','sh-ithy-3','sh-ithy-4','sh-free-eyebrow','sh-free-title','sh-free-body','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'];
+  const fields = ['footer-tagline','footer-email','footer-meta','sh-page-title','sh-page-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','blog-scorecard-eyebrow','blog-scorecard-title','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -1043,9 +991,9 @@ async function loadPagesContent() {
   { btn:'btn-save-cta',      msg:'cta-save-msg',    fields:['hp-cta-headline','hp-cta-body','hp-cta-btn'] },
   { btn:'btn-save-why',      msg:'why-save-msg',    fields:['hp-why-eyebrow','hp-why-title','hp-b1-t','hp-b1-d','hp-b2-t','hp-b2-d','hp-b3-t','hp-b3-d','hp-b4-t','hp-b4-d','hp-b5-t','hp-b5-d','hp-b6-t','hp-b6-d'] },
   { btn:'btn-save-we-text',  msg:'we-text-save-msg', fields:['we-page-intro','we-section-title','we-section-intro'] },
-  { btn:'btn-save-sh-text',  msg:'sh-text-save-msg', fields:['sh-page-title','sh-page-intro','sh-section-title','sh-section-intro'] },
-  { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','sh-gs-panel-title','sh-gs-panel-intro','sh-su-panel-title','sh-su-panel-intro','sh-ai-panel-title','sh-ai-panel-intro','sh-bk-panel-title','sh-bk-panel-intro'] },
-  { btn:'btn-save-sh-ithy', msg:'sh-ithy-save-msg', fields:['sh-ithy-eyebrow','sh-ithy-title','sh-ithy-1','sh-ithy-2','sh-ithy-3','sh-ithy-4','sh-free-eyebrow','sh-free-title','sh-free-body'] },
+  { btn:'btn-save-sh-text',  msg:'sh-text-save-msg', fields:['sh-page-title','sh-page-intro'] },
+  { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc'] },
+  { btn:'btn-save-blog-scorecard', msg:'blog-scorecard-save-msg', fields:['blog-scorecard-eyebrow','blog-scorecard-title'] },
   
   { btn:'btn-save-footer', msg:'footer-save-msg', fields:['footer-tagline','footer-email','footer-meta'] },
   { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'] },

@@ -29,6 +29,57 @@
   <link rel="stylesheet" href="shared.css">
   <style>
 
+    /* ── SCORECARD BOX (in page hero) ──────────────────────── */
+    .blog-hero-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .blog-hero-text { flex: 1 1 460px; }
+    .scorecard-box {
+      flex: 0 0 260px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+    .scorecard-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 6px;
+    }
+    .scorecard-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .scorecard-form { display: grid; gap: 8px; }
+    .scorecard-form input {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      min-height: 38px;
+      padding: 8px 14px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      width: 100%;
+    }
+    .scorecard-form .btn {
+      padding: 9px 16px;
+      font-size: 0.85rem;
+      justify-content: center;
+    }
+    @media (max-width: 780px) {
+      .scorecard-box { flex-basis: 100%; }
+    }
+
     /* ── FILTER ROW ────────────────────────────────────────── */
     .filter-row {
       display: flex;
@@ -177,10 +228,21 @@
 
   <main>
     <section class="page-hero">
-      <div class="container">
-        <div class="breadcrumb"><a href="index.html">Home</a> / Blog</div>
-        <h1>What's actually working in <em>marketing right now.</em></h1>
-        <p>Practical reads on social media, SEO, paid ads and AI — grounded in what's genuinely changing in 2026, not what worked three years ago.</p>
+      <div class="container blog-hero-row">
+        <div class="blog-hero-text">
+          <div class="breadcrumb"><a href="index.html">Home</a> / Blog</div>
+          <h1>What's actually working in <em>marketing right now.</em></h1>
+          <p>Practical reads on social media, SEO, paid ads and AI — grounded in what's genuinely changing in 2026, not what worked three years ago.</p>
+        </div>
+        <div class="scorecard-box">
+          <p class="scorecard-eyebrow" id="blog-scorecard-eyebrow">Free resource</p>
+          <p class="scorecard-title" id="blog-scorecard-title">Get your free Business Growth Scorecard</p>
+          <form class="scorecard-form" id="blog-scorecard-form">
+            <input type="email" id="blog-scorecard-email" placeholder="you@example.com" required>
+            <button class="btn" type="submit">Send it <span class="arrow">→</span></button>
+          </form>
+          <div id="blog-scorecard-msg" style="display:none;margin-top:10px;padding:9px 12px;border-radius:8px;font-size:12.5px;line-height:1.5"></div>
+        </div>
       </div>
     </section>
 
@@ -292,6 +354,51 @@
 
     renderPosts('all');
     fetchPostsFromSupabase();
+
+    // Load editable scorecard box text from Supabase (cache-first, see shared.js)
+    window.loadSiteContent(['blog-scorecard-eyebrow', 'blog-scorecard-title'], function(key, value) {
+      const el = document.getElementById(key);
+      if (el) el.textContent = value;
+    });
+
+    // ── SCORECARD FORM ─────────────────────────────────────
+    document.getElementById('blog-scorecard-form')?.addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = document.getElementById('blog-scorecard-email').value.trim();
+      const btn = e.currentTarget.querySelector('button');
+      const original = btn.innerHTML;
+      if (!email) return;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      const SB = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
+      const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
+      try {
+        await fetch(SB + '/rest/v1/leads', {
+          method: 'POST',
+          headers: { 'apikey': ANON, 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'blog' })
+        });
+      } catch(err) {}
+      let sent = false;
+      try {
+        const res = await fetch(SB + '/functions/v1/send-resource', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ANON },
+          body: JSON.stringify({ email: email })
+        });
+        sent = res.ok;
+      } catch(err) {}
+      const msg = document.getElementById('blog-scorecard-msg');
+      btn.disabled = false;
+      btn.innerHTML = original;
+      msg.style.background = '#E8F5EC'; msg.style.color = '#1a6b3a';
+      msg.innerHTML = sent
+        ? 'Check your email — it’s on its way!'
+        : 'Thanks! I’ll get it across to you shortly.';
+      msg.style.display = 'block';
+      e.target.reset();
+      setTimeout(() => { msg.style.display = 'none'; }, 5000);
+    });
   </script>
 </body>
 </html>

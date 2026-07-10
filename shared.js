@@ -147,7 +147,7 @@
 
   var PAGES_INDEX = [
     { title: 'Home', url: '/', excerpt: 'Social media, AI and marketing support for small business owners.' },
-    { title: 'Start Here', url: 'start-here.html', excerpt: "Not sure where to begin? Pick the starting point that sounds most like you." },
+    { title: 'Start Here', url: 'start-here.html', excerpt: "The marketing and systems you know you need, built for your business and taught to your team." },
     { title: 'Work Examples', url: 'work-examples.html', excerpt: 'Businesses and community projects supported across social media, AI and marketing.' },
     { title: 'Packages', url: 'packages.html', excerpt: 'Weekly social media support or a one-off starter package, with clear pricing.' },
     { title: 'Blog', url: 'blog.html', excerpt: 'Practical articles on social media, SEO, AI and marketing for small business.' },
