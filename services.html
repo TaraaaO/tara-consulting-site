@@ -29,9 +29,13 @@
   <link rel="stylesheet" href="shared.css">
   <style>
 
+    .page-hero { padding-bottom: clamp(16px, 2.5vw, 28px); }
+
     /* ── SERVICE LIST ──────────────────────────────────────── */
+    .svc-section { padding-top: clamp(8px, 1.5vw, 16px); }
     .svc-intro { max-width: 640px; margin-bottom: 20px; }
     .svc-intro p { font-size: 1.05rem; color: var(--muted); }
+    .svc-title { color: var(--orange); }
 
     .svc-list {
       column-count: 2;
@@ -99,11 +103,11 @@
     </section>
 
     <!-- SERVICES GRID -->
-    <section class="block">
+    <section class="block svc-section">
       <div class="container">
         <div class="svc-intro">
           <p class="section-eyebrow">What I actually do</p>
-          <h2 class="section-title">The blurry bit, made clear.</h2>
+          <h2 class="section-title svc-title">What I can help with.</h2>
         </div>
 
         <div class="svc-list">
