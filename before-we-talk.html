@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HPKE3N8VXG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HPKE3N8VXG');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before we talk | Tara Consulting Co</title>
+<meta name="robots" content="noindex, nofollow"/>
+<meta name="description" content="A few quick things before our call, so we can spend the time on what matters.">
+<link rel="icon" type="image/png" href="favicon.png"/>
+
+<script>const FORM_ENDPOINT = "/.netlify/functions/submit-precall";</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#14213D;
+  --orange:#F77F00;
+  --peach:#FFE2C2;
+  --cream:#FAF6F0;
+  --line:#E2D8C8;
+  --muted:#5A6478;
+  --tag:#8FA0B8;
+  --display:'Fraunces', Georgia, serif;
+  --body:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+*{box-sizing:border-box;}
+
+html{-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--navy);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+}
+
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ---------- cover band ---------- */
+.band{
+  background:var(--navy);
+  padding:56px 32px 48px;
+}
+.band-inner{max-width:720px;margin:0 auto;}
+.eyebrow{
+  font-family:var(--body);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--orange);
+  margin:0 0 22px;
+}
+.band h1{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(38px,8vw,58px);
+  line-height:1.02;
+  color:#fff;
+  margin:0 0 14px;
+}
+.band h1 .dot{color:var(--orange);}
+.band .sub{
+  font-weight:500;
+  font-size:clamp(17px,3vw,20px);
+  color:#fff;
+  margin:0 0 10px;
+}
+.band .tag{
+  font-style:italic;
+  font-size:16px;
+  color:var(--tag);
+  margin:0;
+}
+
+/* ---------- body ---------- */
+main{padding:0 32px 80px;}
+
+.intro{
+  background:var(--peach);
+  padding:28px 30px;
+  margin:40px 0 48px;
+}
+.intro p{margin:0 0 12px;}
+.intro p:last-child{margin-bottom:0;}
+
+section{margin-bottom:52px;}
+
+.sec-head{
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+  padding-bottom:10px;
+  border-bottom:1.5px solid var(--orange);
+}
+.num{
+  font-family:var(--body);
+  font-weight:700;
+  font-size:13px;
+  color:var(--orange);
+  letter-spacing:0.08em;
+}
+h2{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(24px,4.5vw,30px);
+  line-height:1.15;
+  margin:0;
+}
+.note{
+  font-style:italic;
+  font-size:15px;
+  color:var(--muted);
+  margin:14px 0 26px;
+}
+
+/* ---------- fields ---------- */
+.field{margin-bottom:22px;}
+.row{display:flex;gap:22px;}
+.row > .field{flex:1 1 0;min-width:0;}
+
+label{
+  display:block;
+  font-weight:700;
+  font-size:15px;
+  margin-bottom:8px;
+}
+label .opt{
+  font-weight:400;
+  font-style:italic;
+  color:var(--muted);
+  font-size:14px;
+}
+
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=url],
+textarea{
+  display:block;
+  width:100%;
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.5;
+  color:var(--navy);
+  background:#fff;
+  border:1px solid #D9CFC0;
+  border-radius:2px;
+  padding:13px 14px;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+textarea{min-height:110px;resize:vertical;}
+
+input:hover,textarea:hover{border-color:#BFB2A0;}
+input:focus,textarea:focus{
+  outline:none;
+  border-color:var(--navy);
+  box-shadow:0 0 0 3px rgba(247,127,0,.25);
+}
+input.err,textarea.err{border-color:#C1440E;}
+
+.err-msg{
+  display:none;
+  color:#C1440E;
+  font-size:14px;
+  margin-top:6px;
+}
+.err-msg.show{display:block;}
+
+/* ---------- submit ---------- */
+.closing{
+  background:var(--navy);
+  padding:34px 32px;
+  margin-top:8px;
+}
+.closing h3{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:24px;
+  color:#fff;
+  margin:0 0 12px;
+}
+.closing h3 .dot{color:var(--orange);}
+.closing p{color:#fff;margin:0 0 26px;font-size:16px;}
+
+button{
+  font-family:var(--body);
+  font-weight:700;
+  font-size:17px;
+  color:var(--navy);
+  background:var(--orange);
+  border:none;
+  border-radius:2px;
+  padding:16px 34px;
+  cursor:pointer;
+  transition:transform .12s ease, filter .15s ease;
+}
+button:hover{filter:brightness(1.07);}
+button:active{transform:translateY(1px);}
+button:focus-visible{outline:3px solid #fff;outline-offset:3px;}
+button[disabled]{opacity:.6;cursor:default;}
+
+.send-err{
+  display:none;
+  color:var(--peach);
+  font-size:15px;
+  margin-top:16px;
+}
+.send-err.show{display:block;}
+
+/* ---------- thank you ---------- */
+#done{display:none;padding:64px 32px 96px;}
+#done .panel{
+  background:var(--peach);
+  padding:44px 36px;
+}
+#done h2{margin:0 0 16px;}
+#done p{margin:0 0 14px;}
+#done p:last-child{margin-bottom:0;}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:24px 32px 40px;
+  font-size:14px;
+  color:var(--muted);
+}
+footer a{color:inherit;text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .brand{font-weight:700;color:var(--navy);}
+footer .brand .dot{color:var(--orange);}
+
+@media (max-width:620px){
+  .band{padding:44px 22px 38px;}
+  main{padding:0 22px 64px;}
+  .row{flex-direction:column;gap:0;}
+  .intro{padding:24px 22px;margin:32px 0 40px;}
+  .closing{padding:28px 22px;}
+  button{width:100%;}
+  footer{padding:22px 22px 36px;}
+  #done{padding:48px 22px 72px;}
+  #done .panel{padding:32px 24px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<div id="form-view">
+
+  <div class="band">
+    <div class="band-inner">
+      <p class="eyebrow">Tara Consulting Co</p>
+      <h1>Before we talk<span class="dot">.</span></h1>
+      <p class="sub">A few quick things so I can make the most of our call</p>
+      <p class="tag">Ten minutes is plenty. First answers are usually the right ones.</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="wrap">
+
+      <div class="intro">
+        <p>There's no prep needed beyond this form. It should take about ten minutes.</p>
+        <p>I'll have a proper look at everything before we talk, so we can spend the call on the things only you can tell me. There's no pitch at the end. I'll go away, think about it, and come back to you with what I reckon would actually make the difference.</p>
+      </div>
+
+      <form id="precall" novalidate>
+
+        <section>
+          <div class="sec-head"><span class="num">01</span><h2>The basics</h2></div>
+          <p class="note">Just so I know who I'm talking to.</p>
+
+          <div class="row">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" autocomplete="name">
+              <p class="err-msg" id="err-name">I'll need your name to get back to you.</p>
+            </div>
+            <div class="field">
+              <label for="business">Business name</label>
+              <input type="text" id="business" name="business" autocomplete="organization">
+              <p class="err-msg" id="err-business">Pop your business name in here.</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="phone">Best phone number</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="email">Best email</label>
+              <input type="email" id="email" name="email" autocomplete="email">
+              <p class="err-msg" id="err-email">I'll need an email I can reach you on.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="whatyoudo">What do you do, and who do you do it for?</label>
+            <textarea id="whatyoudo" name="whatyoudo"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="howlong">How long have you been going?</label>
+              <input type="text" id="howlong" name="howlong">
+            </div>
+            <div class="field">
+              <label for="team">Who's in the business? Just you, or a team?</label>
+              <input type="text" id="team" name="team">
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="sec-head"><span class="num">02</span><h2>Where I can find you</h2></div>
+          <p class="note">So I can have a look before we talk. Leave anything blank if you haven't got it, that's useful for me to know too.</p>
+
+          <div class="row">
+            <div class="field">
+              <label for="website">Website <span class="opt">optional</span></label>
+              <input type="text" id="website" name="website">
+            </div>
+            <div class="field">
+              <label for="gbp">Google Business Profile <span class="opt">optional</span></label>
+              <input type="text" id="gbp" name="gbp">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="socials">Social accounts you're active on <span class="opt">optional</span></label>
+            <input type="text" id="socials" name="socials" placeholder="Instagram, Facebook, LinkedIn, anywhere else">
+          </div>
+
+          <div class="field">
+            <label for="other">Anything else you'd like me to look at <span class="opt">optional</span></label>
+            <input type="text" id="other" name="other">
+          </div>
+        </section>
+
+        <section>
+          <div class="sec-head"><span class="num">03</span><h2>Three questions worth a think</h2></div>
+          <p class="note">Short answers are fine. Don't overthink these, whatever comes to mind first is usually the honest one.</p>
+
+          <div class="field">
+            <label for="q1">What's the thing that keeps landing back on your desk that you wish it didn't?</label>
+            <textarea id="q1" name="q1"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="q2">What's the one number you'd most like to see move?</label>
+            <textarea id="q2" name="q2"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="q3">What are you hoping is different in twelve months?</label>
+            <textarea id="q3" name="q3"></textarea>
+          </div>
+        </section>
+
+        <section>
+          <div class="sec-head"><span class="num">04</span><h2>Practical</h2></div>
+          <p class="note">This helps me suggest something that actually fits your week.</p>
+
+          <div class="row">
+            <div class="field">
+              <label for="time">Realistically, how much time have you got each week for this?</label>
+              <input type="text" id="time" name="time">
+            </div>
+            <div class="field">
+              <label for="deciders">Is anyone else involved in deciding?</label>
+              <input type="text" id="deciders" name="deciders">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="timeframe">Any timeframe you're working to, or anything coming up?</label>
+            <input type="text" id="timeframe" name="timeframe">
+          </div>
+
+          <div class="field">
+            <label for="anythingelse">Anything else you'd like me to know before we talk? <span class="opt">optional</span></label>
+            <textarea id="anythingelse" name="anythingelse"></textarea>
+          </div>
+        </section>
+
+        <div class="closing">
+          <h3>That's everything I need<span class="dot">.</span></h3>
+          <p>Send it through and I'll go over it before we talk. No obligation either way.</p>
+          <button type="submit" id="send">Send it through</button>
+          <p class="send-err" id="send-err">That didn't send. Have another go, or email it straight to Tara at hello@taraconsultingco.com.</p>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+</div>
+
+<div id="done">
+  <div class="wrap">
+    <div class="panel">
+      <h2>Got it, thank you<span style="color:#F77F00">.</span></h2>
+      <p>That's everything I need for now. I'll have a proper look at your answers, your profile and your socials before we talk.</p>
+      <p>You'll hear from me to lock in a time. Nothing else for you to do.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html"><span class="brand">Tara<span class="dot">.</span> Consulting Co</span> &nbsp;|&nbsp; taraconsultingco.com</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('precall');
+  var btn = document.getElementById('send');
+  var sendErr = document.getElementById('send-err');
+
+  var required = [
+    {id:'name'},
+    {id:'business'},
+    {id:'email', email:true}
+  ];
+
+  function clear(el, msg){
+    el.classList.remove('err');
+    msg.classList.remove('show');
+  }
+
+  required.forEach(function(r){
+    var el = document.getElementById(r.id);
+    var msg = document.getElementById('err-' + r.id);
+    el.addEventListener('input', function(){ clear(el, msg); });
+  });
+
+  function validate(){
+    var ok = true, first = null;
+    required.forEach(function(r){
+      var el = document.getElementById(r.id);
+      var msg = document.getElementById('err-' + r.id);
+      var v = el.value.trim();
+      var bad = !v || (r.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+      if(bad){
+        el.classList.add('err');
+        msg.classList.add('show');
+        if(!first) first = el;
+        ok = false;
+      } else {
+        clear(el, msg);
+      }
+    });
+    if(first){
+      first.scrollIntoView({behavior:'smooth', block:'center'});
+      first.focus({preventScroll:true});
+    }
+    return ok;
+  }
+
+  function finish(){
+    document.getElementById('form-view').style.display = 'none';
+    document.getElementById('done').style.display = 'block';
+    window.scrollTo(0,0);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    sendErr.classList.remove('show');
+    if(!validate()) return;
+
+    var data = {};
+    new FormData(form).forEach(function(v,k){ data[k] = v; });
+
+    if(!FORM_ENDPOINT){
+      // Demo mode: no endpoint connected yet.
+      console.log('Form not connected. Answers captured:', data);
+      finish();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending';
+
+    fetch(FORM_ENDPOINT, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify(data)
+    }).then(function(res){
+      if(!res.ok) throw new Error('bad response');
+      finish();
+    }).catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Send it through';
+      sendErr.classList.add('show');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
