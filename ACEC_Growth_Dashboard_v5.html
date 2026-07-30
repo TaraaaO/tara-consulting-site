@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACEC Growth Dashboard</title>
+  <style>
+    :root {
+      --acec-blue: #123d66;
+      --acec-blue-light: #eaf2f8;
+      --acec-orange: #ed7d31;
+      --ink: #203040;
+      --muted: #66788a;
+      --line: #d8e1e8;
+      --page: #f4f7f9;
+      --white: #fff;
+      --green: #218653;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--page);
+      font: 14px/1.45 Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      padding: 28px clamp(18px, 4vw, 52px);
+      color: var(--white);
+      background: var(--acec-blue);
+      border-bottom: 5px solid var(--acec-orange);
+    }
+
+    header h1 { margin: 0 0 4px; font-size: clamp(24px, 4vw, 36px); }
+    header p { margin: 0; opacity: .86; }
+
+    main { width: min(1600px, 96%); margin: 26px auto; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(150px, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      padding: 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--acec-orange);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(18, 61, 102, .07);
+    }
+
+    .card strong { display: block; color: var(--acec-blue); font-size: 28px; }
+    .card span { color: var(--muted); font-size: 13px; font-weight: bold; text-transform: uppercase; }
+
+    .progress-panel, .table-panel {
+      margin-bottom: 18px;
+      padding: 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(18, 61, 102, .07);
+    }
+
+    .progress-heading { display: flex; justify-content: space-between; margin-bottom: 9px; font-weight: bold; }
+    .progress-track { height: 14px; overflow: hidden; background: #dce4ea; border-radius: 20px; }
+    .progress-fill { width: 0; height: 100%; background: linear-gradient(90deg, var(--acec-orange), #f2a15f); transition: width .25s; }
+
+    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; margin-bottom: 16px; }
+    .search { flex: 1 1 320px; padding: 11px 13px; border: 1px solid #bfcbd5; border-radius: 5px; font: inherit; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    button {
+      padding: 10px 15px;
+      color: var(--white);
+      background: var(--acec-blue);
+      border: 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover { filter: brightness(1.12); }
+    .add-button { background: var(--acec-orange); }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; min-width: 1500px; border-collapse: collapse; }
+    th, td { padding: 11px 10px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--white); background: var(--acec-blue); font-size: 12px; text-transform: uppercase; }
+    tbody tr:nth-child(even) { background: #f8fafb; }
+    tbody tr:hover { background: var(--acec-blue-light); }
+    td:nth-child(1), td:nth-child(3), td:nth-child(4) { font-weight: bold; }
+    td:nth-child(1) { color: var(--acec-blue); }
+
+    select, input[type="date"] {
+      width: 100%; min-width: 125px; padding: 7px; border: 1px solid #b8c5cf; border-radius: 4px; background: var(--white); font: inherit;
+    }
+
+    [contenteditable="true"] { min-width: 130px; outline: none; }
+    [contenteditable="true"]:focus { box-shadow: inset 0 -2px var(--acec-orange); }
+    .empty-state { display: none; padding: 28px; text-align: center; color: var(--muted); }
+
+    footer { padding: 18px; color: #dfe8ef; background: var(--acec-blue); text-align: center; }
+
+    @media (max-width: 850px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      main { width: 94%; }
+      .toolbar, .actions { display: grid; grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: white; font-size: 9px; }
+      header { padding: 12px 0; color: var(--acec-blue); background: white; }
+      main { width: 100%; margin: 10px 0; }
+      .toolbar, footer { display: none; }
+      .card, .progress-panel, .table-panel { box-shadow: none; break-inside: avoid; }
+      .table-panel { padding: 0; border: 0; }
+      .table-wrap { overflow: visible; }
+      table { min-width: 0; }
+      th, td { padding: 4px; }
+      select, input[type="date"] { min-width: 0; padding: 2px; border: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ACEC Growth Dashboard</h1>
+    <p>Growth initiatives, responsibilities and implementation progress</p>
+  </header>
+
+  <main>
+    <!-- Dashboard summary cards are calculated from the live table. -->
+    <section class="cards" aria-label="Task summary">
+      <article class="card"><strong id="totalCount">0</strong><span>Total Tasks</span></article>
+      <article class="card"><strong id="notStartedCount">0</strong><span>Not Started</span></article>
+      <article class="card"><strong id="inProgressCount">0</strong><span>In Progress</span></article>
+      <article class="card"><strong id="completedCount">0</strong><span>Completed</span></article>
+    </section>
+
+    <section class="progress-panel" aria-label="Overall progress">
+      <div class="progress-heading"><span>Overall Progress</span><span id="progressLabel">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </section>
+
+    <section class="table-panel">
+      <div class="toolbar">
+        <input class="search" id="searchInput" type="search" placeholder="Search tasks, categories, priorities or areas..." aria-label="Search dashboard">
+        <div class="actions">
+          <button class="add-button" id="addTaskButton" type="button">+ Add Task</button>
+          <button id="printButton" type="button">Print / Export PDF</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table id="taskTable">
+          <thead><tr><th>Area</th><th>Task</th><th>Category</th><th>Priority</th><th>Status</th><th>Implementation Strategy</th><th>Responsibility</th><th>Target Date</th><th>Notes</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="empty-state" id="emptyState">No tasks match your search.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>ACEC Growth Dashboard &bull; Internal planning resource</footer>
+
+  <script>
+    // Canonical task content. Areas are assigned from the task-to-area map below.
+    const initialTasks = [
+      ["Monthly cold calls to new centres", "Free", "High", "Create a target list of 10 new centres each week. Call, email, then schedule a follow-up within 7 days."],
+      ["Discovery calls with directors", "Free", "High", "Offer a no-obligation 15-minute meeting to discuss workforce and training needs."],
+      ["Centre collaboration social posts", "Free", "Medium", "Invite Centre Support to co-create Instagram posts that can be shared to Facebook."],
+      ["Collect student testimonials", "Free", "High", "Request a testimonial at course completion and after workplace assessments."],
+      ["Collect director testimonials", "Free", "High", "Ask directors for feedback after successful student completions."],
+      ["Google Reviews campaign", "Free", "High", "Send review link out. Google Business Profile administrator access required."],
+      ["Quarterly director newsletter", "Free", "Medium", "Share ECEC updates, funding news, resources and compliance tips."],
+      ["Fortnightly Google Business posts", "Free", "Medium", "Repurpose social media content for Google Business Profile. (Google access required.)"],
+      ["Website FAQs", "Free", "Medium", "Answer common enrolment, Smart & Skilled and assessment questions."],
+      ["Trainer profile updates", "Free", "Medium", "Highlight trainer experience, qualifications and support philosophy. Videos to match for socials."],
+      ["Career pathway pages", "Free", "Medium", "Show progression from Cert III to Diploma and leadership roles."],
+      ["Centre Partnership Pack", "Free", "High", "Create a branded PDF explaining ACEC's support model and services. Happy to create this. Refresh look."],
+      ["Social media allocation hours", "Low Cost", "Medium", "Allocate a Dubbo staff member once a fortnight to film content (1 hour) working with spreadsheet sent out."],
+      ["Add animations and QR codes to the website", "Low Cost", "Medium", "Link to socials and images on website, discovery booking button and create a paid social media post with website link."],
+      ["Email marketing platform", "Low Cost", "Medium", "Automate newsletters and follow-up sequences."],
+      ["Website homepage refresh", "Medium Cost", "High", "Focus messaging on student outcomes and support. I can have a look and see if this can be done internally with access."],
+      ["Google Ads", "Higher Cost", "Medium", "Develop and manage Google Ads campaigns targeting prospective students and employers."],
+      ["Website built in elements", "Higher Cost", "Medium", "Allow prospective students to quickly assess eligibility. Add occasional polls (engagement). Incorporate the LLND test into the website. Mobile optimisation. Add a student login to the main website."],
+      ["CRM implementation", "Higher Cost", "High", "Track enquiries, follow-ups, centre relationships and conversions."]
+    ];
+
+    const areaByTask = {
+      "Monthly cold calls to new centres": "Marketing", "Discovery calls with directors": "Marketing", "Centre collaboration social posts": "Marketing",
+      "Collect student testimonials": "Marketing", "Collect director testimonials": "Marketing", "Google Reviews campaign": "Marketing",
+      "Quarterly director newsletter": "Marketing", "Fortnightly Google Business posts": "Marketing", "Social media allocation hours": "Marketing",
+      "Google Ads": "Marketing", "Website FAQs": "Website", "Trainer profile updates": "Website", "Career pathway pages": "Website",
+      "Website homepage refresh": "Website", "Add animations and QR codes to the website": "Website", "Website built in elements": "Website",
+      "Centre Partnership Pack": "Centre Partnerships", "Email marketing platform": "Operations", "CRM implementation": "Operations"
+    };
+
+    const tbody = document.querySelector("#taskTable tbody");
+    const storageKey = "acec-growth-dashboard-v5";
+    let savedEdits = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+    function makeCell(text, editable = false) {
+      const cell = document.createElement("td");
+      cell.textContent = text;
+      if (editable) cell.contentEditable = "true";
+      return cell;
+    }
+
+    function addRow(task, isCustom = false) {
+      const [name, category, priority, strategy] = task;
+      const key = name || `Custom task ${Date.now()}`;
+      const saved = savedEdits[key] || {};
+      const row = document.createElement("tr");
+      row.dataset.key = key;
+      row.append(makeCell(areaByTask[name] || "Marketing"), makeCell(name, isCustom), makeCell(category, isCustom), makeCell(priority, isCustom));
+
+      const statusCell = document.createElement("td");
+      const status = document.createElement("select");
+      ["Not Started", "In Progress", "Completed"].forEach(value => status.add(new Option(value, value)));
+      status.value = saved.status || "Not Started";
+      status.setAttribute("aria-label", `Status for ${name || "new task"}`);
+      statusCell.append(status);
+      row.append(statusCell, makeCell(strategy, isCustom), makeCell(saved.responsibility || "", true));
+
+      const dateCell = document.createElement("td");
+      const date = document.createElement("input");
+      date.type = "date";
+      date.value = saved.targetDate || "";
+      date.setAttribute("aria-label", `Target date for ${name || "new task"}`);
+      dateCell.append(date);
+      row.append(dateCell, makeCell(saved.notes || "", true));
+      tbody.append(row);
+
+      status.addEventListener("change", () => { saveRow(row); updateDashboard(); });
+      date.addEventListener("change", () => saveRow(row));
+      row.querySelectorAll('[contenteditable="true"]').forEach(cell => cell.addEventListener("input", () => saveRow(row)));
+    }
+
+    function saveRow(row) {
+      const cells = row.cells;
+      savedEdits[row.dataset.key] = {
+        status: cells[4].querySelector("select").value,
+        responsibility: cells[6].textContent.trim(),
+        targetDate: cells[7].querySelector("input").value,
+        notes: cells[8].textContent.trim()
+      };
+      localStorage.setItem(storageKey, JSON.stringify(savedEdits));
+    }
+
+    function updateDashboard() {
+      const rows = [...tbody.rows];
+      const statuses = rows.map(row => row.cells[4].querySelector("select").value);
+      const completed = statuses.filter(value => value === "Completed").length;
+      document.getElementById("totalCount").textContent = rows.length;
+      document.getElementById("notStartedCount").textContent = statuses.filter(value => value === "Not Started").length;
+      document.getElementById("inProgressCount").textContent = statuses.filter(value => value === "In Progress").length;
+      document.getElementById("completedCount").textContent = completed;
+      const percent = rows.length ? Math.round(completed / rows.length * 100) : 0;
+      document.getElementById("progressLabel").textContent = `${percent}%`;
+      document.getElementById("progressFill").style.width = `${percent}%`;
+    }
+
+    initialTasks.forEach(task => addRow(task));
+    updateDashboard();
+
+    document.getElementById("searchInput").addEventListener("input", event => {
+      const query = event.target.value.toLowerCase().trim();
+      let matches = 0;
+      [...tbody.rows].forEach(row => {
+        const visible = row.textContent.toLowerCase().includes(query);
+        row.hidden = !visible;
+        if (visible) matches++;
+      });
+      document.getElementById("emptyState").style.display = matches ? "none" : "block";
+    });
+
+    document.getElementById("addTaskButton").addEventListener("click", () => {
+      addRow(["New task", "Free", "Medium", "Add implementation strategy"], true);
+      updateDashboard();
+      tbody.lastElementChild.scrollIntoView({ behavior: "smooth", block: "center" });
+      tbody.lastElementChild.cells[1].focus();
+    });
+
+    document.getElementById("printButton").addEventListener("click", () => window.print());
+  </script>
+</body>
+</html>
