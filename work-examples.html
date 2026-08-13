@@ -70,6 +70,91 @@
 
     .loading-state { text-align: center; padding: 48px; color: var(--muted); font-size: 1rem; }
     @media (max-width: 720px) { .clients-grid { grid-template-columns: 1fr; } .client-profile { padding: 22px 18px; } }
+
+    /* ── CASE STUDIES ──────────────────────────────────────── */
+    .case-study {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 44px);
+      background: var(--white);
+      margin-bottom: 24px;
+    }
+    .case-study:last-child { margin-bottom: 0; }
+    .cs-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .cs-initials {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cs-meta { flex: 1; }
+    .cs-industry {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+      display: block;
+    }
+    .cs-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin: 0;
+      line-height: 1.2;
+    }
+    .cs-body { display: grid; gap: 20px; }
+    @media (min-width: 760px) {
+      .cs-body { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .cs-block h4 {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .cs-block p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin: 0;
+    }
+    .cs-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .cs-tag {
+      background: var(--orange-soft);
+      color: #B85800;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
   </style>
 </head>
 <body>
@@ -100,11 +185,151 @@
       </div>
     </section>
 
+
+    <!-- CASE STUDIES -->
+    <section class="block">
+      <div class="container">
+        <p class="section-eyebrow" style="color:var(--terracotta)">Case studies</p>
+        <h2 class="section-title">A closer look at the work.</h2>
+        <p class="section-intro" style="margin-bottom:36px;">Real businesses, real challenges, practical results. Names used with permission.</p>
+
+        <!-- HOLIDAY HAVEN -->
+        <div class="case-study">
+          <div class="cs-header">
+            <div class="cs-initials">HH</div>
+            <div class="cs-meta">
+              <span class="cs-industry"><span id="cs-hh-industry">Tourism &amp; Holiday Parks</span></span>
+              <h3 class="cs-name" id="cs-hh-name">Holiday Haven Tourist Parks</h3>
+            </div>
+          </div>
+          <div class="cs-body">
+            <div class="cs-block">
+              <h4>The situation</h4>
+              <p id="cs-hh-situation">Holiday Haven manages twelve council-run parks across the NSW South Coast. Their social media presence was broad but inconsistent — content varied widely across parks with no unified brand voice, limited use of stories, and little collaboration between locations.</p>
+            </div>
+            <div class="cs-block">
+              <h4>What we did</h4>
+              <p id="cs-hh-did">Took over full social media management across Facebook and Instagram — three posts per week plus stories. Built a consistent brand voice across all parks, introduced collaborative posts and shared stories between locations, and developed a content training resource to support park managers with local content ideas.</p>
+            </div>
+            <div class="cs-block">
+              <h4>What changed</h4>
+              <p id="cs-hh-changed">Content now feels cohesive across twelve parks. Stories are being used regularly to connect locations and share moments in real time. Park managers are more involved and confident contributing local content. We also identified early that promotional content underperforms for this audience — the focus shifted to personality-led and experience-based content, which consistently performs better.</p>
+            </div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Social media management</span>
+            <span class="cs-tag">Content strategy</span>
+            <span class="cs-tag">Brand consistency</span>
+            <span class="cs-tag">Training</span>
+            <span class="cs-tag">12 months ongoing</span>
+          </div>
+        </div>
+
+        <!-- ACEC -->
+        <div class="case-study">
+          <div class="cs-header">
+            <div class="cs-initials">AC</div>
+            <div class="cs-meta">
+              <span class="cs-industry"><span id="cs-acec-industry">Early Childhood Education</span>
+              <h3 class="cs-name" id="cs-acec-name">ACEC</h3>
+            </div>
+          </div>
+          <div class="cs-body">
+            <div class="cs-block">
+              <h4>The situation</h4>
+              <p id="cs-acec-situation">ACEC needed a social media presence that reflected their team and culture without being able to post photos of children or educators in a care setting. Content was sparse and not building the community recognition the centre deserved.</p>
+            </div>
+            <div class="cs-block">
+              <h4>What we did</h4>
+              <p id="cs-acec-did">Developed a content approach centred on the faces and personalities of the educators themselves, industry-related content, and behind-the-scenes moments that bring the service to life without compromising privacy. Trialled different content types to find what resonated with their audience and what didn't.</p>
+            </div>
+            <div class="cs-block">
+              <h4>What changed</h4>
+              <p id="cs-acec-changed">The page now has a consistent presence that reflects the team's warmth and professionalism. We found quickly that promotional service content doesn't connect with this audience — what works is relatable, people-first content that makes families and educators feel seen. Google Business Profile work is also underway to strengthen their local visibility.</p>
+            </div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Social media content</span>
+            <span class="cs-tag">Content strategy</span>
+            <span class="cs-tag">Google Business Profile</span>
+            <span class="cs-tag">Early childhood</span>
+          </div>
+        </div>
+
+        <!-- SOUTH COAST DEMOLITION -->
+        <div class="case-study">
+          <div class="cs-header">
+            <div class="cs-initials">SD</div>
+            <div class="cs-meta">
+              <span class="cs-industry"><span id="cs-scd-industry">Trades &amp; Construction</span>
+              <h3 class="cs-name" id="cs-scd-name">South Coast Demolition</h3>
+            </div>
+          </div>
+          <div class="cs-body">
+            <div class="cs-block">
+              <h4>The situation</h4>
+              <p id="cs-scd-situation">South Coast Demolition was operating without clear business systems — quoting was inconsistent, workflow was managed from memory, and the customer experience from first enquiry through to job completion wasn't structured in a way that scaled.</p>
+            </div>
+            <div class="cs-block">
+              <h4>What we did</h4>
+              <p id="cs-scd-did">Built practical systems for quoting, job management and workflow tracking. Created a customer experience process that brings consistency to how enquiries are handled and how clients are communicated with throughout a job, from first contact to sign-off.</p>
+            </div>
+            <div class="cs-block">
+              <h4>What changed</h4>
+              <p id="cs-scd-changed">The business now runs on documented processes rather than individual memory. Quoting is consistent, jobs are tracked clearly, and the customer experience is more professional from start to finish. The systems are built to be used by the team, not just the owner.</p>
+            </div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Business systems</span>
+            <span class="cs-tag">Quoting process</span>
+            <span class="cs-tag">Workflow management</span>
+            <span class="cs-tag">Customer experience</span>
+          </div>
+        </div>
+
+        <!-- DOM'S PLANT REPAIRS -->
+        <div class="case-study">
+          <div class="cs-header">
+            <div class="cs-initials">DP</div>
+            <div class="cs-meta">
+              <span class="cs-industry"><span id="cs-dpr-industry">Heavy Plant &amp; Equipment</span>
+              <h3 class="cs-name" id="cs-dpr-name">Dom's Plant Repairs</h3>
+            </div>
+          </div>
+          <div class="cs-body">
+            <div class="cs-block">
+              <h4>The situation</h4>
+              <p id="cs-dpr-situation">Dom's Plant Repairs is a crane and heavy plant repair business based in Ingleburn, NSW. They had limited online visibility and no structured approach to marketing or internal organisation. The team needed a way to use modern tools without getting lost in complexity.</p>
+            </div>
+            <div class="cs-block">
+              <h4>What we did</h4>
+              <p id="cs-dpr-did">Set up and optimised their Google Business Profile to improve local search visibility. Introduced AI tools actively into the business to support marketing strategy, content creation and day-to-day organisation. Worked with the team to build their knowledge and confidence in using these tools independently.</p>
+            </div>
+            <div class="cs-block">
+              <h4>What changed</h4>
+              <p id="cs-dpr-changed">The business now has a stronger online presence and a clearer approach to marketing. The team is using AI in practical ways that save time and reduce the back-and-forth on content and communications. They have the foundations to keep building on what's been set up without needing to outsource everything.</p>
+            </div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Google Business Profile</span>
+            <span class="cs-tag">AI implementation</span>
+            <span class="cs-tag">Marketing strategy</span>
+            <span class="cs-tag">Team training</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <section class="block cta" id="contact">
       <div class="container cta-inner">
         <h2>Ready to make modern marketing feel less overwhelming?</h2>
         <p>Book a free consultation and we'll talk through where you're at, what's feeling messy, and what support would make the next step easier.</p>
         <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Free%20Strategy%20Call%20Enquiry">Book My Free Call <span class="arrow">→</span></a>
+        <a class="btn secondary" href="https://g.page/r/CaUApua7pg0oEAE/review" target="_blank" rel="noopener" style="margin-top:12px;display:inline-flex;align-items:center;gap:8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Leave us a Google review
+        </a>
       </div>
     </section>
   </main>
@@ -278,6 +503,27 @@
 
     loadExamples();
     loadPageContent();
+  </script>
+
+  <script>
+  // Load case study content from Supabase
+  (async function() {
+    try {
+      const keys = 'cs-hh-industry,cs-hh-name,cs-hh-situation,cs-hh-did,cs-hh-changed,cs-acec-industry,cs-acec-name,cs-acec-situation,cs-acec-did,cs-acec-changed,cs-scd-industry,cs-scd-name,cs-scd-situation,cs-scd-did,cs-scd-changed,cs-dpr-industry,cs-dpr-name,cs-dpr-situation,cs-dpr-did,cs-dpr-changed';
+      const r = await fetch('https://zmexxlwvwxxocjbfkslw.supabase.co/rest/v1/site_content?select=key,value&key=in.(' + keys + ')', {
+        headers: {
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g'
+        }
+      });
+      const data = await r.json();
+      if (!Array.isArray(data)) return;
+      data.forEach(function(row) {
+        var el = document.getElementById(row.key);
+        if (el) el.textContent = row.value;
+      });
+    } catch(e) {}
+  })();
   </script>
 </body>
 </html>
