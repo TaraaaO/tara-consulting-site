@@ -468,6 +468,56 @@
       </div>
 
       <div class="admin-card">
+        <div class="admin-card-title">Start Here — Problem block</div>
+        <label class="field-label">First paragraph</label>
+        <textarea id="sh-problem-p1" style="min-height:80px">Most business owners have a running list of things they know they should have sorted by now. Regular content. A Google presence that works. Systems that don't live in your head.</textarea>
+        <label class="field-label">What you do (second paragraph)</label>
+        <textarea id="sh-problem-p2" style="min-height:80px">I set up your social media, business systems and AI tools so your customers can find you, and your team can keep it running without coming back to you every time.</textarea>
+        <button class="btn-save" id="btn-save-sh-problem">Save problem block</button>
+        <span class="save-msg" id="sh-problem-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Start Here — Two paths section</div>
+        <label class="field-label">Eyebrow</label>
+        <input type="text" id="sh-paths-eyebrow" value="Which one sounds like you?"/>
+        <label class="field-label">Heading</label>
+        <input type="text" id="sh-paths-title" value="Most businesses I work with fall into one of two spots."/>
+        <label class="field-label">Path A title</label>
+        <input type="text" id="sh-path-a-title" value="Growth &amp; Revenue"/>
+        <label class="field-label">Path A description</label>
+        <textarea id="sh-path-a-body" style="min-height:80px">You want more people finding you, more of those people becoming customers, and more revenue and hours back for the work you actually want to do.</textarea>
+        <label class="field-label">Path B title</label>
+        <input type="text" id="sh-path-b-title" value="Systems &amp; Operations"/>
+        <label class="field-label">Path B description</label>
+        <textarea id="sh-path-b-body" style="min-height:80px">You want your content happening regularly, your systems out of your head, and a business that runs properly without you standing in the middle of everything.</textarea>
+        <button class="btn-save" id="btn-save-sh-paths">Save two paths</button>
+        <span class="save-msg" id="sh-paths-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Start Here — The Starting Point offer</div>
+        <label class="field-label">Offer title</label>
+        <input type="text" id="sh-offer1-title" value="The Starting Point"/>
+        <label class="field-label">Offer description</label>
+        <textarea id="sh-offer1-body" style="min-height:100px">A short, focused look at what's working and what's not (your content, your Google Business Profile, your systems) so you know exactly where the biggest opportunity is hiding. No contracts, no ongoing commitment. Just a clear-eyed look at the one thing worth fixing first.</textarea>
+        <label class="field-label">What you walk away with</label>
+        <textarea id="sh-offer1-cta-note" style="min-height:80px">clarity on the one thing worth fixing first, and an honest picture of what leaving it as-is is actually costing you.</textarea>
+        <button class="btn-save" id="btn-save-sh-offer1">Save Starting Point offer</button>
+        <span class="save-msg" id="sh-offer1-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">Start Here — The Growth Partner offer</div>
+        <label class="field-label">Offer title</label>
+        <input type="text" id="sh-offer2-title" value="The Growth Partner"/>
+        <label class="field-label">Offer description</label>
+        <textarea id="sh-offer2-body" style="min-height:100px">A monthly partnership where we pick one number in your business and move it. Every month includes a strategy session, one focused build or improvement, weekly check-ins, and a one-page Finish Line Report showing exactly what your business finished the month with.</textarea>
+        <button class="btn-save" id="btn-save-sh-offer2">Save Growth Partner offer</button>
+        <span class="save-msg" id="sh-offer2-save-msg">✓ Saved</span>
+      </div>
+
+      <div class="admin-card">
         <div class="admin-card-title">Blog: scorecard box</div>
         <p class="field-hint" style="margin-bottom:16px">The small email opt-in box in the top-right of the Blog page header.</p>
         <label class="field-label">Eyebrow</label>
@@ -1041,7 +1091,7 @@ async function loadHomepageContent() {
 }
 
 async function loadPagesContent() {
-  const fields = ['footer-tagline','footer-email','footer-meta','sh-page-title','sh-page-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','blog-scorecard-eyebrow','blog-scorecard-title','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items','cs-hh-industry','cs-hh-name','cs-hh-situation','cs-hh-did','cs-hh-changed','cs-acec-industry','cs-acec-name','cs-acec-situation','cs-acec-did','cs-acec-changed','cs-scd-industry','cs-scd-name','cs-scd-situation','cs-scd-did','cs-scd-changed','cs-dpr-industry','cs-dpr-name','cs-dpr-situation','cs-dpr-did','cs-dpr-changed'];
+  const fields = ['footer-tagline','footer-email','footer-meta','sh-page-title','sh-page-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','blog-scorecard-eyebrow','blog-scorecard-title','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items','cs-hh-industry','cs-hh-name','cs-hh-situation','cs-hh-did','cs-hh-changed','cs-acec-industry','cs-acec-name','cs-acec-situation','cs-acec-did','cs-acec-changed','cs-scd-industry','cs-scd-name','cs-scd-situation','cs-scd-did','cs-scd-changed','cs-dpr-industry','cs-dpr-name','cs-dpr-situation','cs-dpr-did','cs-dpr-changed','sh-problem-p1','sh-problem-p2','sh-paths-eyebrow','sh-paths-title','sh-path-a-title','sh-path-a-body','sh-path-b-title','sh-path-b-body','sh-offer1-title','sh-offer1-body','sh-offer1-cta-note','sh-offer2-title','sh-offer2-body'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -1060,6 +1110,10 @@ async function loadPagesContent() {
   { btn:'btn-save-cs-dpr',  msg:'cs-dpr-save-msg',  fields:['cs-dpr-industry','cs-dpr-name','cs-dpr-situation','cs-dpr-did','cs-dpr-changed'] },
   { btn:'btn-save-we-text',  msg:'we-text-save-msg', fields:['we-page-intro','we-section-title','we-section-intro'] },
   { btn:'btn-save-sh-text',  msg:'sh-text-save-msg', fields:['sh-page-title','sh-page-intro'] },
+  { btn:'btn-save-sh-problem', msg:'sh-problem-save-msg', fields:['sh-problem-p1','sh-problem-p2'] },
+  { btn:'btn-save-sh-paths',   msg:'sh-paths-save-msg',   fields:['sh-paths-eyebrow','sh-paths-title','sh-path-a-title','sh-path-a-body','sh-path-b-title','sh-path-b-body'] },
+  { btn:'btn-save-sh-offer1',  msg:'sh-offer1-save-msg',  fields:['sh-offer1-title','sh-offer1-body','sh-offer1-cta-note'] },
+  { btn:'btn-save-sh-offer2',  msg:'sh-offer2-save-msg',  fields:['sh-offer2-title','sh-offer2-body'] },
   { btn:'btn-save-starthero',msg:'sh-save-msg',     fields:['sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc'] },
   { btn:'btn-save-blog-scorecard', msg:'blog-scorecard-save-msg', fields:['blog-scorecard-eyebrow','blog-scorecard-title'] },
   
