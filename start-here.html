@@ -360,8 +360,8 @@
     <section class="block pale">
       <div class="container">
         <div class="problem-block">
-          <p>Most business owners have a running list of things they know they should have sorted by now. Regular content. A Google presence that works. Systems that don't live in your head.</p>
-          <p class="credibility-line">I set up your social media, business systems and AI tools so your customers can find you, and your team can keep it running without coming back to you every time.</p>
+          <p id="sh-problem-p1">Most business owners have a running list of things they know they should have sorted by now. Regular content. A Google presence that works. Systems that don't live in your head.</p>
+          <p class="credibility-line" id="sh-problem-p2">I set up your social media, business systems and AI tools so your customers can find you, and your team can keep it running without coming back to you every time.</p>
         </div>
       </div>
     </section>
@@ -369,18 +369,18 @@
     <!-- TWO PATHS -->
     <section class="block">
       <div class="container">
-        <p class="section-eyebrow">Which one sounds like you?</p>
-        <h2 class="section-title">Most businesses I work with fall into one of two spots.</h2>
+        <p class="section-eyebrow" id="sh-paths-eyebrow">Which one sounds like you?</p>
+        <h2 class="section-title" id="sh-paths-title">Most businesses I work with fall into one of two spots.</h2>
         <div class="paths-grid">
           <div class="path-card">
             <p class="path-label">Path A</p>
-            <h3>Growth &amp; Revenue</h3>
-            <p>You want more people finding you, more of those people becoming customers, and more revenue and hours back for the work you actually want to do.</p>
+            <h3 id="sh-path-a-title">Growth &amp; Revenue</h3>
+            <p id="sh-path-a-body">You want more people finding you, more of those people becoming customers, and more revenue and hours back for the work you actually want to do.</p>
           </div>
           <div class="path-card">
             <p class="path-label">Path B</p>
-            <h3>Systems &amp; Operations</h3>
-            <p>You want your content happening regularly, your systems out of your head, and a business that runs properly without you standing in the middle of everything.</p>
+            <h3 id="sh-path-b-title">Systems &amp; Operations</h3>
+            <p id="sh-path-b-body">You want your content happening regularly, your systems out of your head, and a business that runs properly without you standing in the middle of everything.</p>
           </div>
         </div>
         <p class="paths-note">Either way, it leads to the same two ways of working together below.</p>
@@ -394,9 +394,9 @@
         <div class="offer-block">
           <div class="offer-card starting-point">
             <p class="offer-label">Where most people start</p>
-            <h3>The Starting Point</h3>
-            <p class="offer-body">A short, focused look at what's working and what's not (your content, your Google Business Profile, your systems) so you know exactly where the biggest opportunity is hiding. No contracts, no ongoing commitment. Just a clear-eyed look at the one thing worth fixing first.</p>
-            <p class="offer-body"><strong>What you walk away with:</strong> clarity on the one thing worth fixing first, and an honest picture of what leaving it as-is is actually costing you.</p>
+            <h3 id="sh-offer1-title">The Starting Point</h3>
+            <p class="offer-body" id="sh-offer1-body">A short, focused look at what's working and what's not (your content, your Google Business Profile, your systems) so you know exactly where the biggest opportunity is hiding. No contracts, no ongoing commitment. Just a clear-eyed look at the one thing worth fixing first.</p>
+            <p class="offer-body" id="sh-offer1-cta-note"><strong>What you walk away with:</strong> clarity on the one thing worth fixing first, and an honest picture of what leaving it as-is is actually costing you.</p>
             <div class="offer-cta-row">
               <a class="btn secondary" href="mailto:hello@taraconsultingco.com?subject=The%20Starting%20Point%20-%20Let%27s%20have%20a%20look">Let's have a look <span class="arrow">→</span></a>
             </div>
@@ -406,8 +406,8 @@
         <div class="offer-block">
           <div class="offer-card growth-partner">
             <p class="offer-label">For when you're ready to move something</p>
-            <h3>The Growth Partner</h3>
-            <p class="offer-body">A monthly partnership where we pick one number in your business and move it. Every month includes a strategy session, one focused build or improvement, weekly check-ins, and a one-page Finish Line Report showing exactly what your business finished the month with.</p>
+            <h3 id="sh-offer2-title">The Growth Partner</h3>
+            <p class="offer-body" id="sh-offer2-body">A monthly partnership where we pick one number in your business and move it. Every month includes a strategy session, one focused build or improvement, weekly check-ins, and a one-page Finish Line Report showing exactly what your business finished the month with.</p>
             <p class="offer-body">This isn't an agency retainer where an invoice lands and you're left wondering what happened. It's built for your business and taught to your team: every piece of work leaves behind something you keep, not something only I can run.</p>
             <p class="offer-outcome">"One number. Moved. Reported. Every month."</p>
             <p class="offer-spots">Five spots per month, genuinely, not a manufactured limit. Each client gets roughly a day of my time a month, and keeping that number small is what keeps the work good.</p>
@@ -984,7 +984,12 @@
     window.loadSiteContent([
       'sh-page-title', 'sh-page-intro',
       'sh-gs-title', 'sh-gs-desc', 'sh-su-title', 'sh-su-desc',
-      'sh-ai-title', 'sh-ai-desc', 'sh-bk-title', 'sh-bk-desc'
+      'sh-ai-title', 'sh-ai-desc', 'sh-bk-title', 'sh-bk-desc',
+      'sh-problem-p1', 'sh-problem-p2',
+      'sh-paths-eyebrow', 'sh-paths-title',
+      'sh-path-a-title', 'sh-path-a-body', 'sh-path-b-title', 'sh-path-b-body',
+      'sh-offer1-title', 'sh-offer1-body', 'sh-offer1-cta-note',
+      'sh-offer2-title', 'sh-offer2-body'
     ], function(key, value) {
       var el = document.getElementById(key);
       if (!el) return;
