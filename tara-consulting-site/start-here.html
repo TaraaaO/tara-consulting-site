@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPKE3N8VXG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HPKE3N8VXG');
+  </script>
+  <meta name="msvalidate.01" content="A32B18B81849EF63034A676E142A881A" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Here | Tara Consulting Co</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Start Here | Tara Consulting Co"/>
+  <meta property="og:description" content="The marketing and systems you know you need, built for your business and taught to your team."/>
+  <meta property="og:url" content="https://taraconsultingco.com/start-here"/>
+  <meta property="og:image" content="https://taraconsultingco.com/favicon.png"/>
+  <link rel="canonical" href="https://taraconsultingco.com/start-here"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Start Here | Tara Consulting Co"/>
+  <meta name="twitter:description" content="The marketing and systems you know you need, built for your business and taught to your team."/>
+  <meta name="description" content="Tara Consulting Co helps small business owners build the marketing and systems they know they need, and trains their team to keep them running." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .sh-hero h1 {
+      max-width: 780px;
+    }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+    .sh-hero-sub {
+      max-width: 620px;
+      font-size: clamp(1.02rem, 1.4vw, 1.15rem);
+      color: var(--muted);
+      margin-bottom: 26px;
+    }
+
+    /* ── PROBLEM BLOCK ─────────────────────────────────────── */
+    .problem-block {
+      max-width: 680px;
+    }
+    .problem-block p {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .problem-block p:last-child { margin-bottom: 0; }
+    .problem-block .credibility-line {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    /* ── TWO PATHS FORK ────────────────────────────────────── */
+    .paths-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .path-card {
+      background: var(--orange);
+      border-radius: var(--radius-md);
+      padding: 26px 24px;
+    }
+    .path-card .path-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 10px;
+    }
+    .path-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .path-card p { color: rgba(255,255,255,0.9); font-size: 0.97rem; line-height: 1.6; }
+    .paths-note {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── OFFERS ────────────────────────────────────────────── */
+    .offer-block + .offer-block { margin-top: 22px; }
+    .offer-card {
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 44px);
+    }
+    .offer-card.starting-point {
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+    .offer-card.growth-partner {
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .offer-card.growth-partner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(700px 350px at 90% -10%, rgba(247,127,0,0.18), transparent 65%);
+      pointer-events: none;
+    }
+    .offer-card.growth-partner > * { position: relative; }
+    .offer-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 10px;
+    }
+    .growth-partner .offer-label { color: var(--orange); }
+    .offer-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+      margin-bottom: 14px;
+      color: var(--navy);
+    }
+    .growth-partner h3 { color: var(--white); }
+    .offer-card p { line-height: 1.65; margin-bottom: 14px; }
+    .offer-card p:last-of-type { margin-bottom: 0; }
+    .offer-card .offer-body { color: var(--muted); max-width: 620px; }
+    .growth-partner .offer-body { color: rgba(255,255,255,0.82); }
+    .offer-card .offer-outcome {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin: 20px 0;
+    }
+    .growth-partner .offer-outcome { color: var(--orange); }
+    .offer-card .offer-spots {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 20px;
+    }
+    .offer-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+    .offer-note { font-size: 0.86rem; color: var(--muted); }
+    .growth-partner .offer-note { color: rgba(255,255,255,0.55); }
+
+    /* ── FINISH LINE REPORT CALLOUT ────────────────────────── */
+    .finish-line {
+      background: var(--cream);
+      border: 1.5px dashed var(--orange);
+      border-radius: var(--radius-lg);
+      padding: clamp(26px, 4vw, 40px);
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .finish-line .fl-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+    .finish-line h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+      color: var(--navy);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .finish-line p { color: var(--muted); font-size: 1rem; line-height: 1.6; }
+    .finish-line .fl-line {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-top: 14px;
+    }
+
+    /* ── OTHER SERVICES (condensed, collapsed) ─────────────── */
+    .other-services {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .other-services-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 16px 22px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--navy);
+      transition: border-color 0.15s;
+    }
+    .other-services-toggle:hover { border-color: var(--orange); }
+    .other-services-toggle .caret { transition: transform 0.2s ease; color: var(--orange); }
+    .other-services.is-open .other-services-toggle .caret { transform: rotate(180deg); }
+    .other-services-panel {
+      display: none;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: none;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      padding: 6px 22px 18px;
+    }
+    .other-services.is-open .other-services-panel { display: block; }
+    .other-services.is-open .other-services-toggle {
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      border-bottom-color: var(--line);
+    }
+    .osp-item { padding: 14px 0; border-top: 1px solid var(--line); }
+    .osp-item:first-child { border-top: none; }
+    .osp-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .osp-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+    .osp-item a { font-size: 0.85rem; font-weight: 700; color: var(--orange); text-decoration: none; }
+    .osp-item a:hover { text-decoration: underline; }
+
+    @media (max-width: 780px) {
+      .paths-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+
+  <!-- Structured Data — LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Tara Consulting Co",
+    "image": "https://taraconsultingco.com/logo.png",
+    "description": "Tara Consulting Co helps small business owners across the NSW South Coast get organised, get consistent, and get growing without overcomplicating it. Services include social media strategy, Google Business Profile optimisation, AI tool setup, content planning, and business systems support.",
+    "url": "https://taraconsultingco.com",
+    "telephone": "+61422085470",
+    "email": "hello@taraconsultingco.com",
+    "founder": {
+      "@type": "Person",
+      "name": "Tara Odgers"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "NSW",
+      "addressCountry": "AU"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -34.9009,
+      "longitude": 150.5935
+    },
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "NSW South Coast" },
+      { "@type": "City", "name": "Nowra" },
+      { "@type": "City", "name": "Ulladulla" },
+      { "@type": "City", "name": "Shoalhaven" },
+      { "@type": "State", "name": "New South Wales" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Social Media Strategy and Content",
+            "description": "Social media management, content planning and strategy for small businesses across Facebook and Instagram."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Google Business Profile Optimisation",
+            "description": "Setup, optimisation and ongoing management of Google Business Profiles for local small businesses."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Tool Setup and Training",
+            "description": "Practical AI implementation, training and ongoing support for small business owners and their teams."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Business Systems Support",
+            "description": "Building practical systems for quoting, workflow, client experience and business operations."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Content Planning",
+            "description": "Content strategy, planning and creation support for small businesses."
+          }
+        }
+      ]
+    },
+    "sameAs": [
+      "https://www.instagram.com/taraconsultingco/",
+      "https://www.facebook.com/taraconsultingco",
+      "https://www.linkedin.com/company/143185077"
+    ],
+    "priceRange": "$$",
+    "openingHours": "Mo-Fr 09:00-16:00"
+  }
+  </script>
+</head>
+<body>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero sh-hero" style="padding-top: clamp(36px,5vw,56px); padding-bottom: clamp(28px,4vw,44px);">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Start Here</div>
+        <h1 id="sh-page-title">I help small business owners build the marketing and systems they know they need <em>and train their team to keep them running.</em></h1>
+        <p class="sh-hero-sub" id="sh-page-intro">If there's a list in your head of things you know should be sorted by now, this is where that conversation starts.</p>
+        <div class="hero-ctas">
+          <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Let%27s%20have%20a%20chat">Let's have a chat <span class="arrow">→</span></a>
+          <a class="btn secondary" href="before-we-talk.html">Before we talk <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM BLOCK -->
+    <section class="block pale">
+      <div class="container">
+        <div class="problem-block">
+          <p id="sh-problem-p1">Most business owners have a running list of things they know they should have sorted by now. Regular content. A Google presence that works. Systems that don't live in your head.</p>
+          <p class="credibility-line" id="sh-problem-p2">I set up your social media, business systems and AI tools so your customers can find you, and your team can keep it running without coming back to you every time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TWO PATHS -->
+    <section class="block">
+      <div class="container">
+        <p class="section-eyebrow" id="sh-paths-eyebrow">Which one sounds like you?</p>
+        <h2 class="section-title" id="sh-paths-title">Most businesses I work with fall into one of two spots.</h2>
+        <div class="paths-grid">
+          <div class="path-card">
+            <p class="path-label">Path A</p>
+            <h3 id="sh-path-a-title">Growth &amp; Revenue</h3>
+            <p id="sh-path-a-body">You want more people finding you, more of those people becoming customers, and more revenue and hours back for the work you actually want to do.</p>
+          </div>
+          <div class="path-card">
+            <p class="path-label">Path B</p>
+            <h3 id="sh-path-b-title">Systems &amp; Operations</h3>
+            <p id="sh-path-b-body">You want your content happening regularly, your systems out of your head, and a business that runs properly without you standing in the middle of everything.</p>
+          </div>
+        </div>
+        <p class="paths-note">Either way, it leads to the same two ways of working together below.</p>
+      </div>
+    </section>
+
+    <!-- TWO OFFERS -->
+    <section class="block pale">
+      <div class="container">
+
+        <div class="offer-block">
+          <div class="offer-card starting-point">
+            <p class="offer-label">Where most people start</p>
+            <h3 id="sh-offer1-title">The Starting Point</h3>
+            <p class="offer-body" id="sh-offer1-body">A short, focused look at what's working and what's not (your content, your Google Business Profile, your systems) so you know exactly where the biggest opportunity is hiding. No contracts, no ongoing commitment. Just a clear-eyed look at the one thing worth fixing first.</p>
+            <p class="offer-body" id="sh-offer1-cta-note"><strong>What you walk away with:</strong> clarity on the one thing worth fixing first, and an honest picture of what leaving it as-is is actually costing you.</p>
+            <div class="offer-cta-row">
+              <a class="btn secondary" href="mailto:hello@taraconsultingco.com?subject=The%20Starting%20Point%20-%20Let%27s%20have%20a%20look">Let's have a look <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="offer-block">
+          <div class="offer-card growth-partner">
+            <p class="offer-label">For when you're ready to move something</p>
+            <h3 id="sh-offer2-title">The Growth Partner</h3>
+            <p class="offer-body" id="sh-offer2-body">A monthly partnership where we pick one number in your business and move it. Every month includes a strategy session, one focused build or improvement, weekly check-ins, and a one-page Finish Line Report showing exactly what your business finished the month with.</p>
+            <p class="offer-body">This isn't an agency retainer where an invoice lands and you're left wondering what happened. It's built for your business and taught to your team: every piece of work leaves behind something you keep, not something only I can run.</p>
+            <p class="offer-outcome">"One number. Moved. Reported. Every month."</p>
+            <p class="offer-spots">Five spots per month, genuinely, not a manufactured limit. Each client gets roughly a day of my time a month, and keeping that number small is what keeps the work good.</p>
+            <div class="offer-cta-row">
+              <a class="btn" href="mailto:hello@taraconsultingco.com?subject=The%20Growth%20Partner%20-%20Let%27s%20talk%20about%20your%20number">Let's talk about your number <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FINISH LINE REPORT -->
+    <section class="block">
+      <div class="container">
+        <div class="finish-line">
+          <p class="fl-eyebrow">The Finish Line Report</p>
+          <h3>What did you finish the month with?</h3>
+          <p>At the end of every month as a Growth Partner client, you get one page showing exactly what your business finished with: not a summary of hours worked, an actual result.</p>
+          <p class="fl-line">One number. Moved. Reported.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OTHER SERVICES (condensed) -->
+    <section class="block pale">
+      <div class="container">
+        <div class="other-services" id="other-services">
+          <button class="other-services-toggle" id="other-services-toggle" aria-expanded="false">
+            <span>Looking for something more specific?</span>
+            <span class="caret">↓</span>
+          </button>
+          <div class="other-services-panel">
+            <div class="osp-item">
+              <h4 id="sh-gs-title">Get Started</h4>
+              <p id="sh-gs-desc">Turn the messy "we should really do something" stage into a clear, practical plan you can actually follow.</p>
+              <a href="mailto:hello@taraconsultingco.com?subject=Getting%20started%20with%20social%20media">Email me about this →</a>
+            </div>
+            <div class="osp-item">
+              <h4 id="sh-su-title">Show Up Better</h4>
+              <p id="sh-su-desc">Create social media, copy and marketing that sounds like your business instead of a generic template.</p>
+              <a href="mailto:hello@taraconsultingco.com?subject=Content%20and%20marketing%20support">Email me about this →</a>
+              &nbsp;·&nbsp;
+              <a href="#" onclick="document.getElementById('smp-modal').classList.add('is-open');return false;">View the Social Media Package →</a>
+            </div>
+            <div class="osp-item">
+              <h4 id="sh-ai-title">Use AI Practically</h4>
+              <p id="sh-ai-desc">Learn simple ways to use AI to save time and money, without the jargon or overcomplicated tech talk.</p>
+              <a href="mailto:hello@taraconsultingco.com?subject=AI%20setup%20and%20training">Email me about this →</a>
+            </div>
+            <div class="osp-item">
+              <h4 id="sh-bk-title">Build a Basic Brand Kit</h4>
+              <p id="sh-bk-desc">Pull your colours, fonts, logo use and simple brand rules into one easy guide so your content feels more consistent.</p>
+              <a href="mailto:hello@taraconsultingco.com?subject=Basic%20brand%20kit">Email me about this →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="block cta" id="contact" style="padding-top: clamp(36px,5vw,56px); padding-bottom: clamp(36px,5vw,56px);">
+      <div class="container cta-inner">
+        <h2>Let's start the conversation.</h2>
+        <p>Based on the South Coast of NSW, working with business owners who want less guessing and more finishing. Tell me a bit about where you're at, and we'll figure out which way of working together fits.</p>
+        <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Tell%20me%20about%20your%20business">Tell me about your business <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── SOCIAL MEDIA PACKAGE MODAL ── -->
+  <style>
+    #smp-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(20,33,61,0.65);
+      backdrop-filter: blur(3px);
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 20px;
+      overflow-y: auto;
+    }
+    #smp-modal.is-open { display: flex; }
+
+    .smp-box {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 700px;
+      box-shadow: var(--shadow-lg);
+      animation: smpIn 0.25s cubic-bezier(0.22,1,0.36,1);
+      overflow: hidden;
+      position: relative;
+    }
+    @keyframes smpIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Close button */
+    .smp-close-bar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 16px 20px 0;
+    }
+    .smp-close-btn {
+      background: var(--grey);
+      border: none;
+      color: var(--navy);
+      font-size: 1rem;
+      font-weight: 700;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .smp-close-btn:hover { background: var(--orange); color: var(--white); }
+
+    /* Cover band */
+    .smp-cover {
+      background: var(--navy);
+      padding: 28px 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .smp-cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(600px 300px at 90% -20%, rgba(247,127,0,0.15), transparent 65%);
+      pointer-events: none;
+    }
+    .smp-cover-eye {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    .smp-cover-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin-bottom: 8px;
+    }
+    .smp-cover-sub {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 18px;
+    }
+    .smp-cover-tag {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      border-left: 2px solid var(--orange);
+      padding-left: 12px;
+      max-width: 480px;
+    }
+    .smp-orange-stripe { height: 3px; background: var(--orange); }
+
+    /* Body */
+    .smp-body { padding: 32px 36px 36px; }
+
+    .smp-section-eye {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+    .smp-section-h {
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .smp-hr { border: none; border-top: 1px solid var(--line); margin: 26px 0; }
+
+    /* Discovery call banner */
+    .smp-disc {
+      background: var(--navy);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+    .smp-disc-title {
+      font-weight: 700;
+      color: var(--white);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .smp-disc-desc { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.55; margin-bottom: 10px; }
+    .smp-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    /* Includes grid */
+    .smp-inc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .smp-inc {
+      background: var(--grey);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+    .smp-inc-title { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .smp-inc-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* Quote */
+    .smp-quote {
+      border-left: 3px solid var(--orange);
+      padding: 10px 16px;
+      background: var(--cream);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 26px;
+    }
+    .smp-quote p { font-family: 'Fraunces', serif; font-style: italic; color: var(--navy); font-size: 0.95rem; line-height: 1.55; margin-bottom: 5px; }
+    .smp-quote span { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
+
+    /* Pricing cards */
+    .smp-pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+
+    .smp-price {
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      background: var(--white);
+    }
+    .smp-price.feat {
+      border-color: var(--orange);
+      background: var(--navy);
+    }
+    .smp-price-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--orange);
+      color: var(--white);
+      padding: 2px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .smp-price-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .smp-price.feat .smp-price-label { color: rgba(255,255,255,0.5); }
+    .smp-price-amount { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 500; color: var(--navy); line-height: 1; margin-bottom: 2px; }
+    .smp-price.feat .smp-price-amount { color: var(--white); }
+    .smp-price-period { font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
+    .smp-price.feat .smp-price-period { color: rgba(255,255,255,0.45); }
+    .smp-price-list {
+      list-style: none;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    .smp-price.feat .smp-price-list { border-top-color: rgba(255,255,255,0.1); }
+    .smp-price-list li {
+      font-size: 0.83rem;
+      color: var(--text);
+      padding: 3px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.4;
+    }
+    .smp-price.feat .smp-price-list li { color: rgba(255,255,255,0.72); }
+    .smp-price-list li.hl {
+      font-weight: 700;
+      background: var(--cream);
+      margin: 4px -4px 2px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      color: var(--navy);
+    }
+    .smp-price.feat .smp-price-list li.hl { background: rgba(247,127,0,0.15); color: var(--white); }
+    .smp-price-list li.no { opacity: 0.4; }
+    .smp-price-list .tick { color: var(--orange); font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+    .smp-price-list .cross { color: var(--muted); font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+    .smp-upgrade {
+      font-size: 0.78rem;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+    }
+
+    /* Reflection call box */
+    .smp-callbox {
+      background: var(--orange-soft);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+    .smp-callbox-title { font-size: 0.92rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+    .smp-callbox-desc { font-size: 0.85rem; color: #5A3010; line-height: 1.55; margin-bottom: 10px; }
+    .smp-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .smp-tag {
+      font-size: 0.76rem; font-weight: 700; color: var(--navy);
+      background: var(--white); border: 1px solid var(--line);
+      padding: 2px 9px; border-radius: 999px;
+    }
+
+    /* Shoalhaven box */
+    .smp-shoal {
+      background: var(--grey);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      margin-bottom: 22px;
+    }
+    .smp-shoal-title { font-size: 0.92rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .smp-shoal-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+    /* Process steps */
+    .smp-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+    .smp-step { display: flex; gap: 10px; }
+    .smp-step-num { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--orange); flex-shrink: 0; line-height: 1; width: 26px; }
+    .smp-step-title { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .smp-step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* Fine print */
+    .smp-fine { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .smp-fine strong { color: var(--navy); }
+
+    /* CTA row */
+    .smp-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+
+    /* Modal footer */
+    .smp-foot {
+      background: var(--navy);
+      padding: 18px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .smp-foot-brand { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 500; color: var(--white); }
+    .smp-foot-brand span { color: var(--orange); }
+    .smp-foot-links { display: flex; gap: 16px; }
+    .smp-foot-links a { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; font-weight: 600; }
+    .smp-foot-links a:hover { color: var(--orange); }
+    .smp-foot-contact { font-size: 0.82rem; color: rgba(255,255,255,0.5); text-align: right; line-height: 1.7; }
+    .smp-foot-contact a { color: var(--orange); text-decoration: none; }
+
+    @media (max-width: 560px) {
+      .smp-inc-grid, .smp-pricing, .smp-steps { grid-template-columns: 1fr; }
+      .smp-cover, .smp-body { padding-left: 22px; padding-right: 22px; }
+      .smp-foot { flex-direction: column; align-items: flex-start; }
+      .smp-foot-contact { text-align: left; }
+    }
+  </style>
+
+  <div id="smp-modal" role="dialog" aria-modal="true" aria-label="Social Media Package" onclick="if(event.target===this)this.classList.remove('is-open')">
+    <div class="smp-box">
+
+      <div class="smp-close-bar">
+        <button class="smp-close-btn" onclick="document.getElementById('smp-modal').classList.remove('is-open')" aria-label="Close">✕</button>
+      </div>
+
+      <!-- Cover -->
+      <div class="smp-cover">
+        <p class="smp-cover-eye">Tara Consulting Co</p>
+        <h2 class="smp-cover-title">Social Media<br>Starter Package</h2>
+        <p class="smp-cover-sub">A plan, a clear direction and support, so you can own your social media with confidence.</p>
+        <p class="smp-cover-tag">For business owners who want to take control of their social media, not hand it off entirely. You get a clear strategy, a ready-to-use plan, and someone in your corner to help you make sense of it all along the way.</p>
+      </div>
+      <div class="smp-orange-stripe"></div>
+
+      <div class="smp-body">
+
+        <!-- Inclusions -->
+        <p class="smp-section-eye">What's included</p>
+        <h3 class="smp-section-h">Everything you need to get started properly.</h3>
+
+        <div class="smp-disc">
+          <p class="smp-disc-title">1-Hour Discovery Call: included in both packages</p>
+          <p class="smp-disc-desc">Before anything is built, we spend a full hour getting to know your business properly. Your services, your audience, your voice and what you want more of. Everything that follows is built from this conversation. Nothing is assumed.</p>
+          <span class="smp-pill">Onsite visit available in the Shoalhaven, add $50</span>
+        </div>
+
+        <div class="smp-inc-grid">
+          <div class="smp-inc">
+            <p class="smp-inc-title">Social Media Strategy & Audit</p>
+            <p class="smp-inc-desc">A clear review of what's working, what isn't and where to focus, with a written action plan you can follow.</p>
+          </div>
+          <div class="smp-inc">
+            <p class="smp-inc-title">One Month's Content Calendar</p>
+            <p class="smp-inc-desc">12 posts mapped for the month ahead. Every post has a purpose, a hook and a direction. No blank-page starts.</p>
+          </div>
+          <div class="smp-inc">
+            <p class="smp-inc-title">12 Written Captions</p>
+            <p class="smp-inc-desc">One caption per post, written in your brand voice and ready to use. One round of revisions included.</p>
+          </div>
+          <div class="smp-inc">
+            <p class="smp-inc-title">40-Min Monthly Reflection Call</p>
+            <p class="smp-inc-desc">A call every four weeks to review what's working, adjust the strategy and get you set up with the tools that save you time.</p>
+          </div>
+        </div>
+
+        <div class="smp-quote">
+          <p>"The goal isn't to do it all for you. It's to give you the clarity, the plan and the support so you can do it with confidence."</p>
+          <span>Tara Consulting Co</span>
+        </div>
+
+        <hr class="smp-hr">
+
+        <!-- Pricing -->
+        <p class="smp-section-eye">Pricing</p>
+        <h3 class="smp-section-h">Two clear options.</h3>
+
+        <div class="smp-pricing">
+          <div class="smp-price">
+            <p class="smp-price-label">Starter</p>
+            <p class="smp-price-amount">$750</p>
+            <p class="smp-price-period">one-off · renew anytime</p>
+            <ul class="smp-price-list">
+              <li class="hl"><span class="tick">✓</span>1-hour discovery call</li>
+              <li><span class="tick">✓</span>One month's content calendar</li>
+              <li><span class="tick">✓</span>12 captions in your voice</li>
+              <li><span class="tick">✓</span>One round of revisions</li>
+              <li><span class="tick">✓</span>Instagram + Facebook</li>
+              <li class="no"><span class="cross">✕</span>Strategy audit not included</li>
+              <li class="no"><span class="cross">✕</span>Reflection call not included</li>
+            </ul>
+            <p class="smp-upgrade">↑ Upgrade to Full Package for the call + strategy</p>
+          </div>
+          <div class="smp-price feat">
+            <span class="smp-price-badge">Most popular</span>
+            <p class="smp-price-label">Full Package</p>
+            <p class="smp-price-amount">$1,000</p>
+            <p class="smp-price-period">one-off · optional monthly renewal</p>
+            <ul class="smp-price-list">
+              <li class="hl"><span class="tick">✓</span>1-hour discovery call</li>
+              <li><span class="tick">✓</span>Strategy audit + action plan</li>
+              <li><span class="tick">✓</span>One month's content calendar</li>
+              <li><span class="tick">✓</span>12 captions in your voice</li>
+              <li><span class="tick">✓</span>One round of revisions</li>
+              <li><span class="tick">✓</span>Instagram + Facebook</li>
+              <li><span class="tick">✓</span>40-min monthly reflection call</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="smp-callbox">
+          <p class="smp-callbox-title">The reflection call is where the real support happens.</p>
+          <p class="smp-callbox-desc">Every four weeks we review what's working, adjust the strategy and get you set up with the tools that save you the most time.</p>
+          <div class="smp-tags">
+            <span class="smp-tag">Canva setup</span>
+            <span class="smp-tag">Claude Projects</span>
+            <span class="smp-tag">ChatGPT</span>
+            <span class="smp-tag">ManyChat</span>
+            <span class="smp-tag">Strategy review</span>
+            <span class="smp-tag">Content systems</span>
+          </div>
+        </div>
+
+        <div class="smp-shoal">
+          <p class="smp-shoal-title">Based in the Shoalhaven? I can come to you.</p>
+          <p class="smp-shoal-desc">The discovery call can be done as an onsite visit for an additional $50. Seeing your business in person makes everything that follows sharper and more specific to you.</p>
+        </div>
+
+        <hr class="smp-hr">
+
+        <!-- Process -->
+        <p class="smp-section-eye">How it works</p>
+        <h3 class="smp-section-h">Simple from the start.</h3>
+
+        <div class="smp-steps">
+          <div class="smp-step">
+            <span class="smp-step-num">01</span>
+            <div>
+              <p class="smp-step-title">Discovery call: 1 hour</p>
+              <p class="smp-step-desc">Phone, video or onsite in the Shoalhaven. We go deep on your business, audience and voice.</p>
+            </div>
+          </div>
+          <div class="smp-step">
+            <span class="smp-step-num">02</span>
+            <div>
+              <p class="smp-step-title">I research and build</p>
+              <p class="smp-step-desc">I review your current presence and build everything around your actual business, not a template.</p>
+            </div>
+          </div>
+          <div class="smp-step">
+            <span class="smp-step-num">03</span>
+            <div>
+              <p class="smp-step-title">You receive the deliverables</p>
+              <p class="smp-step-desc">Clean, ready-to-use documents. Post straight away or hand to a team member.</p>
+            </div>
+          </div>
+          <div class="smp-step">
+            <span class="smp-step-num">04</span>
+            <div>
+              <p class="smp-step-title">Continue monthly (optional)</p>
+              <p class="smp-step-desc">Full Package clients can renew each month. We check in, review what worked and keep building.</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="smp-hr">
+
+        <p class="smp-fine">All prices in AUD. 50% deposit required to begin. Full Package can be renewed month to month with 14 days notice to pause or cancel. <strong>No lock-in contracts.</strong></p>
+
+        <div class="smp-cta-row">
+          <a class="btn" href="mailto:hello@taraconsultingco.com?subject=Social%20Media%20Package%20Enquiry">Get started <span class="arrow">→</span></a>
+          <button class="btn secondary" onclick="document.getElementById('smp-modal').classList.remove('is-open')">Close</button>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="smp-foot">
+        <div class="smp-foot-brand">Tara<span>.</span> Consulting Co</div>
+        <div class="smp-foot-links">
+          <a href="https://www.instagram.com/taraconsultingco/" target="_blank">@taraconsultingco</a>
+          <a href="https://www.facebook.com/TaraConsultingCo" target="_blank">TaraConsultingCo</a>
+        </div>
+        <div class="smp-foot-contact">
+          <a href="mailto:hello@taraconsultingco.com">hello@taraconsultingco.com</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape') document.getElementById('smp-modal').classList.remove('is-open');
+    });
+  </script>
+
+  <script src="shared.js"></script>
+  <script>
+    // ── OTHER SERVICES DISCLOSURE ──────────────────────────
+    (function() {
+      var wrap = document.getElementById('other-services');
+      var toggle = document.getElementById('other-services-toggle');
+      if (!wrap || !toggle) return;
+      toggle.addEventListener('click', function() {
+        var open = wrap.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open);
+      });
+    })();
+
+    // Load editable page text from Supabase (cache-first, see shared.js)
+    window.loadSiteContent([
+      'sh-page-title', 'sh-page-intro',
+      'sh-gs-title', 'sh-gs-desc', 'sh-su-title', 'sh-su-desc',
+      'sh-ai-title', 'sh-ai-desc', 'sh-bk-title', 'sh-bk-desc',
+      'sh-problem-p1', 'sh-problem-p2',
+      'sh-paths-eyebrow', 'sh-paths-title',
+      'sh-path-a-title', 'sh-path-a-body', 'sh-path-b-title', 'sh-path-b-body',
+      'sh-offer1-title', 'sh-offer1-body', 'sh-offer1-cta-note',
+      'sh-offer2-title', 'sh-offer2-body'
+    ], function(key, value) {
+      var el = document.getElementById(key);
+      if (!el) return;
+      if (key === 'sh-page-title') { el.innerHTML = value; return; }
+      el.textContent = value;
+    });
+  </script>
+</body>
+</html>
