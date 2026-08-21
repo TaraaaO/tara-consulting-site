@@ -9,6 +9,7 @@
   --orange-soft: #FFE2C2;
   --terracotta: #C1440E;
   --olive: #5C6B2E;
+  --maroon: #9E3950;
   --cream: #FAF6F0;
   --white: #FFFFFF;
   --grey: #F0EAE0;
@@ -158,6 +159,66 @@ nav .nav-cta {
   padding: 8px 16px;
 }
 nav .nav-cta:hover { background: var(--navy-deep); }
+
+
+/* ── NAV DROPDOWNS ─────────────────────────────────────── */
+.nav-dropdown {
+  position: relative;
+}
+.nav-drop-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-caret {
+  font-size: 0.7em;
+  opacity: 0.6;
+  transition: transform 0.2s;
+}
+.nav-dropdown:hover .nav-caret { transform: rotate(180deg); }
+.nav-drop-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(20,33,61,0.12);
+  min-width: 180px;
+  padding: 8px;
+  z-index: 100;
+}
+.nav-dropdown:hover .nav-drop-menu { display: block; }
+.nav-drop-menu a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.nav-drop-menu a:hover {
+  background: var(--cream);
+  color: var(--terracotta);
+}
+
+/* Mobile section labels */
+.mob-section {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  padding: 14px 20px 4px;
+}
 
 /* Mobile toggle */
 .menu-toggle {

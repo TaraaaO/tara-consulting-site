@@ -61,13 +61,22 @@
       </div>
       <nav>
         <a class="nav-link"${activeIf(['index.html',''])} href="/">Home</a>
-        <a class="nav-link"${activeIf(['start-here.html'])} href="start-here.html">Start Here</a>
-        <a class="nav-link"${activeIf(['work-examples.html'])} href="work-examples.html">Work Examples</a>
-        <a class="nav-link"${activeIf(['services.html'])} href="services.html">Services</a>
-        <a class="nav-link"${activeIf(['blog.html'])} href="blog.html">Blog</a>
-        <a class="nav-link"${activeIf(['about.html'])} href="about.html">Meet Tara</a>
-        <a class="nav-portal" href="https://tara-client-portal.netlify.app">Client Portal →</a>
-        <a class="nav-cta" href="/#contact">Book a Call</a>
+        <a class="nav-link"${activeIf(['start-here.html'])} href="/start-here">Start Here</a>
+        <div class="nav-dropdown">
+          <button class="nav-link nav-drop-btn"${activeIf(['work-examples.html'])}>Services <span class="nav-caret">▾</span></button>
+          <div class="nav-drop-menu">
+            <a href="/work-examples">Work Examples</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-link nav-drop-btn"${activeIf(['blog.html','shop.html'])}>Resources <span class="nav-caret">▾</span></button>
+          <div class="nav-drop-menu">
+            <a href="/blog">Blog</a>
+            <a href="/shop">Shop</a>
+            <a href="https://tara-client-portal.netlify.app" target="_blank" rel="noopener">Client Portal →</a>
+          </div>
+        </div>
+        <a class="nav-link"${activeIf(['about.html'])} href="/contact">Contact Tara</a>
       </nav>
       <div class="header-actions">
         <button class="search-toggle" id="search-toggle" aria-label="Search the site">
@@ -78,13 +87,14 @@
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
       <a${activeIf(['index.html',''])} href="/">Home</a>
-      <a${activeIf(['start-here.html'])} href="start-here.html">Start Here</a>
-      <a${activeIf(['work-examples.html'])} href="work-examples.html">Work Examples</a>
-      <a${activeIf(['services.html'])} href="services.html">Services</a>
-      <a${activeIf(['blog.html'])} href="blog.html">Blog</a>
-      <a${activeIf(['about.html'])} href="about.html">Meet Tara</a>
-      <a class="mob-portal" href="https://tara-client-portal.netlify.app">Client Portal →</a>
-      <a class="mob-cta" href="/#contact">Book a Free Call</a>
+      <a${activeIf(['start-here.html'])} href="/start-here">Start Here</a>
+      <span class="mob-section">Services</span>
+      <a${activeIf(['work-examples.html'])} href="/work-examples">Work Examples</a>
+      <span class="mob-section">Resources</span>
+      <a${activeIf(['blog.html'])} href="/blog">Blog</a>
+      <a${activeIf(['shop.html'])} href="/shop">Shop</a>
+      <a class="mob-portal" href="https://tara-client-portal.netlify.app" target="_blank" rel="noopener">Client Portal →</a>
+      <a${activeIf(['about.html'])} href="/contact">Contact Tara</a>
     </nav>
   </header>`;
 
