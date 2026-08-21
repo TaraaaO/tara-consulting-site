@@ -63,8 +63,9 @@
         <a class="nav-link"${activeIf(['index.html',''])} href="/">Home</a>
         <a class="nav-link"${activeIf(['start-here.html'])} href="/start-here">Start Here</a>
         <div class="nav-dropdown">
-          <button class="nav-link nav-drop-btn"${activeIf(['work-examples.html'])}>Services <span class="nav-caret">▾</span></button>
+          <a class="nav-link nav-drop-btn"${activeIf(['services.html','work-examples.html'])} href="/services">Services <span class="nav-caret">▾</span></a>
           <div class="nav-drop-menu">
+            <a href="/services">All Services</a>
             <a href="/work-examples">Work Examples</a>
           </div>
         </div>
@@ -89,6 +90,7 @@
       <a${activeIf(['index.html',''])} href="/">Home</a>
       <a${activeIf(['start-here.html'])} href="/start-here">Start Here</a>
       <span class="mob-section">Services</span>
+      <a${activeIf(['services.html'])} href="/services">All Services</a>
       <a${activeIf(['work-examples.html'])} href="/work-examples">Work Examples</a>
       <span class="mob-section">Resources</span>
       <a${activeIf(['blog.html'])} href="/blog">Blog</a>
