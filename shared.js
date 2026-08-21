@@ -70,7 +70,7 @@
           </div>
         </div>
         <div class="nav-dropdown">
-          <button class="nav-link nav-drop-btn"${activeIf(['blog.html','shop.html'])}>Resources <span class="nav-caret">▾</span></button>
+          <span class="nav-link nav-drop-btn"${activeIf(['blog.html','shop.html'])}>Resources <span class="nav-caret">▾</span></span>
           <div class="nav-drop-menu">
             <a href="/blog">Blog</a>
             <a href="/shop">Shop</a>
@@ -255,3 +255,25 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
  
+// ── DROPDOWN HOVER ──────────────────────────────────────
+document.querySelectorAll('.nav-dropdown').forEach(function(dropdown) {
+  var menu = dropdown.querySelector('.nav-drop-menu');
+  var timer;
+  dropdown.addEventListener('mouseenter', function() {
+    clearTimeout(timer);
+    menu.style.display = 'block';
+  });
+  dropdown.addEventListener('mouseleave', function() {
+    timer = setTimeout(function() {
+      menu.style.display = 'none';
+    }, 150);
+  });
+  menu.addEventListener('mouseenter', function() {
+    clearTimeout(timer);
+  });
+  menu.addEventListener('mouseleave', function() {
+    timer = setTimeout(function() {
+      menu.style.display = 'none';
+    }, 150);
+  });
+});

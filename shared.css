@@ -95,9 +95,9 @@ header {
   gap: 6px;
 }
 .nav-social a {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
   background: var(--navy);
   color: var(--orange);
   display: flex;
@@ -106,7 +106,7 @@ header {
   transition: background 0.2s ease;
 }
 .nav-social a:hover { background: var(--terracotta); }
-.nav-social svg { width: 14px; height: 14px; }
+.nav-social svg { width: 17px; height: 17px; }
 .header-actions {
   display: flex;
   align-items: center;

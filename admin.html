@@ -702,6 +702,11 @@ Small business generally: wherever social media, AI, marketing or operations sup
 
         <div style="background:var(--grey);border-radius:10px;padding:18px;margin-top:14px;margin-bottom:4px">
           <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Tools I use</div>
+          <label class="field-label">Show this section on the page?</label>
+          <select id="about-tools-show" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;font-family:inherit;margin-bottom:12px;">
+            <option value="false">Hidden</option>
+            <option value="true">Visible</option>
+          </select>
           <label class="field-label">Section title</label>
           <input type="text" id="about-tools-title" value="Tools I use"/>
           <label class="field-label">Tools (comma separated)</label>
@@ -1091,7 +1096,7 @@ async function loadHomepageContent() {
 }
 
 async function loadPagesContent() {
-  const fields = ['footer-tagline','footer-email','footer-meta','sh-page-title','sh-page-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','blog-scorecard-eyebrow','blog-scorecard-title','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items','cs-hh-industry','cs-hh-name','cs-hh-situation','cs-hh-did','cs-hh-changed','cs-acec-industry','cs-acec-name','cs-acec-situation','cs-acec-did','cs-acec-changed','cs-scd-industry','cs-scd-name','cs-scd-situation','cs-scd-did','cs-scd-changed','cs-dpr-industry','cs-dpr-name','cs-dpr-situation','cs-dpr-did','cs-dpr-changed','sh-problem-p1','sh-problem-p2','sh-paths-eyebrow','sh-paths-title','sh-path-a-title','sh-path-a-body','sh-path-b-title','sh-path-b-body','sh-offer1-title','sh-offer1-body','sh-offer1-cta-note','sh-offer2-title','sh-offer2-body'];
+  const fields = ['footer-tagline','footer-email','footer-meta','sh-page-title','sh-page-intro','sh-gs-title','sh-gs-desc','sh-su-title','sh-su-desc','sh-ai-title','sh-ai-desc','sh-bk-title','sh-bk-desc','blog-scorecard-eyebrow','blog-scorecard-title','we-page-intro','we-section-title','we-section-intro','about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-show','about-tools-title','about-tools-items','cs-hh-industry','cs-hh-name','cs-hh-situation','cs-hh-did','cs-hh-changed','cs-acec-industry','cs-acec-name','cs-acec-situation','cs-acec-did','cs-acec-changed','cs-scd-industry','cs-scd-name','cs-scd-situation','cs-scd-did','cs-scd-changed','cs-dpr-industry','cs-dpr-name','cs-dpr-situation','cs-dpr-did','cs-dpr-changed','sh-problem-p1','sh-problem-p2','sh-paths-eyebrow','sh-paths-title','sh-path-a-title','sh-path-a-body','sh-path-b-title','sh-path-b-body','sh-offer1-title','sh-offer1-body','sh-offer1-cta-note','sh-offer2-title','sh-offer2-body'];
   for (const f of fields) {
     const val = await loadSiteContent(f);
     if (val && document.getElementById(f)) document.getElementById(f).value = val;
@@ -1118,7 +1123,7 @@ async function loadPagesContent() {
   { btn:'btn-save-blog-scorecard', msg:'blog-scorecard-save-msg', fields:['blog-scorecard-eyebrow','blog-scorecard-title'] },
   
   { btn:'btn-save-footer', msg:'footer-save-msg', fields:['footer-tagline','footer-email','footer-meta'] },
-  { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-title','about-tools-items'] },
+  { btn:'btn-save-about',    msg:'about-save-msg',  fields:['about-photo','about-headline','about-p1','about-p2','about-p3','about-sig','about-believe-title','about-believe-items','about-work-title','about-work-intro','about-work-items','about-tools-show','about-tools-title','about-tools-items'] },
 ].forEach(({ btn, msg, fields }) => {
   document.getElementById(btn)?.addEventListener('click', async () => {
     for (const f of fields) await saveSiteContent(f, document.getElementById(f).value);

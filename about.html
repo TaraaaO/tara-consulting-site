@@ -9,6 +9,7 @@
     gtag('js', new Date());
     gtag('config', 'G-HPKE3N8VXG');
   </script>
+  <meta name="msvalidate.01" content="A32B18B81849EF63034A676E142A881A" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meet Tara | Tara Consulting Co</title>
@@ -213,7 +214,8 @@
     },
     "sameAs": [
       "https://www.instagram.com/taraconsultingco/",
-      "https://www.facebook.com/taraconsultingco"
+      "https://www.facebook.com/taraconsultingco",
+      "https://www.linkedin.com/company/143185077"
     ],
     "priceRange": "$$",
     "openingHours": "Mo-Fr 09:00-16:00"
@@ -277,7 +279,7 @@
               </ul>
             </div>
 
-            <div>
+            <div id="about-tools-section" style="display:none;">
               <div class="about-subhead" id="about-tools-title">Tools I use</div>
               <div class="tools-grid" id="about-tools-grid">
                 <div class="tool-pill">Claude AI</div>
@@ -376,6 +378,12 @@
             return '<li>' + line + '</li>';
           }).join('');
         }
+        return;
+      }
+      // Tools section visibility
+      if (key === 'about-tools-show') {
+        var sec = document.getElementById('about-tools-section');
+        if (sec) sec.style.display = (value === 'true') ? 'block' : 'none';
         return;
       }
       // Tools — comma separated becomes pills
