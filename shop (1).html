@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPKE3N8VXG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HPKE3N8VXG');
+  </script>
+  <meta name="msvalidate.01" content="A32B18B81849EF63034A676E142A881A" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop | Tara Consulting Co</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Shop | Tara Consulting Co"/>
+  <meta property="og:description" content="Practical tools and resources for small business owners. No fluff, just useful."/>
+  <meta property="og:url" content="https://taraconsultingco.com/shop"/>
+  <meta property="og:image" content="https://taraconsultingco.com/favicon.png"/>
+  <link rel="canonical" href="https://taraconsultingco.com/shop"/>
+  <meta name="description" content="Practical resources and tools from Tara Consulting Co. Built for small business owners who want to get things moving." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Tara Consulting Co",
+    "image": "https://taraconsultingco.com/logo.png",
+    "description": "Tara Consulting Co helps small business owners across the NSW South Coast get organised, get consistent, and get growing without overcomplicating it.",
+    "url": "https://taraconsultingco.com",
+    "telephone": "+61422085470",
+    "email": "hello@taraconsultingco.com",
+    "founder": { "@type": "Person", "name": "Tara Odgers" },
+    "address": { "@type": "PostalAddress", "addressRegion": "NSW", "addressCountry": "AU" },
+    "geo": { "@type": "GeoCoordinates", "latitude": -34.9009, "longitude": 150.5935 },
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "NSW South Coast" },
+      { "@type": "City", "name": "Nowra" },
+      { "@type": "City", "name": "Ulladulla" },
+      { "@type": "City", "name": "Shoalhaven" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/taraconsultingco/",
+      "https://www.facebook.com/taraconsultingco",
+      "https://www.linkedin.com/company/143185077"
+    ]
+  }
+  </script>
+
+  <style>
+    /* ── SHOP HERO ─────────────────────────────────────────── */
+    .shop-hero {
+      background: linear-gradient(180deg, var(--cream) 0%, #FFFDF9 100%);
+      padding: clamp(48px, 7vw, 88px) var(--pad) clamp(36px, 5vw, 64px);
+    }
+    .shop-hero .section-eyebrow { color: var(--terracotta); margin-bottom: 14px; }
+    .shop-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      max-width: 640px;
+    }
+    .shop-hero p {
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* ── PRODUCT CARD ──────────────────────────────────────── */
+    .shop-grid {
+      display: grid;
+      gap: 28px;
+      max-width: 860px;
+    }
+    .product-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .product-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .product-visual {
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(400px 300px at 80% 20%, rgba(247,127,0,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .product-mock {
+      width: 160px;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 20px 18px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+      position: relative;
+    }
+    .product-mock-eye {
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .product-mock-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .product-mock-bar {
+      height: 2px;
+      background: var(--orange);
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    .product-mock-lines { display: grid; gap: 5px; }
+    .product-mock-line {
+      height: 5px;
+      background: var(--grey);
+      border-radius: 2px;
+    }
+    .product-mock-line.short { width: 65%; }
+    .product-mock-line.med { width: 80%; }
+
+    .product-details {
+      padding: clamp(24px, 3vw, 36px);
+      display: flex;
+      flex-direction: column;
+    }
+    .product-type {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .product-details h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .product-details p {
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .product-features {
+      list-style: none;
+      margin-bottom: 20px;
+      display: grid;
+      gap: 6px;
+    }
+    .product-features li {
+      font-size: 0.9rem;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+    .product-features li::before {
+      content: '✓';
+      color: var(--orange);
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .product-price-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+    .product-price {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .product-price small {
+      display: block;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .product-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* ── COMING SOON ───────────────────────────────────────── */
+    .coming-soon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .coming-card {
+      background: var(--grey);
+      border-radius: var(--radius-md);
+      padding: 22px 20px;
+      border: 1.5px dashed var(--line);
+    }
+    .coming-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .coming-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .coming-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--line);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .product-card { grid-template-columns: 1fr; }
+      .product-visual { min-height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="shop-hero">
+      <div class="container">
+        <p class="section-eyebrow">Resources</p>
+        <h1>Things you can put to work straight away.</h1>
+        <p>Practical tools for business owners who want to get moving without making everything more complicated than it needs to be.</p>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="block">
+      <div class="container">
+        <div class="shop-grid">
+
+          <!-- GET FOUND BY AI GUIDE -->
+          <div class="product-card">
+            <div class="product-visual">
+              <div class="product-mock">
+                <p class="product-mock-eye">Tara Consulting Co</p>
+                <p class="product-mock-title">Get Found by AI</p>
+                <div class="product-mock-bar"></div>
+                <div class="product-mock-lines">
+                  <div class="product-mock-line"></div>
+                  <div class="product-mock-line med"></div>
+                  <div class="product-mock-line short"></div>
+                  <div class="product-mock-line"></div>
+                  <div class="product-mock-line med"></div>
+                </div>
+              </div>
+            </div>
+            <div class="product-details">
+              <p class="product-type">Digital guide — PDF, 6 pages</p>
+              <h2>Get Found by AI</h2>
+              <p>Most businesses are only visible through one of the three doors AI uses to find them. This guide explains how each one works, what's likely missing for your business, and how to fix it — step by step, in plain English.</p>
+              <ul class="product-features">
+                <li>How ChatGPT, Claude and Gemini each find businesses differently</li>
+                <li>A four-phase plan to open the doors, line up your signals and get the outside world pointing at you</li>
+                <li>What to check, fix and keep up with — and who needs to do what</li>
+                <li>Written from doing it on a real business, not from theory</li>
+                <li>No tech background needed to work through it</li>
+              </ul>
+              <div class="product-price-row">
+                <div class="product-price">
+                  <small>One-off purchase</small>
+                  $27 AUD
+                </div>
+                <a class="btn" href="https://buy.stripe.com/dRmfZh0q2eSO00S6wj9oc00" target="_blank" rel="noopener">
+                  Get the guide <span class="arrow">→</span>
+                </a>
+              </div>
+              <p class="product-note">Secure checkout via Stripe. Delivered to your inbox.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMING SOON -->
+    <section class="block pale">
+      <div class="container">
+        <p class="section-eyebrow" style="color:var(--terracotta)">Coming soon</p>
+        <h2 class="section-title">A few more useful things on the way.</h2>
+        <p style="color:var(--muted);max-width:520px;margin-bottom:0">Templates, self-checks and practical resources — the kind of things that save you time or help you work out what to do next.</p>
+        <div class="coming-soon-grid">
+          <div class="coming-card">
+            <span class="coming-badge">Coming soon</span>
+            <h4>GBP Audit Checklist</h4>
+            <p>A step-by-step checklist to audit and improve your Google Business Profile yourself.</p>
+          </div>
+          <div class="coming-card">
+            <span class="coming-badge">Coming soon</span>
+            <h4>Social Media Starter Kit</h4>
+            <p>Caption prompts, content ideas and a simple posting plan to get you started without the overwhelm.</p>
+          </div>
+          <div class="coming-card">
+            <span class="coming-badge">Coming soon</span>
+            <h4>AI Prompt Pack</h4>
+            <p>A set of ready-to-use prompts for the most common small business tasks — written for Claude and ChatGPT.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="block cta" id="contact">
+      <div class="container cta-inner">
+        <h2>Need something more than a resource?</h2>
+        <p>If the problem is bigger than a checklist can solve, that's where working together comes in.</p>
+        <a class="btn" href="/start-here">See how we can work together <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="shared.js"></script>
+</body>
+</html>
