@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPKE3N8VXG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HPKE3N8VXG');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>The BrandFest — Tara Consulting Co</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <meta name="description" content="A free Google Business Profile audit and 30 minute brand presence review session for BrandFest guests." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    :root {
+      --maroon: #9E3950;
+      --maroon-deep: #7A2C3E;
+      --bf-cream: #FFF8EF;
+      --bf-peach-soft: #F7C390;
+      --bf-peach: #FFE2C2;
+    }
+
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bf-cream);
+      color: var(--navy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .bf-hero {
+      background: var(--maroon);
+      padding: clamp(48px, 8vw, 88px) var(--pad) clamp(40px, 6vw, 72px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bf-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(247,196,144,0.14), transparent 70%);
+      pointer-events: none;
+    }
+    .bf-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--bf-peach-soft);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .bf-hero h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      line-height: 1.1;
+      color: var(--bf-cream);
+      letter-spacing: -0.02em;
+      max-width: 640px;
+      margin: 0 auto 18px;
+    }
+    .bf-hero h1 em {
+      font-style: italic;
+      color: var(--bf-peach-soft);
+    }
+    .bf-hero .subhead {
+      font-size: clamp(1rem, 1.8vw, 1.12rem);
+      color: rgba(255,248,239,0.8);
+      max-width: 480px;
+      margin: 0 auto 14px;
+      line-height: 1.65;
+    }
+    .bf-hero .time-note {
+      font-size: 0.85rem;
+      color: rgba(255,248,239,0.48);
+      font-style: italic;
+    }
+
+    /* ── SECTIONS ──────────────────────────────────────────── */
+    .bf-section {
+      padding: clamp(48px, 7vw, 76px) var(--pad);
+    }
+    .bf-section.cream { background: var(--bf-cream); }
+    .bf-section.peach { background: var(--bf-peach); }
+
+    .bf-inner {
+      max-width: 580px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .bf-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--maroon);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .bf-section h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.5rem, 2.8vw, 2rem);
+      line-height: 1.2;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .bf-section p {
+      font-size: clamp(0.97rem, 1.3vw, 1.05rem);
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .bf-section p:last-child { margin-bottom: 0; }
+
+    /* ── THREE STEPS ───────────────────────────────────────── */
+    .bf-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .bf-step {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .bf-step:hover { box-shadow: 0 4px 16px rgba(20,33,61,0.08); }
+    .bf-step-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .bf-step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bf-peach);
+      color: var(--maroon);
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .bf-step.open .bf-step-num { background: var(--maroon); color: var(--white); }
+    .bf-step-title {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--navy);
+      flex: 1;
+    }
+    .bf-step-chevron {
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .bf-step.open .bf-step-chevron { transform: rotate(180deg); }
+    .bf-step-body {
+      display: none;
+      padding: 0 20px 18px 72px;
+    }
+    .bf-step.open .bf-step-body { display: block; }
+    .bf-step-body p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    /* ── CTA BUTTON ────────────────────────────────────────── */
+    .bf-cta-wrap {
+      text-align: center;
+      margin-top: 36px;
+    }
+    .bf-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--maroon);
+      color: var(--white);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: clamp(0.97rem, 1.8vw, 1.08rem);
+      text-decoration: none;
+      padding: 16px 34px;
+      border-radius: 999px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 6px 20px rgba(158,57,80,0.28);
+    }
+    .bf-btn:hover {
+      background: var(--maroon-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(158,57,80,0.36);
+    }
+    .bf-btn-note {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.83rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── CLOSING BLOCK ─────────────────────────────────────── */
+    .bf-close {
+      background: var(--bf-peach);
+      border-top: 1px solid var(--line);
+      padding: clamp(36px, 5vw, 56px) var(--pad);
+      text-align: center;
+    }
+    .bf-close-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .bf-close-cred {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 440px;
+      margin: 0 auto 24px;
+    }
+    .bf-close-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .bf-social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .bf-social-link:hover { color: var(--maroon); }
+    .bf-social-link svg { flex-shrink: 0; }
+    .bf-site-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--maroon);
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(158,57,80,0.25);
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
+    }
+    .bf-site-link:hover { border-color: var(--maroon); }
+
+    /* ── MAILING LIST ──────────────────────────────────────── */
+    .bf-mailing {
+      background: var(--bf-cream);
+      border-top: 1px solid var(--line);
+      padding: clamp(36px, 5vw, 56px) var(--pad);
+      text-align: center;
+    }
+    .bf-mailing .bf-inner { text-align: center; }
+    .bf-mailing h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .bf-mailing p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.65;
+    }
+    .bf-mail-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .bf-mail-form input {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--navy);
+      outline: none;
+    }
+    .bf-mail-form input:focus { border-color: var(--maroon); }
+    .bf-mail-btn {
+      background: var(--maroon);
+      color: var(--white);
+      border: none;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .bf-mail-btn:hover { background: var(--maroon-deep); }
+    .bf-mail-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 10px;
+      font-style: italic;
+    }
+    .bf-mail-success {
+      display: none;
+      color: var(--maroon);
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+
+    /* ── WHY TILE ──────────────────────────────────────────── */
+    .bf-why-tile {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: clamp(28px, 4vw, 40px);
+      border-left: 4px solid var(--maroon);
+    }
+    .bf-why-tile .bf-eyebrow { color: var(--bf-peach-soft); }
+    .bf-why-tile h2 { color: var(--white); margin-bottom: 14px; font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
+    .bf-why-tile p { color: rgba(255,248,239,0.82); margin-bottom: 10px; line-height: 1.7; }
+    .bf-why-tile p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 600px) {
+      .bf-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="bf-hero">
+    <span class="bf-tag">For BrandFest guests</span>
+    <h1>Audit your <em>brand visibility.</em></h1>
+    <p class="subhead">A free Google Business Profile audit, plus a 30 minute brand presence review session to walk you through it.</p>
+    <p class="time-note">Book your session within 7 days of the event.</p>
+  </section>
+
+  <!-- THE OFFER -->
+  <section class="bf-section cream">
+    <div class="bf-inner">
+      <span class="bf-eyebrow">What's on offer</span>
+      <h2>Here's what a Google Business Profile audit actually looks like.</h2>
+      <p>Most small business Google profiles are either under optimised, out of date, or quietly costing them visibility they don't know they're missing. It's one of those things that doesn't feel urgent until you realise someone nearby is showing up in search results and you're not.</p>
+      <p>When I review a profile, I go through the whole thing: your description, categories, services, photos, posts, reviews and AI visibility. I will then send through a summary on what's working, what's not, and the thing I would fix first if it were my business.</p>
+      <p>The 30 minute brand presence review session is your chance to walk through the findings together, ask questions, and leave with a clear picture of where to focus first.</p>
+    </div>
+  </section>
+
+  <!-- WHY FREE -->
+  <section class="bf-section cream">
+    <div class="bf-inner">
+      <div class="bf-why-tile">
+        <span class="bf-eyebrow">Why it's free</span>
+        <h2>Because Marjie has built something worth showing up for.</h2>
+        <p>Marjie's put together a room full of business owners who have big priorities and limited time, and I want to gift this to you all. There's no follow-up pitch, no strings attached. It's a genuine gift for attending the event.</p>
+        <p>If you want to talk about ongoing support later, that's a separate conversation entirely.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="bf-section cream" style="border-top: 1px solid var(--line);">
+    <div class="bf-inner">
+      <span class="bf-eyebrow">How it works</span>
+      <h2>Three steps, nothing complicated.</h2>
+      <div class="bf-steps">
+        <div class="bf-step open">
+          <div class="bf-step-header">
+            <div class="bf-step-num">1</div>
+            <span class="bf-step-title">Send Tara your website</span>
+            <span class="bf-step-chevron">▾</span>
+          </div>
+          <div class="bf-step-body">
+            <p>Hit the button below. Your email opens with the subject and format already filled in. Just add your website, business name and phone number and send.</p>
+          </div>
+        </div>
+        <div class="bf-step">
+          <div class="bf-step-header">
+            <div class="bf-step-num">2</div>
+            <span class="bf-step-title">I'll come back with the audit</span>
+            <span class="bf-step-chevron">▾</span>
+          </div>
+          <div class="bf-step-body">
+            <p>Within a few days you'll get your Google Business Profile feedback straight to your inbox — what's working, what's not, and where to start.</p>
+          </div>
+        </div>
+        <div class="bf-step">
+          <div class="bf-step-header">
+            <div class="bf-step-num">3</div>
+            <span class="bf-step-title">Book your 30-minute brand presence review</span>
+            <span class="bf-step-chevron">▾</span>
+          </div>
+          <div class="bf-step-body">
+            <p>We walk through the findings together, ask questions, and you leave with a clear picture of where to focus first. Book within 7 days of the event.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bf-cta-wrap">
+        <a class="bf-btn" href="mailto:hello@taraconsultingco.com?subject=BrandFest%20Review&body=Hi%20Tara%2C%0A%0AMy%20website%3A%20%0AMy%20business%3A%20%0AMy%20phone%3A%20">
+          Send Tara your website
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.75 9h10.5M9.75 4.5L14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <span class="bf-btn-note">Opens your email. Everything's pre-filled.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAILING LIST -->
+  <section class="bf-mailing">
+    <div class="bf-inner">
+      <h3>Stay in the loop.</h3>
+      <p>New resources, practical tips and updates on what's working for small businesses right now. No noise, just the useful stuff.</p>
+      <form class="bf-mail-form" id="bf-mail-form">
+        <input type="email" id="bf-mail-email" placeholder="your@email.com" required />
+        <button type="submit" class="bf-mail-btn">Subscribe</button>
+      </form>
+      <p class="bf-mail-note">No spam. Unsubscribe any time.</p>
+      <p class="bf-mail-success" id="bf-mail-success">You're in. Thanks for subscribing.</p>
+    </div>
+  </section>
+
+  <!-- CLOSING BLOCK -->
+  <footer class="bf-close">
+    <div class="bf-inner">
+      <p class="bf-close-cred">Tara Consulting Co. Business systems, marketing structure and practical AI for small business.</p>
+      <div class="bf-close-links">
+        <a class="bf-social-link" href="https://www.instagram.com/taraconsultingco/" target="_blank" rel="noopener">
+          <svg width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="34" height="34" rx="9" fill="rgba(255,255,255,0.15)"/>
+            <rect x="9.5" y="9.5" width="15" height="15" rx="4.5" stroke="white" stroke-width="2"/>
+            <circle cx="17" cy="17" r="3.7" stroke="white" stroke-width="2"/>
+            <circle cx="21.4" cy="12.6" r="1.2" fill="white"/>
+          </svg>
+          @taraconsultingco
+        </a>
+        <a class="bf-social-link" href="https://www.facebook.com/taraconsultingco" target="_blank" rel="noopener">
+          <svg width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="34" height="34" rx="9" fill="rgba(255,255,255,0.15)"/>
+            <path d="M19.5 17.5h2.2l.4-2.8h-2.6v-1.8c0-.8.3-1.3 1.4-1.3h1.3V9.1c-.6-.1-1.4-.2-2.2-.2-2.3 0-3.8 1.4-3.8 3.9v2.1h-2.4v2.8h2.4v7h2.9v-7z" fill="white"/>
+          </svg>
+          taraconsultingco
+        </a>
+      </div>
+      <a class="bf-site-link" href="https://taraconsultingco.com">If you'd like to see what else I do →</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── INTERACTIVE STEPS ──────────────────────────────────
+    document.querySelectorAll('.bf-step-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var step = this.parentElement;
+        var isOpen = step.classList.contains('open');
+        // Close all steps
+        document.querySelectorAll('.bf-step').forEach(function(s) {
+          s.classList.remove('open');
+        });
+        // Open clicked one if it was closed
+        if (!isOpen) step.classList.add('open');
+      });
+    });
+
+    // ── MAILING LIST WITH NOTIFICATION ─────────────────────
+    document.getElementById('bf-mail-form')?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('bf-mail-email').value.trim();
+      const btn = e.currentTarget.querySelector('.bf-mail-btn');
+      if (!email) return;
+      btn.disabled = true;
+      btn.textContent = 'Subscribing...';
+      const SB = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
+      const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
+      try {
+        await fetch(SB + '/rest/v1/leads', {
+          method: 'POST',
+          headers: { 'apikey': ANON, 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'brandfest-newsletter' })
+        });
+      } catch(err) {}
+      // Notify Tara via edge function
+      try {
+        await fetch(SB + '/functions/v1/notify-lead', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'brandfest-newsletter' })
+        });
+      } catch(err) {}
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+      document.getElementById('bf-mail-form').style.display = 'none';
+      document.getElementById('bf-mail-success').style.display = 'block';
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
