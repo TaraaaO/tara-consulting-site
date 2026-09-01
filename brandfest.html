@@ -39,7 +39,7 @@
     /* ── HERO ──────────────────────────────────────────────── */
     .bf-hero {
       background: var(--maroon);
-      padding: clamp(48px, 8vw, 88px) var(--pad) clamp(40px, 6vw, 72px);
+      padding: clamp(32px, 5vw, 60px) var(--pad) clamp(28px, 4vw, 48px);
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -93,7 +93,7 @@
 
     /* ── SECTIONS ──────────────────────────────────────────── */
     .bf-section {
-      padding: clamp(48px, 7vw, 76px) var(--pad);
+      padding: clamp(24px, 3.5vw, 44px) var(--pad);
     }
     .bf-section.cream { background: var(--bf-cream); }
     .bf-section.peach { background: var(--bf-peach); }
@@ -140,13 +140,20 @@
       margin-top: 20px;
     }
     .bf-step {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .bf-step:hover { box-shadow: 0 4px 16px rgba(20,33,61,0.08); }
+    .bf-step-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
       padding: 18px 20px;
+      cursor: pointer;
+      user-select: none;
     }
     .bf-step-num {
       width: 36px;
@@ -161,18 +168,32 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      transition: background 0.2s;
     }
-    .bf-step-body h3 {
+    .bf-step.open .bf-step-num { background: var(--maroon); color: var(--white); }
+    .bf-step-title {
       font-size: 0.97rem;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: 4px;
+      flex: 1;
     }
+    .bf-step-chevron {
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .bf-step.open .bf-step-chevron { transform: rotate(180deg); }
+    .bf-step-body {
+      display: none;
+      padding: 0 20px 18px 72px;
+    }
+    .bf-step.open .bf-step-body { display: block; }
     .bf-step-body p {
       font-size: 0.9rem;
       color: var(--muted);
       margin: 0;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     /* ── CTA BUTTON ────────────────────────────────────────── */
@@ -332,6 +353,54 @@
       margin-top: 12px;
     }
 
+    /* ── WHY TILE ──────────────────────────────────────────── */
+    .bf-why-tile {
+      position: relative;
+      background: var(--navy);
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 240px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 8px 32px rgba(20,33,61,0.18);
+    }
+    .bf-why-photo {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 55%;
+      background-image: url('https://zmexxlwvwxxocjbfkslw.supabase.co/storage/v1/object/public/The%20Brand%20Fest/Brandfest-75.jpg');
+      background-size: cover;
+      background-position: center top;
+    }
+    .bf-why-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--navy) 0%, rgba(20,33,61,0.9) 35%, rgba(20,33,61,0.4) 70%, rgba(20,33,61,0.1) 100%);
+    }
+    .bf-why-accent {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 4px;
+      background: var(--maroon);
+      border-radius: 16px 0 0 16px;
+    }
+    .bf-why-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(24px, 4vw, 40px) clamp(24px, 4vw, 40px) clamp(24px, 4vw, 40px) clamp(28px, 4vw, 44px);
+      max-width: 60%;
+    }
+    .bf-why-tile .bf-eyebrow { color: var(--bf-peach-soft); }
+    .bf-why-tile h2 { color: var(--white); margin-bottom: 12px; font-size: clamp(1.2rem, 2vw, 1.55rem); }
+    .bf-why-tile p { color: rgba(255,248,239,0.82); margin-bottom: 10px; line-height: 1.72; }
+    .bf-why-tile p:last-child { margin-bottom: 0; }
+    @media (max-width: 580px) {
+      .bf-why-photo { width: 100%; }
+      .bf-why-photo::before { background: rgba(20,33,61,0.82); }
+      .bf-why-content { max-width: 100%; }
+    }
+
     @media (max-width: 600px) {
       .bf-btn {
         width: 100%;
@@ -356,19 +425,24 @@
       <span class="bf-eyebrow">What's on offer</span>
       <h2>Here's what a Google Business Profile audit actually looks like.</h2>
       <p>Most small business Google profiles are either under optimised, out of date, or quietly costing them visibility they don't know they're missing. It's one of those things that doesn't feel urgent until you realise someone nearby is showing up in search results and you're not.</p>
-      <p>When I review a profile, I go through the whole thing: your description, categories, services, photos, posts, reviews and AI visability. I will then send through a summary on what's working, what's not, and the thing I would fix first if it were my business.</p>
+      <p>When I review a profile, I go through the whole thing: your description, categories, services, photos, posts, reviews and AI visibility. I will then send through a summary on what's working, what's not, and the thing I would fix first if it were my business.</p>
       <p>The 30 minute brand presence review session is your chance to walk through the findings together, ask questions, and leave with a clear picture of where to focus first.</p>
     </div>
   </section>
 
   <!-- WHY FREE -->
-  <section class="bf-section peach">
+  <section class="bf-section cream">
     <div class="bf-inner">
-      <span class="bf-eyebrow">Why it's free</span>
-      <h2>Because Marjie has built this amzing event.</h2>
-      <p>Marjie's put together a room full of business owners who have big priorities and limited time, and I want to gift this to you all. There's no follow up pitch, no strings attached. Its a genuine gift for attending the event.
-      <p>I have worked with Marji over the last 3 weeks to elevate her brand. Create a logo, provide advice and support on her content and create her visual presentation. 
-        If you want to talk about ongoing support later, that's a separate conversation entirely.</p>
+      <div class="bf-why-tile">
+        <div class="bf-why-photo"></div>
+        <div class="bf-why-accent"></div>
+        <div class="bf-why-content">
+          <span class="bf-eyebrow">Why it's free</span>
+          <h2>Because Marjie has built something worth showing up for.</h2>
+          <p>Marjie's put together a room full of business owners who have big priorities and limited time, and I want to gift this to you all. There's no follow-up pitch, no strings attached. It's a genuine gift for attending the event.</p>
+          <p>If you want to talk about ongoing support later, that's a separate conversation entirely.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -378,25 +452,34 @@
       <span class="bf-eyebrow">How it works</span>
       <h2>Three steps, nothing complicated.</h2>
       <div class="bf-steps">
-        <div class="bf-step">
-          <div class="bf-step-num">1</div>
+        <div class="bf-step open">
+          <div class="bf-step-header">
+            <div class="bf-step-num">1</div>
+            <span class="bf-step-title">Send Tara your website</span>
+            <span class="bf-step-chevron">▾</span>
+          </div>
           <div class="bf-step-body">
-            <h3>Send Tara your website</h3>
-            <p>Hit the button below. Your email opens with the subject and format already filled in. Just add your details and send.</p>
+            <p>Hit the button below. Your email opens with the subject and format already filled in. Just add your website, business name and phone number and send.</p>
           </div>
         </div>
         <div class="bf-step">
-          <div class="bf-step-num">2</div>
+          <div class="bf-step-header">
+            <div class="bf-step-num">2</div>
+            <span class="bf-step-title">I'll come back with the audit</span>
+            <span class="bf-step-chevron">▾</span>
+          </div>
           <div class="bf-step-body">
-            <h3>SI will come back with the review</h3>
-            <p>Within a few days you will get your Google Business Profile feedback to your inbox: what's working, what's not, and where to start.</p>
+            <p>Within a few days you'll get your Google Business Profile feedback straight to your inbox — what's working, what's not, and where to start.</p>
           </div>
         </div>
         <div class="bf-step">
-          <div class="bf-step-num">3</div>
+          <div class="bf-step-header">
+            <div class="bf-step-num">3</div>
+            <span class="bf-step-title">Book your 30-minute brand presence review</span>
+            <span class="bf-step-chevron">▾</span>
+          </div>
           <div class="bf-step-body">
-            <h3>Book your 30-minute brand presence review</h3>
-            <p>We will then aalk through the audit findings together, ask questions, and leave with a clear picture of where to focus. Book within 7 days of the event.</p>
+            <p>We walk through the findings together, ask questions, and you leave with a clear picture of where to focus first. Book within 7 days of the event.</p>
           </div>
         </div>
       </div>
@@ -454,6 +537,21 @@
   </footer>
 
   <script>
+    // ── INTERACTIVE STEPS ──────────────────────────────────
+    document.querySelectorAll('.bf-step-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var step = this.parentElement;
+        var isOpen = step.classList.contains('open');
+        // Close all steps
+        document.querySelectorAll('.bf-step').forEach(function(s) {
+          s.classList.remove('open');
+        });
+        // Open clicked one if it was closed
+        if (!isOpen) step.classList.add('open');
+      });
+    });
+
+    // ── MAILING LIST WITH NOTIFICATION ─────────────────────
     document.getElementById('bf-mail-form')?.addEventListener('submit', async function(e) {
       e.preventDefault();
       const email = document.getElementById('bf-mail-email').value.trim();
@@ -467,6 +565,14 @@
         await fetch(SB + '/rest/v1/leads', {
           method: 'POST',
           headers: { 'apikey': ANON, 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'brandfest-newsletter' })
+        });
+      } catch(err) {}
+      // Notify Tara via edge function
+      try {
+        await fetch(SB + '/functions/v1/notify-lead', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email, source: 'brandfest-newsletter' })
         });
       } catch(err) {}
