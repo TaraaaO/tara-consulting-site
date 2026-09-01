@@ -14,7 +14,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>BrandFest — Tara Consulting Co</title>
   <link rel="icon" type="image/png" href="favicon.png"/>
-  <meta name="description" content="A free Google Business Profile review for BrandFest guests." />
+  <meta name="description" content="A free Google Business Profile audit and 30-minute brand presence review session for BrandFest guests." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -263,6 +263,75 @@
     }
     .bf-site-link:hover { border-color: var(--maroon); }
 
+    /* ── MAILING LIST ──────────────────────────────────────── */
+    .bf-mailing {
+      background: var(--bf-cream);
+      border-top: 1px solid var(--line);
+      padding: clamp(36px, 5vw, 56px) var(--pad);
+      text-align: center;
+    }
+    .bf-mailing .bf-inner { text-align: center; }
+    .bf-mailing h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .bf-mailing p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.65;
+    }
+    .bf-mail-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .bf-mail-form input {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--navy);
+      outline: none;
+    }
+    .bf-mail-form input:focus { border-color: var(--maroon); }
+    .bf-mail-btn {
+      background: var(--maroon);
+      color: var(--white);
+      border: none;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .bf-mail-btn:hover { background: var(--maroon-deep); }
+    .bf-mail-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 10px;
+      font-style: italic;
+    }
+    .bf-mail-success {
+      display: none;
+      color: var(--maroon);
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+
     @media (max-width: 600px) {
       .bf-btn {
         width: 100%;
@@ -276,19 +345,19 @@
   <!-- HERO -->
   <section class="bf-hero">
     <span class="bf-tag">For BrandFest guests</span>
-    <h1>A gift for <em>BrandFest guests.</em></h1>
-    <p class="subhead">A free Google Business Profile review, plus a 15-minute call to walk you through it.</p>
-    <p class="time-note">You've got seven days from the event to book in.</p>
+    <h1>Audit your <em>brand visibility.</em></h1>
+    <p class="subhead">A free Google Business Profile audit, plus a 30-minute brand presence review session to walk you through it.</p>
+    <p class="time-note">Book your session within 7 days of the event.</p>
   </section>
 
   <!-- THE OFFER -->
   <section class="bf-section cream">
     <div class="bf-inner">
       <span class="bf-eyebrow">What's on offer</span>
-      <h2>Here's what a Google Business Profile review actually looks like.</h2>
+      <h2>Here's what a Google Business Profile audit actually looks like.</h2>
       <p>Most small business Google profiles are either under-optimised, out of date, or quietly costing them visibility they don't know they're missing. It's one of those things that doesn't feel urgent until you realise someone nearby is showing up in search results and you're not.</p>
       <p>When Tara reviews a profile, she goes through the whole thing: your description, categories, services, photos, posts, reviews. She comes back with plain-English notes on what's working, what's not, and the one thing she'd fix first if it were her business.</p>
-      <p>The 15-minute call is optional, but most people find it useful. She walks through the notes, answers questions, and you leave knowing exactly what to do next.</p>
+      <p>The 30-minute brand presence review session is your chance to walk through the findings together, ask questions, and leave with a clear picture of where to focus first.</p>
     </div>
   </section>
 
@@ -324,8 +393,8 @@
         <div class="bf-step">
           <div class="bf-step-num">3</div>
           <div class="bf-step-body">
-            <h3>Book a 15-minute call if you'd like</h3>
-            <p>Walk through the notes, ask questions, and leave with a clear next step. Completely optional, but most people find it worth the time.</p>
+            <h3>Book your 30-minute brand presence review</h3>
+            <p>Walk through the audit findings together, ask questions, and leave with a clear picture of where to focus. Book within 7 days of the event.</p>
           </div>
         </div>
       </div>
@@ -339,6 +408,20 @@
         </a>
         <span class="bf-btn-note">Opens your email. Everything's pre-filled.</span>
       </div>
+    </div>
+  </section>
+
+  <!-- MAILING LIST -->
+  <section class="bf-mailing">
+    <div class="bf-inner">
+      <h3>Stay in the loop.</h3>
+      <p>New resources, practical tips and updates on what's working for small businesses right now. No noise, just the useful stuff.</p>
+      <form class="bf-mail-form" id="bf-mail-form">
+        <input type="email" id="bf-mail-email" placeholder="your@email.com" required />
+        <button type="submit" class="bf-mail-btn">Subscribe</button>
+      </form>
+      <p class="bf-mail-note">No spam. Unsubscribe any time.</p>
+      <p class="bf-mail-success" id="bf-mail-success">You're in. Thanks for subscribing.</p>
     </div>
   </section>
 
@@ -368,5 +451,29 @@
     </div>
   </footer>
 
+  <script>
+    document.getElementById('bf-mail-form')?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('bf-mail-email').value.trim();
+      const btn = e.currentTarget.querySelector('.bf-mail-btn');
+      if (!email) return;
+      btn.disabled = true;
+      btn.textContent = 'Subscribing...';
+      const SB = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
+      const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
+      try {
+        await fetch(SB + '/rest/v1/leads', {
+          method: 'POST',
+          headers: { 'apikey': ANON, 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'brandfest-newsletter' })
+        });
+      } catch(err) {}
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+      document.getElementById('bf-mail-form').style.display = 'none';
+      document.getElementById('bf-mail-success').style.display = 'block';
+      e.target.reset();
+    });
+  </script>
 </body>
 </html>
