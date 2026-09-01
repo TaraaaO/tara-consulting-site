@@ -12,9 +12,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>The BrandFest — Tara Consulting Co</title>
+  <title>The Brand Fest — Tara Consulting Co</title>
   <link rel="icon" type="image/png" href="favicon.png"/>
-  <meta name="description" content="A free Google Business Profile audit and 30 minute brand presence review session for BrandFest guests." />
+  <meta name="description" content="A free Google Business Profile audit and 30-minute brand presence review session for The Brand Fest guests." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -356,49 +356,51 @@
     /* ── WHY TILE ──────────────────────────────────────────── */
     .bf-why-tile {
       position: relative;
-      background: var(--navy);
       border-radius: 16px;
       overflow: hidden;
-      min-height: 240px;
-      display: flex;
-      align-items: center;
       box-shadow: 0 8px 32px rgba(20,33,61,0.18);
+      background: var(--navy);
     }
     .bf-why-photo {
       position: absolute;
-      top: 0; right: 0; bottom: 0;
-      width: 55%;
+      inset: 0;
       background-image: url('https://zmexxlwvwxxocjbfkslw.supabase.co/storage/v1/object/public/The%20Brand%20Fest/Brandfest-75.jpg');
       background-size: cover;
       background-position: center top;
+      z-index: 0;
     }
-    .bf-why-photo::before {
+    .bf-why-photo::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, var(--navy) 0%, rgba(20,33,61,0.9) 35%, rgba(20,33,61,0.4) 70%, rgba(20,33,61,0.1) 100%);
+      background: linear-gradient(
+        to right,
+        rgba(20,33,61,0.97) 0%,
+        rgba(20,33,61,0.92) 45%,
+        rgba(20,33,61,0.55) 70%,
+        rgba(20,33,61,0.2) 100%
+      );
     }
     .bf-why-accent {
       position: absolute;
       top: 0; left: 0; bottom: 0;
       width: 4px;
       background: var(--maroon);
-      border-radius: 16px 0 0 16px;
+      z-index: 2;
     }
     .bf-why-content {
       position: relative;
-      z-index: 2;
-      padding: clamp(24px, 4vw, 40px) clamp(24px, 4vw, 40px) clamp(24px, 4vw, 40px) clamp(28px, 4vw, 44px);
-      max-width: 60%;
+      z-index: 3;
+      padding: clamp(28px, 4vw, 44px);
+      max-width: 58%;
     }
     .bf-why-tile .bf-eyebrow { color: var(--bf-peach-soft); }
-    .bf-why-tile h2 { color: var(--white); margin-bottom: 12px; font-size: clamp(1.2rem, 2vw, 1.55rem); }
-    .bf-why-tile p { color: rgba(255,248,239,0.82); margin-bottom: 10px; line-height: 1.72; }
+    .bf-why-tile h2 { color: var(--white); margin-bottom: 12px; font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.2; }
+    .bf-why-tile p { color: rgba(255,248,239,0.85); margin-bottom: 10px; line-height: 1.72; font-size: 0.92rem; }
     .bf-why-tile p:last-child { margin-bottom: 0; }
     @media (max-width: 580px) {
-      .bf-why-photo { width: 100%; }
-      .bf-why-photo::before { background: rgba(20,33,61,0.82); }
       .bf-why-content { max-width: 100%; }
+      .bf-why-photo::after { background: rgba(20,33,61,0.88); }
     }
 
     @media (max-width: 600px) {
@@ -413,9 +415,9 @@
 
   <!-- HERO -->
   <section class="bf-hero">
-    <span class="bf-tag">For BrandFest guests</span>
+    <span class="bf-tag">For The Brand Fest guests</span>
     <h1>Audit your <em>brand visibility.</em></h1>
-    <p class="subhead">A free Google Business Profile audit, plus a 30 minute brand presence review session to walk you through it.</p>
+    <p class="subhead">A free Google Business Profile audit, plus a 30-minute brand presence review session to walk you through it.</p>
     <p class="time-note">Book your session within 7 days of the event.</p>
   </section>
 
@@ -426,7 +428,7 @@
       <h2>Here's what a Google Business Profile audit actually looks like.</h2>
       <p>Most small business Google profiles are either under optimised, out of date, or quietly costing them visibility they don't know they're missing. It's one of those things that doesn't feel urgent until you realise someone nearby is showing up in search results and you're not.</p>
       <p>When I review a profile, I go through the whole thing: your description, categories, services, photos, posts, reviews and AI visibility. I will then send through a summary on what's working, what's not, and the thing I would fix first if it were my business.</p>
-      <p>The 30 minute brand presence review session is your chance to walk through the findings together, ask questions, and leave with a clear picture of where to focus first.</p>
+      <p>The 30-minute brand presence review session is your chance to walk through the findings together, ask questions, and leave with a clear picture of where to focus first.</p>
     </div>
   </section>
 
@@ -450,7 +452,7 @@
   <section class="bf-section cream" style="border-top: 1px solid var(--line);">
     <div class="bf-inner">
       <span class="bf-eyebrow">How it works</span>
-      <h2>Three steps, nothing complicated.</h2>
+      <h2>Three quick steps, nothing to lose.</h2>
       <div class="bf-steps">
         <div class="bf-step open">
           <div class="bf-step-header">
@@ -485,7 +487,7 @@
       </div>
 
       <div class="bf-cta-wrap">
-        <a class="bf-btn" href="mailto:hello@taraconsultingco.com?subject=BrandFest%20Review&body=Hi%20Tara%2C%0A%0AMy%20website%3A%20%0AMy%20business%3A%20%0AMy%20phone%3A%20">
+        <a class="bf-btn" href="mailto:hello@taraconsultingco.com?subject=The%20Brand%20Fest%20Review&body=Hi%20Tara%2C%0A%0AMy%20website%3A%20%0AMy%20business%3A%20%0AMy%20phone%3A%20">
           Send Tara your website
           <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.75 9h10.5M9.75 4.5L14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
