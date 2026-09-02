@@ -409,6 +409,119 @@
         justify-content: center;
       }
     }
+
+    /* ── POPUP ─────────────────────────────────────────────── */
+    .bf-popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,33,61,0.6);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .bf-popup-overlay.active { display: flex; }
+    .bf-popup {
+      background: var(--bf-cream);
+      border-radius: 20px;
+      padding: clamp(28px, 5vw, 44px);
+      max-width: 460px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(20,33,61,0.25);
+      animation: bf-popup-in 0.3s ease;
+    }
+    @keyframes bf-popup-in {
+      from { opacity: 0; transform: translateY(16px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .bf-popup-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--muted);
+      line-height: 1;
+    }
+    .bf-popup-close:hover { color: var(--navy); }
+    .bf-popup-eye {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--maroon);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .bf-popup h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .bf-popup p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+    .bf-popup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bf-popup-input {
+      padding: 12px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--navy);
+      outline: none;
+      background: white;
+    }
+    .bf-popup-input:focus { border-color: var(--maroon); }
+    .bf-popup-btn {
+      background: var(--maroon);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 24px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .bf-popup-btn:hover { background: #7a2d3e; }
+    .bf-popup-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      font-style: italic;
+      margin-top: 6px;
+    }
+    .bf-popup-success {
+      display: none;
+      text-align: center;
+      padding: 10px 0;
+    }
+    .bf-popup-success h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .bf-popup-success p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -583,6 +696,87 @@
       document.getElementById('bf-mail-form').style.display = 'none';
       document.getElementById('bf-mail-success').style.display = 'block';
       e.target.reset();
+    });
+  </script>
+
+  <!-- POPUP -->
+  <div class="bf-popup-overlay" id="bf-popup-overlay">
+    <div class="bf-popup">
+      <button class="bf-popup-close" id="bf-popup-close" aria-label="Close">×</button>
+      <div id="bf-popup-form-wrap">
+        <span class="bf-popup-eye">Don't lose this</span>
+        <h3>Get this sent straight to your inbox.</h3>
+        <p>Drop your email and I'll send you the full details of the offer, plus a link back to this page so you can find it whenever you're ready to book.</p>
+        <form class="bf-popup-form" id="bf-popup-form">
+          <input type="email" class="bf-popup-input" id="bf-popup-email" placeholder="your@email.com" required />
+          <button type="submit" class="bf-popup-btn">Send it to me →</button>
+        </form>
+        <p class="bf-popup-note">No spam. Just the details you came here for.</p>
+      </div>
+      <div class="bf-popup-success" id="bf-popup-success">
+        <h4>On its way.</h4>
+        <p>Check your inbox — the details and your link back to this page are heading to you now.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── POPUP LOGIC ─────────────────────────────────────────
+    (function() {
+      if (sessionStorage.getItem('bf-popup-shown')) return;
+      setTimeout(function() {
+        document.getElementById('bf-popup-overlay').classList.add('active');
+        sessionStorage.setItem('bf-popup-shown', '1');
+      }, 8000);
+    })();
+
+    document.getElementById('bf-popup-close').addEventListener('click', function() {
+      document.getElementById('bf-popup-overlay').classList.remove('active');
+    });
+    document.getElementById('bf-popup-overlay').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('active');
+    });
+
+    document.getElementById('bf-popup-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('bf-popup-email').value.trim();
+      if (!email) return;
+      const btn = this.querySelector('.bf-popup-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      const SB = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
+      const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
+
+      // Save to leads table
+      try {
+        await fetch(SB + '/rest/v1/leads', {
+          method: 'POST',
+          headers: { 'apikey': ANON, 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'brandfest-popup' })
+        });
+      } catch(err) {}
+
+      // Send email via edge function
+      try {
+        await fetch(SB + '/functions/v1/brandfest-email', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        });
+      } catch(err) {}
+
+      // Notify Tara
+      try {
+        await fetch(SB + '/functions/v1/notify-lead', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'brandfest-popup' })
+        });
+      } catch(err) {}
+
+      document.getElementById('bf-popup-form-wrap').style.display = 'none';
+      document.getElementById('bf-popup-success').style.display = 'block';
     });
   </script>
 </body>
