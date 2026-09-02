@@ -371,6 +371,119 @@
     }
     .announcement-link:hover .ann-arrow { transform: translateX(4px); }
 
+  
+  /* ── HOMEPAGE POPUP ────────────────────────────────────── */
+  .hp-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20,33,61,0.55);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .hp-popup-overlay.active { display: flex; }
+  .hp-popup {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: clamp(28px, 5vw, 44px);
+    max-width: 440px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(20,33,61,0.22);
+    animation: hp-popup-in 0.3s ease;
+  }
+  @keyframes hp-popup-in {
+    from { opacity: 0; transform: translateY(14px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .hp-popup-close {
+    position: absolute;
+    top: 14px; right: 18px;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--muted);
+    line-height: 1;
+  }
+  .hp-popup-close:hover { color: var(--navy); }
+  .hp-popup-eye {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .hp-popup h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .hp-popup p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .hp-popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hp-popup-input {
+    padding: 12px 16px;
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--navy);
+    outline: none;
+    background: white;
+  }
+  .hp-popup-input:focus { border-color: var(--orange); }
+  .hp-popup-btn {
+    background: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 13px 24px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .hp-popup-btn:hover { background: var(--navy); }
+  .hp-popup-note {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-align: center;
+    font-style: italic;
+    margin-top: 4px;
+  }
+  .hp-popup-success {
+    display: none;
+    text-align: center;
+    padding: 8px 0;
+  }
+  .hp-popup-success h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .hp-popup-success p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: 0;
+  }
   </style>
 
   <!-- Structured Data — LocalBusiness -->
@@ -673,6 +786,88 @@
       const source = (typeof window.POSTS !== 'undefined' && window.POSTS.length) ? window.POSTS : FALLBACK_POSTS;
       renderPreview(source);
     })();
+  </script>
+
+  <!-- HOMEPAGE NEWSLETTER POPUP -->
+  <div class="hp-popup-overlay" id="hp-popup-overlay">
+    <div class="hp-popup">
+      <button class="hp-popup-close" id="hp-popup-close" aria-label="Close">×</button>
+      <div id="hp-popup-wrap">
+        <span class="hp-popup-eye">Stay in the loop</span>
+        <h3>Practical tips, offers and updates. Once a month.</h3>
+        <p>Join small business owners across the NSW South Coast getting monthly tips on marketing, systems and AI — no noise, just the useful stuff.</p>
+        <form class="hp-popup-form" id="hp-popup-form">
+          <input type="email" class="hp-popup-input" id="hp-popup-email" placeholder="your@email.com" required />
+          <button type="submit" class="hp-popup-btn">Count me in →</button>
+        </form>
+        <p class="hp-popup-note">Monthly emails only. Unsubscribe any time.</p>
+      </div>
+      <div class="hp-popup-success" id="hp-popup-success">
+        <h4>You're in.</h4>
+        <p>Welcome to the list. Look out for your first email next month.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── HOMEPAGE POPUP ───────────────────────────────────────
+    (function() {
+      if (sessionStorage.getItem('hp-popup-shown')) return;
+      setTimeout(function() {
+        var overlay = document.getElementById('hp-popup-overlay');
+        if (overlay) overlay.classList.add('active');
+        sessionStorage.setItem('hp-popup-shown', '1');
+      }, 5000);
+    })();
+
+    var hpClose = document.getElementById('hp-popup-close');
+    if (hpClose) hpClose.addEventListener('click', function() {
+      document.getElementById('hp-popup-overlay').classList.remove('active');
+    });
+    var hpOverlay = document.getElementById('hp-popup-overlay');
+    if (hpOverlay) hpOverlay.addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('active');
+    });
+
+    var hpForm = document.getElementById('hp-popup-form');
+    if (hpForm) hpForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('hp-popup-email').value.trim();
+      if (!email) return;
+      const btn = this.querySelector('.hp-popup-btn');
+      btn.disabled = true;
+      btn.textContent = 'Joining...';
+
+      const SB = 'https://zmexxlwvwxxocjbfkslw.supabase.co';
+      const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptZXh4bHd2d3h4b2NqYmZrc2x3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDkwMzIsImV4cCI6MjA5NTg4NTAzMn0.ZhFO4L_9AYG_Bp0VzzUeemZy4WwgALGR0OHRB2SN46g';
+
+      try {
+        await fetch(SB + '/rest/v1/leads', {
+          method: 'POST',
+          headers: { 'apikey': ANON, 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'homepage-popup' })
+        });
+      } catch(err) {}
+
+      try {
+        await fetch(SB + '/functions/v1/notify-lead', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'homepage-popup' })
+        });
+      } catch(err) {}
+
+      try {
+        await fetch(SB + '/functions/v1/welcome-email', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        });
+      } catch(err) {}
+
+      document.getElementById('hp-popup-wrap').style.display = 'none';
+      document.getElementById('hp-popup-success').style.display = 'block';
+    });
   </script>
 </body>
 </html>
