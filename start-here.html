@@ -249,6 +249,77 @@
       .paths-grid { grid-template-columns: 1fr; }
     }
 
+  
+    /* ── TESTIMONIAL ────────────────────────────────────────── */
+    .sh-testimonial {
+      position: relative;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px 22px 28px;
+      margin-bottom: 0;
+    }
+    .sh-testimonial::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+      background: var(--orange);
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    }
+    .sh-testimonial blockquote {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: var(--navy);
+      font-style: italic;
+      margin: 0 0 10px;
+      transition: opacity 0.5s ease;
+    }
+    .sh-testimonial cite {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      font-style: normal;
+      letter-spacing: 0.03em;
+      transition: opacity 0.5s ease;
+    }
+    .sh-testimonial.fading blockquote,
+    .sh-testimonial.fading cite { opacity: 0; }
+
+    /* ── NOT READY PANEL ────────────────────────────────────── */
+    .sh-guide-panel {
+      background: var(--cream);
+      border: 1px solid #FFE2C2;
+      border-radius: var(--radius-lg);
+      padding: clamp(20px, 3vw, 28px);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .sh-guide-text { flex: 1; min-width: 220px; }
+    .sh-guide-text p:first-child {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin: 0 0 6px;
+    }
+    .sh-guide-text h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--navy);
+      margin: 0 0 6px;
+      line-height: 1.2;
+    }
+    .sh-guide-text p:last-child {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.65;
+    }
   </style>
 
   <!-- Structured Data — LocalBusiness -->
@@ -384,6 +455,30 @@
           </div>
         </div>
         <p class="paths-note">Either way, it leads to the same two ways of working together below.</p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL ROTATOR -->
+    <section class="block" style="padding-bottom:0;">
+      <div class="container">
+        <div class="sh-testimonial" id="sh-testimonial">
+          <blockquote id="sh-quote">"Tara was creative, reliable and always willing to go above and beyond. Her creativity seemed endless, and the results spoke for themselves — our social media engagement grew month on month. What I appreciated most was that Tara genuinely cared about the success of the business she was working with. I wouldn't hesitate to recommend her."</blockquote>
+          <cite id="sh-cite">Lorna — Holiday Haven Parks</cite>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOT READY PANEL -->
+    <section class="block" style="padding-bottom:0;">
+      <div class="container">
+        <div class="sh-guide-panel">
+          <div class="sh-guide-text">
+            <p>Not ready to chat yet?</p>
+            <h3>Start with the $27 guide.</h3>
+            <p>The Get Found by AI guide walks you through what AI says about your business and exactly how to fix it. Takes about 10 minutes.</p>
+          </div>
+          <a class="btn" href="https://buy.stripe.com/3cI28rc8KeSO14W7An9oc01" target="_blank" rel="noopener" style="white-space:nowrap;flex-shrink:0;">Get the guide <span class="arrow">→</span> <small style="opacity:0.8;font-size:0.8em;">$27</small></a>
+        </div>
       </div>
     </section>
 
@@ -996,6 +1091,37 @@
       if (key === 'sh-page-title') { el.innerHTML = value; return; }
       el.textContent = value;
     });
+  </script>
+
+  <script>
+    // ── TESTIMONIAL ROTATOR ─────────────────────────────────
+    (function() {
+      var testimonials = [
+        {
+          quote: '"Tara was creative, reliable and always willing to go above and beyond. Her creativity seemed endless, and the results spoke for themselves — our social media engagement grew month on month. What I appreciated most was that Tara genuinely cared about the success of the business she was working with. I wouldn't hesitate to recommend her."',
+          cite: 'Lorna — Holiday Haven Parks'
+        },
+        {
+          quote: '"Tara has just been invaluable. Her knowledge across social media, content creation, scheduling and the back end of our business has made our life so much easier. She has all these little tips and tricks up her sleeve that we just didn't know we needed."',
+          cite: 'Amy Lee — Dom's Plant Repairs'
+        }
+      ];
+      var current = 0;
+      var box = document.getElementById('sh-testimonial');
+      var quote = document.getElementById('sh-quote');
+      var cite = document.getElementById('sh-cite');
+      if (!box || !quote || !cite) return;
+
+      setInterval(function() {
+        box.classList.add('fading');
+        setTimeout(function() {
+          current = (current + 1) % testimonials.length;
+          quote.textContent = testimonials[current].quote;
+          cite.textContent = testimonials[current].cite;
+          box.classList.remove('fading');
+        }, 500);
+      }, 6000);
+    })();
   </script>
 </body>
 </html>
