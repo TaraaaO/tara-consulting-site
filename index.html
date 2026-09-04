@@ -601,59 +601,68 @@
             <a class="btn secondary" href="start-here.html">Where to start</a>
           </div>
         </div>
-        <aside class="hero-card reveal delay-2">
-          <h3 id="hp-card-headline">For businesses ready to stop putting it off.</h3>
-          <p id="hp-card-body">We help you get set up with social media that sounds like you, simple systems behind the scenes, and practical AI that saves time without making things harder than they need to be.</p>
-          <ul>
-            <li id="hp-li-1">Social media direction and content support</li>
-            <li id="hp-li-2">Practical AI setup and training</li>
-            <li id="hp-li-3">Clearer marketing copy and campaigns</li>
-            <li id="hp-li-4">Simple systems you can keep using</li>
-          </ul>
+        <aside class="reveal delay-2">
+          <div class="hero-photo-wrap">
+            <img src="https://zmexxlwvwxxocjbfkslw.supabase.co/storage/v1/object/public/My%20image%20-%20Tara%20at%20desk/preview.webp" alt="Tara Odgers — Tara Consulting Co" loading="eager" />
+            <div class="hero-photo-badge">Tara Odgers<span>Founder, Tara Consulting Co</span></div>
+          </div>
         </aside>
       </div>
     </section>
 
-    <!-- QUIZ EMBED -->
-    <section class="block" style="padding-top: 0; padding-bottom: 0;">
-      <iframe
-        src="quiz_embed.html"
-        style="width: 100%; border: none; display: block; height: 520px;"
-        id="quizFrame"
-        scrolling="no"
-        title="What kind of content creator are you?"
-      ></iframe>
-    </section>
-    <script>
-      // Auto-resize iframe to fit content height
-      window.addEventListener('message', function(e) {
-        if (e.data && e.data.type === 'quizHeight') {
-          document.getElementById('quizFrame').style.height = e.data.height + 'px';
-        }
-      });
-    </script>
-
-    <!-- WHY IT HELPS -->
-    <section class="block pale">
+    <!-- QUIZ STRIP -->
+    <section class="block" style="padding-top:0;padding-bottom:0;">
       <div class="container">
-        <p class="section-eyebrow" id="hp-why-eyebrow">Why it helps</p>
-        <h2 class="section-title" id="hp-why-title">What feels easier when you have the right support.</h2>
-        <div class="grid-3">
-          <div class="card"><h3 id="hp-b1-t">Clearer Direction</h3><p id="hp-b1-d">Know what to say, where to say it and what matters most for your next stage.</p></div>
-          <div class="card"><h3 id="hp-b2-t">Less Overwhelm</h3><p id="hp-b2-d">Break social media, AI and marketing into simple actions instead of another giant job on your list.</p></div>
-          <div class="card"><h3 id="hp-b3-t">Better Content</h3><p id="hp-b3-d">Create posts, reels, captions and copy that sound like your business and make sense to your customers.</p></div>
-          <div class="card"><h3 id="hp-b4-t">Practical Systems</h3><p id="hp-b4-d">Use templates, prompts and repeatable steps so you're not starting from scratch every time.</p></div>
-          <div class="card"><h3 id="hp-b5-t">More Confidence</h3><p id="hp-b5-d">Understand how to use the tools without needing to become a tech expert.</p></div>
-          <div class="card"><h3 id="hp-b6-t">Room to Grow</h3><p id="hp-b6-d">Get the foundations in place so marketing and admin feel easier to keep up with.</p></div>
+        <div class="quiz-strip">
+          <div class="quiz-strip-icon">🎯</div>
+          <div>
+            <strong>Marketing should be fun — take the quiz</strong>
+            <span>Find out what kind of marketer you are. Takes 2 minutes.</span>
+          </div>
+          <a href="quiz_embed.html">Start →</a>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIAL -->
+    <!-- WHAT GETS EASIER -->
+    <section class="block pale">
+      <div class="container">
+        <p class="section-eyebrow" id="hp-why-eyebrow">What gets easier</p>
+        <h2 class="section-title" id="hp-why-title">The things that feel hard right now.</h2>
+        <div class="grid-3">
+          <div class="why-card"><div class="why-icon">🧭</div><div><h3 id="hp-b1-t">Clearer direction</h3><p id="hp-b1-d">Know what to say, where to say it and what matters most for your next stage.</p></div></div>
+          <div class="why-card"><div class="why-icon">😮‍💨</div><div><h3 id="hp-b2-t">Less overwhelm</h3><p id="hp-b2-d">Break social media, AI and marketing into simple actions instead of another giant job on your list.</p></div></div>
+          <div class="why-card"><div class="why-icon">✏️</div><div><h3 id="hp-b3-t">Better content</h3><p id="hp-b3-d">Posts, reels, captions and copy that sound like your business and make sense to your customers.</p></div></div>
+          <div class="why-card"><div class="why-icon">⚙️</div><div><h3 id="hp-b4-t">Practical systems</h3><p id="hp-b4-d">Templates, prompts and repeatable steps so you're not starting from scratch every time.</p></div></div>
+          <div class="why-card"><div class="why-icon">💪</div><div><h3 id="hp-b5-t">More confidence</h3><p id="hp-b5-d">Use the tools without needing to become a tech expert.</p></div></div>
+          <div class="why-card"><div class="why-icon">🌱</div><div><h3 id="hp-b6-t">Room to grow</h3><p id="hp-b6-d">Get the foundations in place so marketing and admin feel easier to keep up with.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL + SHOP + REVIEW -->
     <section class="block testimonial-section">
       <div class="container testimonial-inner">
-        <p class="testimonial-quote" id="hp-testimonial-quote">"Tara has been an absolute weapon for everything Katie and I have been trying to figure out. No question is too small, and she's always happy to explain something again if we don't get it the first time. It's such a godsend having someone who just knows what you're thinking, even when you don't have a solution for it yourself. If we're stuck, we know we can flick it to Tara. She always seems to have an answer."</p>
-        <p class="testimonial-cite" id="hp-testimonial-cite">Dom's Plant Repairs</p>
+        <p class="testimonial-quote" id="hp-testimonial-quote">"Tara was creative, reliable and always willing to go above and beyond. Her creativity seemed endless, and the results spoke for themselves — our social media engagement grew month on month. What I appreciated most was that Tara genuinely cared about the success of the business she was working with. I wouldn't hesitate to recommend her."</p>
+        <p class="testimonial-cite" id="hp-testimonial-cite">Lorna — Holiday Haven Parks</p>
+      </div>
+    </section>
+
+    <!-- SHOP STRIP -->
+    <section class="block" style="padding-top:0;">
+      <div class="container">
+        <div class="shop-strip">
+          <div class="shop-strip-icon">📄</div>
+          <div class="shop-strip-text">
+            <strong>Get Found by AI — $27</strong>
+            <span>See what AI says about your business and exactly how to fix it. Takes about 10 minutes.</span>
+          </div>
+          <a class="btn" href="https://buy.stripe.com/3cI28rc8KeSO14W7An9oc01" target="_blank" rel="noopener">Get the guide <span class="arrow">→</span></a>
+        </div>
+        <div class="review-strip">
+          <span>⭐⭐⭐⭐⭐ &nbsp;5 stars on Google</span>
+          <a href="https://g.page/r/CaUApua7pg0oEAE/review" target="_blank" rel="noopener">Leave a review →</a>
+        </div>
       </div>
     </section>
 
@@ -668,6 +677,30 @@
 
   </main>
 
+  <script>
+    // ── HOMEPAGE TESTIMONIAL ROTATOR ─────────────────────────
+    (function() {
+      var testimonials = [
+        { quote: '"Tara was creative, reliable and always willing to go above and beyond. Her creativity seemed endless, and the results spoke for themselves — our social media engagement grew month on month. What I appreciated most was that Tara genuinely cared about the success of the business she was working with. I wouldn't hesitate to recommend her."', cite: 'Lorna — Holiday Haven Parks' },
+        { quote: '"Tara has just been invaluable. Her knowledge across social media, content creation, scheduling and the back end of our business has made our life so much easier. She has all these little tips and tricks up her sleeve that we just didn't know we needed."', cite: 'Amy Lee — Dom's Plant Repairs' }
+      ];
+      var current = 0;
+      var qEl = document.getElementById('hp-testimonial-quote');
+      var cEl = document.getElementById('hp-testimonial-cite');
+      if (!qEl || !cEl) return;
+      setInterval(function() {
+        qEl.style.opacity = '0'; cEl.style.opacity = '0';
+        setTimeout(function() {
+          current = (current + 1) % testimonials.length;
+          qEl.textContent = testimonials[current].quote;
+          cEl.textContent = testimonials[current].cite;
+          qEl.style.opacity = '1'; cEl.style.opacity = '1';
+        }, 400);
+      }, 7000);
+      qEl.style.transition = 'opacity 0.4s';
+      cEl.style.transition = 'opacity 0.4s';
+    })();
+  </script>
   <script src="shared.js"></script>
   <script src="posts-data.js"></script>
   <script>
